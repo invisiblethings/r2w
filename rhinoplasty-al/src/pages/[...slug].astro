@@ -1,0 +1,192 @@
+---
+import { render } from 'astro:content';
+import { getEntry } from 'astro:content';
+import Base, { type Alternate } from '../layouts/Base.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import QuickAnswer from '../components/QuickAnswer.astro';
+import ReviewMeta from '../components/ReviewMeta.astro';
+import Faq from '../components/Faq.astro';
+import Sources from '../components/Sources.astro';
+import SectionList from '../components/SectionList.astro';
+import ClinicTable from '../components/ClinicTable.astro';
+import ClinicProfile from '../components/ClinicProfile.astro';
+import { t, type UiKey } from '../i18n/ui';
+import {
+  ancestors,
+  children,
+  clinicSlug,
+  find,
+  getPages,
+  getPublishedClinics,
+  isIndexable,
+  localeHomePath,
+  pathOf,
+  sectionKey,
+  translations,
+  urlOf,
+  type Clinic,
+  type Page,
+} from '../lib/pages';
+import { isRankable, rank } from '../lib/scoring';
+import * as schema from '../lib/schema';
+import { locales, type Locale } from '../site.config';
+
+type Props = { kind: 'page'; page: Page } | { kind: 'clinic'; clinic: Clinic; index: Page };
+
+export async function getStaticPaths() {
+  const pages = await getPages();
+  const clinics = await getPublishedClinics();
+  const pagePaths = pages.map((page) => ({
+    params: { slug: page.data.slug || undefined },
+    props: { kind: 'page' as const, page },
+  }));
+  const clinicPaths = pages
+    .filter((p) => p.data.type === 'clinics-index')
+    .flatMap((index) =>
+      clinics.map((clinic) => ({
+        params: { slug: clinicSlug(index, clinic) },
+        props: { kind: 'clinic' as const, clinic, index },
+      })),
+    );
+  return [...pagePaths, ...clinicPaths];
+}
+
+const props = Astro.props as Props;
+const pages = await getPages();
+const allClinics = await getPublishedClinics();
+
+const home = (locale: Locale) => find(pages, 'home', locale);
+const crumbsFor = (chain: Page[], locale: Locale) => {
+  const h = home(locale);
+  const list = chain.filter((p) => p.data.type !== 'home');
+  return [
+    ...(h ? [{ name: t(locale, 'nav.home'), href: pathOf(h.data.slug) }] : []),
+    ...list.map((p) => ({ name: p.data.h1 ?? p.data.title, href: pathOf(p.data.slug) })),
+  ];
+};
+
+let locale: Locale;
+let title: string;
+let description: string;
+let canonical: string;
+let indexable: boolean;
+let alternates: Alternate[];
+let switcher: Alternate[];
+let section: string | undefined;
+let crumbs: { name: string; href: string }[] = [];
+let heading: string;
+let nodes: Record<string, unknown>[] = [schema.organization(), schema.website()];
+
+if (props.kind === 'page') {
+  const { page } = props;
+  locale = page.data.locale;
+  title = page.data.title;
+  description = page.data.description;
+  heading = page.data.h1 ?? page.data.title;
+  canonical = urlOf(page.data.slug);
+  indexable = isIndexable(page);
+  const tr = translations(pages, page);
+  alternates = indexable ? tr.filter(isIndexable).map((p) => ({ locale: p.data.locale, href: urlOf(p.data.slug) })) : [];
+  switcher = locales.map((l) => {
+    const match = tr.find((p) => p.data.locale === l);
+    return { locale: l, href: match ? pathOf(match.data.slug) : localeHomePath(l) };
+  });
+  section = sectionKey(pages, page);
+  crumbs = page.data.type === 'home' ? [] : crumbsFor(ancestors(pages, page), locale);
+  const reviewer = page.data.reviewer ? await getEntry(page.data.reviewer) : undefined;
+  nodes.push(
+    schema.webPage({
+      url: canonical,
+      name: heading,
+      description,
+      locale,
+      medical: page.data.medical,
+      reviewer: reviewer && page.data.reviewed ? { name: reviewer.data.name, credentials: reviewer.data.credentials } : undefined,
+      reviewed: page.data.reviewed,
+      updated: page.data.updated,
+      published: page.data.published,
+    }),
+  );
+  if (crumbs.length) nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
+  if (page.data.faq.length) nodes.push(schema.faqPage(page.data.faq));
+  if (page.data.type === 'clinics-index') {
+    nodes.push(schema.itemList(rank(allClinics).map((c) => ({ name: c.data.name, url: urlOf(clinicSlug(page, c)) }))));
+  }
+} else {
+  const { clinic, index } = props;
+  locale = index.data.locale;
+  heading = clinic.data.name;
+  title = `${clinic.data.name} – ${clinic.data.city}: ${t(locale, 'clinic.breakdown')}`.slice(0, 70);
+  description = (clinic.data.summary[locale] ?? clinic.data.summary.en ?? `${clinic.data.name}, ${clinic.data.city}`).slice(0, 160);
+  canonical = urlOf(clinicSlug(index, clinic));
+  indexable = true;
+  const indexes = translations(pages, index);
+  alternates = indexes.map((i) => ({ locale: i.data.locale, href: urlOf(clinicSlug(i, clinic)) }));
+  switcher = locales.map((l) => {
+    const i = indexes.find((p) => p.data.locale === l);
+    return { locale: l, href: i ? pathOf(clinicSlug(i, clinic)) : localeHomePath(l) };
+  });
+  section = 'clinics';
+  crumbs = crumbsFor([...ancestors(pages, index), index], locale);
+  nodes.push(schema.webPage({ url: canonical, name: heading, description, locale, medical: false, updated: clinic.data.verifiedOn }));
+  nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
+  nodes.push(schema.medicalClinic({ name: clinic.data.name, url: canonical, address: clinic.data.address, city: clinic.data.city, website: clinic.data.website }));
+}
+
+const link = (key: string) => {
+  const p = find(pages, key, locale);
+  return p ? pathOf(p.data.slug) : undefined;
+};
+
+const page = props.kind === 'page' ? props.page : undefined;
+const Content = page ? (await render(page)).Content : undefined;
+const kids = page
+  ? children(pages, page).filter((p) => page.data.type !== 'home' || p.data.type === 'hub' || p.data.type === 'clinics-index')
+  : [];
+const parent = page?.data.parent ? find(pages, page.data.parent, locale) : undefined;
+const siblings = page?.data.type === 'article' && parent ? children(pages, parent).filter((p) => p.id !== page.id) : [];
+const ranked = rank(allClinics);
+const unranked = allClinics.filter((c) => !isRankable(c));
+---
+
+<Base
+  locale={locale}
+  title={title}
+  description={description}
+  canonical={canonical}
+  alternates={alternates}
+  switcher={switcher}
+  indexable={indexable}
+  section={section}
+  jsonLd={schema.graph(nodes)}
+>
+  <div class={`wrap page page-${page?.data.type ?? 'clinic'}`}>
+    {crumbs.length > 0 && <Breadcrumbs locale={locale} items={crumbs} current={heading} />}
+    <h1>{heading}</h1>
+
+    {page?.data.quickAnswer && <QuickAnswer locale={locale} text={page.data.quickAnswer} />}
+    {page && page.data.type !== 'home' && <ReviewMeta locale={locale} page={page} />}
+
+    {Content && <div class="prose"><Content /></div>}
+
+    {page?.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} />}
+
+    {
+      props.kind === 'clinic' && (
+        <ClinicProfile locale={locale} clinic={props.clinic} methodologyHref={link('methodology')} disclosureHref={link('advertiser-disclosure')} />
+      )
+    }
+
+    {(page?.data.type === 'home' || page?.data.type === 'hub' || page?.data.type === 'clinics-index') && kids.length > 0 && <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} />}
+    {page?.data.type === 'hub' && kids.length === 0 && <SectionList locale={locale} pages={pages} items={[]} currentKey={page.data.key} />}
+
+    {page && <Faq locale={locale} items={page.data.faq} />}
+    {page && <Sources locale={locale} items={page.data.sources} />}
+
+    {
+      siblings.length > 0 && parent && (
+        <SectionList locale={locale} pages={pages} items={siblings} heading={`${t(locale, 'hub.more')} ${parent.data.h1 ?? parent.data.title}`} currentKey={parent.data.key} />
+      )
+    }
+  </div>
+</Base>

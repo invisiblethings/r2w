@@ -1,0 +1,64 @@
+---
+import { t } from '../i18n/ui';
+import { formatEUR } from '../lib/format';
+import { pathOf, clinicSlug, type Clinic, type Page } from '../lib/pages';
+import { totalScore } from '../lib/scoring';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  index: Page;
+  ranked: Clinic[];
+  unranked: Clinic[];
+}
+
+const { locale, index, ranked, unranked } = Astro.props;
+---
+
+{
+  ranked.length === 0 && unranked.length === 0 ? (
+    <p class="empty-state">{t(locale, 'clinics.empty')}</p>
+  ) : (
+    <div class="table-scroll" role="region" aria-labelledby="ranking-title" tabindex="0">
+      <table class="ranking">
+        <caption id="ranking-title">{index.data.h1 ?? index.data.title}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{t(locale, 'clinics.rank')}</th>
+            <th scope="col">{t(locale, 'clinics.name')}</th>
+            <th scope="col">{t(locale, 'clinics.city')}</th>
+            <th scope="col">{t(locale, 'clinics.price')}</th>
+            <th scope="col">{t(locale, 'clinics.score')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ranked.map((c, i) => (
+            <tr>
+              <td>{i + 1}</td>
+              <th scope="row">
+                <a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a>
+                {c.data.partner && <span class="tag" title={t(locale, 'clinics.partnerNote')}>{t(locale, 'clinics.partner')}</span>}
+              </th>
+              <td>{c.data.city}</td>
+              <td>{c.data.priceEUR ? `${formatEUR(c.data.priceEUR.min, locale)}–${formatEUR(c.data.priceEUR.max, locale)}` : '—'}</td>
+              <td>{totalScore(c)}</td>
+            </tr>
+          ))}
+          {unranked.map((c) => (
+            <tr class="unranked">
+              <td>—</td>
+              <th scope="row">
+                <a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a>
+              </th>
+              <td>{c.data.city}</td>
+              <td>—</td>
+              <td>{t(locale, 'clinics.notRanked')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+{ranked.some((c) => c.data.partner) && <p class="note">{t(locale, 'clinics.partner')}: {t(locale, 'clinics.partnerNote')}</p>}
+{unranked.length > 0 && <p class="note">{t(locale, 'clinics.notRanked')}: {t(locale, 'clinics.notRankedNote')}</p>}

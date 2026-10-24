@@ -1,0 +1,26 @@
+---
+import { languageName, t } from '../i18n/ui';
+import { localeTag, type Locale } from '../site.config';
+import type { Alternate } from '../layouts/Base.astro';
+
+interface Props {
+  locale: Locale;
+  switcher: Alternate[];
+}
+
+const { locale, switcher } = Astro.props;
+---
+
+<nav class="lang" aria-label={t(locale, 'nav.language')}>
+  <ul>
+    {
+      switcher.map((s) => (
+        <li>
+          <a href={s.href} hreflang={localeTag[s.locale]} lang={localeTag[s.locale]} aria-current={s.locale === locale ? 'true' : undefined}>
+            {languageName[s.locale]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

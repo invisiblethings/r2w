@@ -1,0 +1,74 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { globalNav, t, type UiKey } from '../i18n/ui';
+import { find, getPages, localeHomePath, pathOf } from '../lib/pages';
+import { site, type Locale } from '../site.config';
+import type { Alternate } from '../layouts/Base.astro';
+
+interface Props {
+  locale: Locale;
+  section?: string;
+  switcher: Alternate[];
+}
+
+const { locale, section, switcher } = Astro.props;
+const pages = await getPages();
+const current = Astro.url.pathname;
+const items = globalNav
+  .map((key) => ({ key, page: find(pages, key, locale) }))
+  .filter((i) => i.page)
+  .map(({ key, page }) => ({ key, href: pathOf(page!.data.slug), label: t(locale, `nav.${key}` as UiKey) }));
+const methodology = find(pages, 'methodology', locale);
+---
+
+<header class="site-header">
+  <div class="wrap header-bar">
+    <a class="brand" href={localeHomePath(locale)}>{site.name}</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">{t(locale, 'nav.menu')}</button>
+    <div class="menu" id="site-menu">
+      <nav aria-label={t(locale, 'nav.main')}>
+        <ul class="nav-list">
+          {
+            items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={current === item.href ? 'page' : section === item.key ? 'true' : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      {
+        methodology && (
+          <a class="utility" href={pathOf(methodology.data.slug)} aria-current={current === pathOf(methodology.data.slug) ? 'page' : undefined}>
+            {t(locale, 'nav.methodology')}
+          </a>
+        )
+      }
+      <LangSwitch locale={locale} switcher={switcher} />
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const menu = document.getElementById('site-menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      menu.classList.toggle('is-open', !open);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        menu.classList.remove('is-open');
+        toggle.focus();
+      }
+    });
+  }
+</script>

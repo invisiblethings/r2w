@@ -1,0 +1,26 @@
+---
+import { t } from '../i18n/ui';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  items: { title: string; url: string }[];
+}
+
+const { locale, items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">{t(locale, 'sources.title')}</h2>
+      <ol>
+        {items.map((s) => (
+          <li>
+            <a href={s.url} rel="noopener">{s.title}</a>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )
+}

@@ -1,0 +1,60 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { localeTag, ogLocale, site, type Locale } from '../site.config';
+import { t } from '../i18n/ui';
+
+export interface Alternate {
+  locale: Locale;
+  href: string;
+}
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  canonical: string;
+  /** Indexable translations, including this page. Empty when the page is noindex. */
+  alternates: Alternate[];
+  /** Language switcher targets: the translation when it exists, otherwise that locale's home. */
+  switcher: Alternate[];
+  indexable: boolean;
+  section?: string;
+  jsonLd?: string;
+}
+
+const { locale, title, description, canonical, alternates, switcher, indexable, section, jsonLd } = Astro.props;
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const xDefault = alternates.find((a) => a.locale === 'en');
+---
+
+<!doctype html>
+<html lang={localeTag[locale]}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {indexable ? <link rel="canonical" href={canonical} /> : <meta name="robots" content="noindex, follow" />}
+    {indexable && alternates.length > 1 && alternates.map((a) => <link rel="alternate" hreflang={localeTag[a.locale]} href={a.href} />)}
+    {indexable && alternates.length > 1 && xDefault && <link rel="alternate" hreflang="x-default" href={xDefault.href} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale[locale]} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js')</script>
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+  </head>
+  <body>
+    <a class="skip" href="#main">{t(locale, 'skip')}</a>
+    <Header locale={locale} section={section} switcher={switcher} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer locale={locale} switcher={switcher} />
+  </body>
+</html>

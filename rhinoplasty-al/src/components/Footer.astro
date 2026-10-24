@@ -1,0 +1,32 @@
+---
+import LangSwitch from './LangSwitch.astro';
+import { footerNav, t } from '../i18n/ui';
+import { find, getPages, pathOf } from '../lib/pages';
+import { site, type Locale } from '../site.config';
+import type { Alternate } from '../layouts/Base.astro';
+
+interface Props {
+  locale: Locale;
+  switcher: Alternate[];
+}
+
+const { locale, switcher } = Astro.props;
+const pages = await getPages();
+const links = footerNav.map((key) => find(pages, key, locale)).filter((p) => p);
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <p class="brand">{site.name}</p>
+      <p>{t(locale, 'footer.disclosure')}</p>
+      <p>{t(locale, 'footer.disclaimer')}</p>
+    </div>
+    <nav aria-label={t(locale, 'footer.trust')}>
+      <ul class="footer-links">
+        {links.map((p) => <li><a href={pathOf(p!.data.slug)}>{p!.data.h1 ?? p!.data.title}</a></li>)}
+      </ul>
+    </nav>
+    <LangSwitch locale={locale} switcher={switcher} />
+  </div>
+</footer>

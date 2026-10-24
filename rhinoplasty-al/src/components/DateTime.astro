@@ -1,0 +1,13 @@
+---
+import { formatDate, isoDate } from '../lib/format';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  value: Date;
+}
+
+const { locale, value } = Astro.props;
+---
+
+<time datetime={isoDate(value)}>{formatDate(value, locale)}</time>

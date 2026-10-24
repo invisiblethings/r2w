@@ -1,0 +1,50 @@
+---
+import { globalNav, t, type UiKey } from '../i18n/ui';
+import { find, pathOf, type Page } from '../lib/pages';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  pages: Page[];
+  items: Page[];
+  /** Heading for the list; omitted on a hub, where the list is the page's own content. */
+  heading?: string;
+  currentKey: string;
+}
+
+const { locale, pages, items, heading, currentKey } = Astro.props;
+const others = globalNav
+  .filter((k) => k !== currentKey)
+  .map((k) => ({ page: find(pages, k, locale), label: t(locale, `nav.${k}` as UiKey) }))
+  .filter((o) => o.page);
+---
+
+{
+  items.length > 0 ? (
+    <section class="section-list" aria-labelledby={heading ? 'section-list-title' : undefined}>
+      {heading && <h2 id="section-list-title">{heading}</h2>}
+      <ul class="cards">
+        {items.map((p) => (
+          <li class="card">
+            <a href={pathOf(p.data.slug)}>{p.data.h1 ?? p.data.title}</a>
+            <p>{p.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ) : (
+    !heading && (
+      <section class="empty-state">
+        <p>{t(locale, 'hub.empty')}</p>
+        <h2>{t(locale, 'hub.elsewhere')}</h2>
+        <ul class="inline-links">
+          {others.map((o) => (
+            <li>
+              <a href={pathOf(o.page!.data.slug)}>{o.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  )
+}

@@ -1,0 +1,56 @@
+---
+import { getEntry, type CollectionEntry } from 'astro:content';
+import { t } from '../i18n/ui';
+import { formatDate, isoDate } from '../lib/format';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  page: CollectionEntry<'pages'>;
+}
+
+const { locale, page } = Astro.props;
+const { author, reviewer, published, reviewed, updated, medical } = page.data;
+const authorEntry = author ? await getEntry(author) : undefined;
+const reviewerEntry = reviewer ? await getEntry(reviewer) : undefined;
+const pending = medical && !(reviewerEntry && reviewed);
+---
+
+{
+  (authorEntry || reviewerEntry || published || updated || pending) && (
+    <div class="review-meta">
+      {authorEntry && (
+        <p>
+          {t(locale, 'meta.written')} <strong>{authorEntry.data.name}</strong>, {authorEntry.data.credentials}
+        </p>
+      )}
+      {reviewerEntry && reviewed && (
+        <p>
+          {t(locale, 'meta.reviewed')}{' '}
+          {reviewerEntry.data.verifyUrl ? (
+            <a href={reviewerEntry.data.verifyUrl} rel="noopener">
+              <strong>{reviewerEntry.data.name}</strong>
+            </a>
+          ) : (
+            <strong>{reviewerEntry.data.name}</strong>
+          )}
+          , {reviewerEntry.data.credentials} · {t(locale, 'meta.reviewedOn')}{' '}
+          <time datetime={isoDate(reviewed)}>{formatDate(reviewed, locale)}</time>
+        </p>
+      )}
+      {pending && <p class="pending">{t(locale, 'meta.reviewPending')}</p>}
+      <p class="dates">
+        {published && (
+          <span>
+            {t(locale, 'meta.published')} <time datetime={isoDate(published)}>{formatDate(published, locale)}</time>
+          </span>
+        )}
+        {updated && (
+          <span>
+            {t(locale, 'meta.updated')} <time datetime={isoDate(updated)}>{formatDate(updated, locale)}</time>
+          </span>
+        )}
+      </p>
+    </div>
+  )
+}
