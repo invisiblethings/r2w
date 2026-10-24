@@ -51,3 +51,15 @@
 - Why: checked the templates against the anti-pattern catalog: no urgency, no prechecked consent, no fabricated social proof, disclosure on every ranking, no tracking.
 - Rejected: a sticky "Book now" bar, which would be pressure selling on a medical decision.
 - Rests on: Intent anti-pattern catalog.
+
+## 2026-10-24 · Visual system: Fraunces display, Inter text, sand and ink with a terracotta accent
+- Decided by: Claude, default
+- Why: an editorial, medical-grade look signals care and independence; one warm accent keeps calls to action obvious without urgency styling.
+- Rejected: clinical blue-and-white, which reads as a clinic's own site; stock photography of faces, which would imply patients the site has not verified.
+- Rests on: the designer's rejection of the unstyled base build.
+
+## 2026-10-24 · Fonts are self-hosted
+- Decided by: Claude, default
+- Why: loading Google Fonts from Google's servers sends visitor IP addresses to a third party, which German courts have ruled a GDPR breach; self-hosting is also faster.
+- Rejected: Google Fonts CDN.
+- Rests on: context, Constraints (GDPR).

@@ -1,0 +1,130 @@
+---
+import Icon from './Icon.astro';
+import { t, type UiKey } from '../i18n/ui';
+import { sectionIcon } from '../lib/icons';
+import { find, pathOf, type Page } from '../lib/pages';
+import { criteria, weights } from '../lib/scoring';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  page: Page;
+  pages: Page[];
+  sections: Page[];
+}
+
+const { locale, page, pages, sections } = Astro.props;
+const href = (key: string) => {
+  const p = find(pages, key, locale);
+  return p ? pathOf(p.data.slug) : undefined;
+};
+const pillars = [
+  { icon: 'shield', n: 1 },
+  { icon: 'receipt', n: 2 },
+  { icon: 'scale', n: 3 },
+  { icon: 'lock', n: 4 },
+] as const;
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="kicker">{t(locale, 'home.kicker')}</p>
+      <h1>{page.data.h1 ?? page.data.title}</h1>
+      <div class="hero-lead"><slot /></div>
+      <div class="hero-actions">
+        {href('clinics') && <a class="btn btn-primary" href={href('clinics')}>{t(locale, 'header.cta')} <Icon name="arrow-right" size={18} /></a>}
+        {href('cost') && <a class="btn btn-ghost" href={href('cost')}>{t(locale, 'home.ctaCost')}</a>}
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 360" class="profile">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="var(--accent-soft)" />
+            <stop offset="1" stop-color="var(--sand-deep)" />
+          </linearGradient>
+        </defs>
+        <circle cx="170" cy="180" r="150" fill="url(#g)" />
+        <path
+          d="M150 34c-14 34-16 66-10 92 4 16 12 28 32 52 6 8 2 15-10 15h-10c4 8 2 14 8 18-6 6-4 14 2 18-8 8-10 20-20 32-14 16-36 26-58 30"
+          fill="none"
+          stroke="var(--ink)"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="128" cy="118" r="3.5" fill="var(--ink)" />
+      </svg>
+      <ul class="chips">
+        <li class="chip c1"><Icon name="shield" size={16} />{t(locale, 'home.chip1')}</li>
+        <li class="chip c2"><Icon name="receipt" size={16} />{t(locale, 'home.chip2')}</li>
+        <li class="chip c3"><Icon name="message" size={16} />{t(locale, 'home.chip3')}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="wrap">
+  <ul class="pillar-grid">
+    {
+      pillars.map((p) => (
+        <li>
+          <span class="pillar-icon"><Icon name={p.icon} /></span>
+          <h2>{t(locale, `home.p${p.n}.title` as UiKey)}</h2>
+          <p>{t(locale, `home.p${p.n}.text` as UiKey)}</p>
+        </li>
+      ))
+    }
+  </ul>
+  </div>
+</section>
+
+<section class="wrap block">
+  <div class="block-head">
+    <h2>{t(locale, 'home.startTitle')}</h2>
+    <p>{t(locale, 'home.startText')}</p>
+  </div>
+  <ul class="cards">
+    {
+      sections.map((s) => (
+        <li class="card">
+          <span class="card-icon"><Icon name={sectionIcon[s.data.key] ?? 'layers'} /></span>
+          <h3><a class="stretched" href={pathOf(s.data.slug)}>{s.data.h1 ?? s.data.title}</a></h3>
+          <p>{s.data.description}</p>
+          <span class="card-more">{t(locale, 'card.read')} <Icon name="arrow-right" size={16} /></span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<section class="method">
+  <div class="wrap method-grid">
+    <div>
+      <h2>{t(locale, 'home.methodTitle')}</h2>
+      <p>{t(locale, 'home.methodText')}</p>
+      {href('methodology') && <a class="btn btn-light" href={href('methodology')}>{t(locale, 'home.methodLink')} <Icon name="arrow-right" size={18} /></a>}
+    </div>
+    <div class="method-card">
+      <p class="gate"><Icon name="shield" size={18} /> {t(locale, 'home.methodGate')}</p>
+      <ul class="bars">
+        {
+          criteria.map((c) => (
+            <li>
+              <span class="bar-label">{t(locale, `criteria.${c}` as UiKey)}</span>
+              <span class="bar-track"><span class="bar-fill" style={`width:${weights[c] * 4}%`} /></span>
+              <span class="bar-value">{weights[c]}%</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap band">
+  <h2>{t(locale, 'home.bandTitle')}</h2>
+  <p>{t(locale, 'home.bandText')}</p>
+</section>

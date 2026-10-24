@@ -2,7 +2,8 @@
 import { render } from 'astro:content';
 import { getEntry } from 'astro:content';
 import Base, { type Alternate } from '../layouts/Base.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Home from '../components/Home.astro';
+import PageHero from '../components/PageHero.astro';
 import QuickAnswer from '../components/QuickAnswer.astro';
 import ReviewMeta from '../components/ReviewMeta.astro';
 import Faq from '../components/Faq.astro';
@@ -160,33 +161,54 @@ const unranked = allClinics.filter((c) => !isRankable(c));
   section={section}
   jsonLd={schema.graph(nodes)}
 >
-  <div class={`wrap page page-${page?.data.type ?? 'clinic'}`}>
-    {crumbs.length > 0 && <Breadcrumbs locale={locale} items={crumbs} current={heading} />}
-    <h1>{heading}</h1>
-
-    {page?.data.quickAnswer && <QuickAnswer locale={locale} text={page.data.quickAnswer} />}
-    {page && page.data.type !== 'home' && <ReviewMeta locale={locale} page={page} />}
-
-    {Content && <div class="prose"><Content /></div>}
-
-    {page?.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} />}
-
-    {
+  {
+    page?.data.type === 'home' ? (
+      <Home locale={locale} page={page} pages={pages} sections={kids}>
+        {Content && <Content />}
+      </Home>
+    ) : page?.data.type === 'hub' || page?.data.type === 'clinics-index' ? (
+      <>
+        <PageHero locale={locale} heading={heading} crumbs={crumbs} section={section}>
+          {Content && <div class="page-lead prose"><Content /></div>}
+        </PageHero>
+        <div class="wrap page">
+          {page.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} />}
+          <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} />
+          <Faq locale={locale} items={page.data.faq} />
+          <Sources locale={locale} items={page.data.sources} />
+        </div>
+      </>
+    ) : page ? (
+      <>
+        <PageHero locale={locale} heading={heading} lead={page.data.description} crumbs={crumbs} section={page.data.type === 'trust' ? undefined : section} />
+        <div class={`wrap page layout-${page.data.type}`}>
+          <div class="main-col">
+            {page.data.quickAnswer && <QuickAnswer locale={locale} text={page.data.quickAnswer} />}
+            {Content && <div class="prose"><Content /></div>}
+            <Faq locale={locale} items={page.data.faq} />
+            <Sources locale={locale} items={page.data.sources} />
+          </div>
+          {page.data.type === 'article' && (
+            <aside class="side-col">
+              <ReviewMeta locale={locale} page={page} />
+            </aside>
+          )}
+        </div>
+        {siblings.length > 0 && parent && (
+          <div class="wrap page more">
+            <SectionList locale={locale} pages={pages} items={siblings} heading={`${t(locale, 'hub.more')} ${parent.data.h1 ?? parent.data.title}`} currentKey={parent.data.key} />
+          </div>
+        )}
+      </>
+    ) : (
       props.kind === 'clinic' && (
-        <ClinicProfile locale={locale} clinic={props.clinic} methodologyHref={link('methodology')} disclosureHref={link('advertiser-disclosure')} />
+        <>
+          <PageHero locale={locale} heading={heading} crumbs={crumbs} section="clinics" />
+          <div class="wrap page">
+            <ClinicProfile locale={locale} clinic={props.clinic} methodologyHref={link('methodology')} disclosureHref={link('advertiser-disclosure')} />
+          </div>
+        </>
       )
-    }
-
-    {(page?.data.type === 'home' || page?.data.type === 'hub' || page?.data.type === 'clinics-index') && kids.length > 0 && <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} />}
-    {page?.data.type === 'hub' && kids.length === 0 && <SectionList locale={locale} pages={pages} items={[]} currentKey={page.data.key} />}
-
-    {page && <Faq locale={locale} items={page.data.faq} />}
-    {page && <Sources locale={locale} items={page.data.sources} />}
-
-    {
-      siblings.length > 0 && parent && (
-        <SectionList locale={locale} pages={pages} items={siblings} heading={`${t(locale, 'hub.more')} ${parent.data.h1 ?? parent.data.title}`} currentKey={parent.data.key} />
-      )
-    }
-  </div>
+    )
+  }
 </Base>

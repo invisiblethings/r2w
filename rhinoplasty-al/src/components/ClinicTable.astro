@@ -21,7 +21,7 @@ const { locale, index, ranked, unranked } = Astro.props;
   ) : (
     <div class="table-scroll" role="region" aria-labelledby="ranking-title" tabindex="0">
       <table class="ranking">
-        <caption id="ranking-title">{index.data.h1 ?? index.data.title}</caption>
+        <caption id="ranking-title" class="sr-only">{index.data.h1 ?? index.data.title}</caption>
         <thead>
           <tr>
             <th scope="col">{t(locale, 'clinics.rank')}</th>

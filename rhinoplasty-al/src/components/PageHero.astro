@@ -1,0 +1,29 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import Icon from './Icon.astro';
+import { sectionIcon } from '../lib/icons';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  heading: string;
+  lead?: string;
+  crumbs: { name: string; href: string }[];
+  section?: string;
+}
+
+const { locale, heading, lead, crumbs, section } = Astro.props;
+const icon = section ? sectionIcon[section] : undefined;
+---
+
+<header class="page-hero">
+  <div class="wrap">
+    {crumbs.length > 0 && <Breadcrumbs locale={locale} items={crumbs} current={heading} />}
+    <div class="page-hero-title">
+      {icon && <span class="hero-icon"><Icon name={icon} size={28} /></span>}
+      <h1>{heading}</h1>
+    </div>
+    {lead && <p class="page-lead">{lead}</p>}
+    <slot />
+  </div>
+</header>

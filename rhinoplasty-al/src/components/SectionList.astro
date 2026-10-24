@@ -1,5 +1,7 @@
 ---
+import Icon from './Icon.astro';
 import { globalNav, t, type UiKey } from '../i18n/ui';
+import { sectionIcon } from '../lib/icons';
 import { find, pathOf, type Page } from '../lib/pages';
 import type { Locale } from '../site.config';
 
@@ -15,7 +17,7 @@ interface Props {
 const { locale, pages, items, heading, currentKey } = Astro.props;
 const others = globalNav
   .filter((k) => k !== currentKey)
-  .map((k) => ({ page: find(pages, k, locale), label: t(locale, `nav.${k}` as UiKey) }))
+  .map((k) => ({ key: k, page: find(pages, k, locale), label: t(locale, `nav.${k}` as UiKey) }))
   .filter((o) => o.page);
 ---
 
@@ -26,21 +28,25 @@ const others = globalNav
       <ul class="cards">
         {items.map((p) => (
           <li class="card">
-            <a href={pathOf(p.data.slug)}>{p.data.h1 ?? p.data.title}</a>
+            <h3><a class="stretched" href={pathOf(p.data.slug)}>{p.data.h1 ?? p.data.title}</a></h3>
             <p>{p.data.description}</p>
+            <span class="card-more">{t(locale, 'card.read')} <Icon name="arrow-right" size={16} /></span>
           </li>
         ))}
       </ul>
     </section>
   ) : (
-    !heading && (
+    !heading && currentKey !== 'clinics' && (
       <section class="empty-state">
         <p>{t(locale, 'hub.empty')}</p>
         <h2>{t(locale, 'hub.elsewhere')}</h2>
-        <ul class="inline-links">
+        <ul class="pill-links">
           {others.map((o) => (
             <li>
-              <a href={pathOf(o.page!.data.slug)}>{o.label}</a>
+              <a href={pathOf(o.page!.data.slug)}>
+                <Icon name={sectionIcon[o.key] ?? 'layers'} size={18} />
+                {o.label}
+              </a>
             </li>
           ))}
         </ul>

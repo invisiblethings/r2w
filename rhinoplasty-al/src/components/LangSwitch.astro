@@ -6,18 +6,20 @@ import type { Alternate } from '../layouts/Base.astro';
 interface Props {
   locale: Locale;
   switcher: Alternate[];
+  /** Two-letter codes in the header; full names in the footer. */
+  compact?: boolean;
 }
 
-const { locale, switcher } = Astro.props;
+const { locale, switcher, compact = false } = Astro.props;
 ---
 
-<nav class="lang" aria-label={t(locale, 'nav.language')}>
+<nav class={compact ? 'lang lang-compact' : 'lang'} aria-label={t(locale, 'nav.language')}>
   <ul>
     {
       switcher.map((s) => (
         <li>
           <a href={s.href} hreflang={localeTag[s.locale]} lang={localeTag[s.locale]} aria-current={s.locale === locale ? 'true' : undefined}>
-            {languageName[s.locale]}
+            {compact ? <><span aria-hidden="true">{s.locale.toUpperCase()}</span><span class="sr-only">{languageName[s.locale]}</span></> : languageName[s.locale]}
           </a>
         </li>
       ))
