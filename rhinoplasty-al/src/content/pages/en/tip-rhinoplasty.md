@@ -38,7 +38,7 @@ A 2021 study of 252 revisions after open rhinoplasty found the revision rate was
 
 Skin thickness changes how visible the result is. A systematic review of thin skin finds that it gives minimal camouflage, so irregularities in bone or cartilage show, and aggressive tip sculpting may cause irregularities or shine-through. The review included 15 studies of 679 patients, most of them low-level evidence with short follow-up ([Cureus 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11383643/)).
 
-A Saudi study of 154 patients found satisfaction did not differ significantly between thin, intermediate and thick skin, though it was a small, single-centre survey with a 62% response rate ([Saudi Med J 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6344664)). Read [bulbous tip](/nose-concerns/bulbous-tip/) and [ethnic and thick-skin rhinoplasty](/procedures/ethnic-rhinoplasty/) for more.
+A Saudi study of 154 patients found satisfaction did not differ significantly between thin, intermediate and thick skin, though it was a small, single-centre survey with a 62% response rate ([Saudi Med J 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6344664)). Read [bulbous tip](/nose-concerns/bulbous-tip/) and [ethnic and thick-skin rhinoplasty](/procedures/ethnic-and-thick-skin-rhinoplasty/) for more.
 
 ## What is recovery like?
 

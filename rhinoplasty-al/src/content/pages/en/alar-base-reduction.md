@@ -64,4 +64,4 @@ It may be, if you have finished growing, are healthy and have realistic goals, a
 
 ## Next steps
 
-Read about [ethnic and thick-skin rhinoplasty](/procedures/ethnic-rhinoplasty/) if your nose is broad at the base, then use questions to ask a clinic before you book.
+Read about [ethnic and thick-skin rhinoplasty](/procedures/ethnic-and-thick-skin-rhinoplasty/) if your nose is broad at the base, then use questions to ask a clinic before you book.

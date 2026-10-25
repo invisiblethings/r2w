@@ -32,7 +32,7 @@ Your own face and wishes come first. Say what you want to keep: a strong profile
 
 Men's nasal skin is thicker than women's according to the Aesthetic Society, and skin thickness is one of the things a surgeon plans around. A systematic review of thin skin found that thin skin gives minimal camouflage for the underlying framework. Thicker skin is not covered by that review. A Saudi study of 154 patients found satisfaction did not differ significantly between thin, intermediate and thick skin groups, but it was a single-centre study with a 62% survey response ([Saudi Med J 2018](https://pmc.ncbi.nlm.nih.gov/articles/PMC6344664)).
 
-Practically, ask the surgeon what they can and cannot change on your skin and to show examples with similar skin. Our guide to [ethnic and thick-skin rhinoplasty](/procedures/ethnic-rhinoplasty/) goes into this.
+Practically, ask the surgeon what they can and cannot change on your skin and to show examples with similar skin. Our guide to [ethnic and thick-skin rhinoplasty](/procedures/ethnic-and-thick-skin-rhinoplasty/) goes into this.
 
 ## Is breathing part of the decision?
 
