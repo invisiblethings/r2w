@@ -1,5 +1,6 @@
 ---
-import { t } from '../i18n/ui';
+import Icon from './Icon.astro';
+import { t, type UiKey } from '../i18n/ui';
 import { formatEUR } from '../lib/format';
 import { pathOf, clinicSlug, type Clinic, type Page } from '../lib/pages';
 import { totalScore } from '../lib/scoring';
@@ -10,55 +11,83 @@ interface Props {
   index: Page;
   ranked: Clinic[];
   unranked: Clinic[];
+  listed: Clinic[];
 }
 
-const { locale, index, ranked, unranked } = Astro.props;
+const { locale, index, ranked, unranked, listed } = Astro.props;
+const summary = (c: Clinic) => c.data.summary[locale] ?? c.data.summary.en ?? '';
 ---
 
-{
-  ranked.length === 0 && unranked.length === 0 ? (
-    <p class="empty-state">{t(locale, 'clinics.empty')}</p>
-  ) : (
-    <div class="table-scroll" role="region" aria-labelledby="ranking-title" tabindex="0">
-      <table class="ranking">
-        <caption id="ranking-title" class="sr-only">{index.data.h1 ?? index.data.title}</caption>
-        <thead>
-          <tr>
-            <th scope="col">{t(locale, 'clinics.rank')}</th>
-            <th scope="col">{t(locale, 'clinics.name')}</th>
-            <th scope="col">{t(locale, 'clinics.city')}</th>
-            <th scope="col">{t(locale, 'clinics.price')}</th>
-            <th scope="col">{t(locale, 'clinics.score')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ranked.map((c, i) => (
+<section class="ranking-block" aria-labelledby="ranking-title">
+  <h2 id="ranking-title">{t(locale, 'clinics.auditedTitle')}</h2>
+  {
+    ranked.length === 0 && unranked.length === 0 ? (
+      <p class="note">{t(locale, 'clinics.noneAudited')}</p>
+    ) : (
+      <div class="table-scroll" role="region" aria-labelledby="ranking-title" tabindex="0">
+        <table class="ranking">
+          <thead>
             <tr>
-              <td>{i + 1}</td>
-              <th scope="row">
-                <a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a>
-                {c.data.partner && <span class="tag" title={t(locale, 'clinics.partnerNote')}>{t(locale, 'clinics.partner')}</span>}
-              </th>
-              <td>{c.data.city}</td>
-              <td>{c.data.priceEUR ? `${formatEUR(c.data.priceEUR.min, locale)}–${formatEUR(c.data.priceEUR.max, locale)}` : '—'}</td>
-              <td>{totalScore(c)}</td>
+              <th scope="col">{t(locale, 'clinics.rank')}</th>
+              <th scope="col">{t(locale, 'clinics.name')}</th>
+              <th scope="col">{t(locale, 'clinics.city')}</th>
+              <th scope="col">{t(locale, 'clinics.price')}</th>
+              <th scope="col">{t(locale, 'clinics.score')}</th>
             </tr>
-          ))}
-          {unranked.map((c) => (
-            <tr class="unranked">
-              <td>—</td>
-              <th scope="row">
-                <a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a>
-              </th>
-              <td>{c.data.city}</td>
-              <td>—</td>
-              <td>{t(locale, 'clinics.notRanked')}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {ranked.map((c, i) => (
+              <tr>
+                <td>{i + 1}</td>
+                <th scope="row">
+                  <a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a>
+                  {c.data.partner && <span class="tag" title={t(locale, 'clinics.partnerNote')}>{t(locale, 'clinics.partner')}</span>}
+                </th>
+                <td>{c.data.city}</td>
+                <td>{c.data.priceEUR ? `${formatEUR(c.data.priceEUR.min, locale)}–${formatEUR(c.data.priceEUR.max, locale)}` : '—'}</td>
+                <td>{totalScore(c)}</td>
+              </tr>
+            ))}
+            {unranked.map((c) => (
+              <tr class="unranked">
+                <td>—</td>
+                <th scope="row"><a href={pathOf(clinicSlug(index, c))}>{c.data.name}</a></th>
+                <td>{c.data.city}</td>
+                <td>—</td>
+                <td>{t(locale, 'clinics.notRanked')}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+  {ranked.some((c) => c.data.partner) && <p class="note">{t(locale, 'clinics.partner')}: {t(locale, 'clinics.partnerNote')}</p>}
+  {unranked.length > 0 && <p class="note">{t(locale, 'clinics.notRanked')}: {t(locale, 'clinics.notRankedNote')}</p>}
+</section>
+
+{
+  listed.length > 0 && (
+    <section class="listed-block" aria-labelledby="listed-title">
+      <h2 id="listed-title">{t(locale, 'listed.title')}</h2>
+      <p class="block-intro">{t(locale, 'listed.intro')}</p>
+      <ul class="cards clinic-cards">
+        {listed.map((c) => (
+          <li class="card clinic-card">
+            <div class="clinic-card-head">
+              <span class="card-icon"><Icon name="building" /></span>
+              <span class="tag tag-muted">{t(locale, 'listed.badge')}</span>
+            </div>
+            <h3><a class="stretched" href={pathOf(clinicSlug(index, c))}>{c.data.name}</a></h3>
+            <p class="clinic-meta">
+              {t(locale, `clinic.type.${c.data.setting}` as UiKey)} · {c.data.city}
+              {c.data.priceEUR && <> · {formatEUR(c.data.priceEUR.min, locale)}–{formatEUR(c.data.priceEUR.max, locale)}</>}
+            </p>
+            <p>{summary(c)}</p>
+            <span class="card-more">{t(locale, 'clinic.view')} <Icon name="arrow-right" size={16} /></span>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
-{ranked.some((c) => c.data.partner) && <p class="note">{t(locale, 'clinics.partner')}: {t(locale, 'clinics.partnerNote')}</p>}
-{unranked.length > 0 && <p class="note">{t(locale, 'clinics.notRanked')}: {t(locale, 'clinics.notRankedNote')}</p>}

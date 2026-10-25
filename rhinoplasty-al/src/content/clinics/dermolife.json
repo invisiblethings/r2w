@@ -1,0 +1,27 @@
+{
+  "name": "Dermolife",
+  "city": "Tirana",
+  "address": "Rr. Derhemi",
+  "setting": "clinic",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "summary": {
+    "en": "Aesthetic clinic founded in 2002 by an aesthetic dermatologist, which says it works with Italian plastic surgeons. A patient review on WhatClinic describes a rhinoplasty; the operating surgeons are not named by the clinic.",
+    "it": "Clinica estetica fondata nel 2002 da una dermatologa estetica, che dichiara di lavorare con chirurghi plastici italiani. Una recensione su WhatClinic descrive una rinoplastica; la clinica non indica i chirurghi.",
+    "sq": "Klinikë estetike e themeluar në 2002 nga një dermatologe estetike, që deklaron se punon me kirurgë plastikë italianë. Një vlerësim në WhatClinic përshkruan një rinoplastikë; klinika nuk i emëron kirurgët."
+  },
+  "sources": [
+    {
+      "title": "WhatClinic: rhinoplasty in Albania",
+      "url": "https://whatclinic.com/cosmetic-plastic-surgery/albania/rhinoplasty"
+    },
+    {
+      "title": "Trustpilot: Dermolife (chirurgia-albania.com)",
+      "url": "https://at.trustpilot.com/review/chirurgia-albania.com"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

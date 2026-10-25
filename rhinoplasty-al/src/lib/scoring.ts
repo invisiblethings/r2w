@@ -17,12 +17,13 @@ type Clinic = CollectionEntry<'clinics'>;
 
 /** A clinic without a verified license is never ranked, whatever its other scores. */
 export function isRankable(clinic: Clinic): boolean {
-  return clinic.data.license.status === 'verified';
+  return clinic.data.audit === 'audited' && clinic.data.license.status === 'verified' && Boolean(clinic.data.scores);
 }
 
 /** Weighted score out of 100, one decimal. Payment status is not an input. */
 export function totalScore(clinic: Clinic): number {
   const s = clinic.data.scores;
+  if (!s) return 0;
   const sum = criteria.reduce((acc, c) => acc + (s[c] * weights[c]) / 100, 0);
   return Math.round(sum * 10) / 10;
 }

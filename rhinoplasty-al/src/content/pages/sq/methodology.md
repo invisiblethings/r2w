@@ -12,6 +12,10 @@ description: "Metoda publike pas çdo vlerësimi në Rhinoplasty.al: kontrolli i
 
 Çdo klinikë vlerësohet në të njëjtën mënyrë. Metoda është publike që ta kontrolloni arsyetimin tonë.
 
+## Para vlerësimit: klinikat e listuara
+
+Një klinikë që ofron rinoplastikë shfaqet **Ende pa vlerësim** derisa të përfundojë vlerësimi. Profili tregon vetëm atë që klinika publikon për veten dhe vlerësime me datë nga platforma të tjera, secila me lidhje te burimi. Nuk ka vlerësim dhe as renditje.
+
 ## 1. Kontrolli i licencës
 
 Konfirmojmë me burime zyrtare shqiptare që klinika është e licencuar për ndërhyrje kirurgjikale dhe që çdo kirurg i përmendur është i regjistruar me specialitetin që deklaron. Një klinikë që nuk mund ta konfirmojmë shfaqet **Pa renditje**, pavarësisht rezultateve të tjera. Çdo profil tregon datën e kontrollit dhe burimin.

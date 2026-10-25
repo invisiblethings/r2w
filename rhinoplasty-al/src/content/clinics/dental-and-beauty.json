@@ -1,0 +1,45 @@
+{
+  "name": "Dental & Beauty",
+  "city": "Tirana",
+  "address": "Rr. Ferit Xhajko",
+  "setting": "clinic",
+  "website": "https://www.dentalandbeauty.it",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "surgeons": [
+    {
+      "name": "Dott. Gualtiero Tramonti",
+      "specialty": "Listed for cosmetic surgery",
+      "source": "https://www.dentalandbeauty.it"
+    },
+    {
+      "name": "Dr. Sandro Cerqua",
+      "specialty": "Listed for cosmetic surgery",
+      "source": "https://www.dentalandbeauty.it"
+    },
+    {
+      "name": "Dott. Andrea La Padula",
+      "specialty": "Listed for cosmetic surgery",
+      "source": "https://www.dentalandbeauty.it"
+    }
+  ],
+  "summary": {
+    "en": "Dental and aesthetic clinic aimed at Italian patients. Its Trustpilot description lists rhinoplasty; its website names three doctors for cosmetic surgery without stating who performs rhinoplasty or publishing prices.",
+    "it": "Clinica dentale ed estetica rivolta ai pazienti italiani. La descrizione su Trustpilot elenca la rinoplastica; il sito indica tre medici per la chirurgia estetica senza dire chi esegue la rinoplastica né pubblicare i prezzi.",
+    "sq": "Klinikë dentare dhe estetike për pacientë italianë. Përshkrimi në Trustpilot përmend rinoplastikën; faqja emëron tre mjekë për kirurgji estetike pa treguar kush kryen rinoplastikën dhe pa publikuar çmime."
+  },
+  "sources": [
+    {
+      "title": "Dental & Beauty website",
+      "url": "https://www.dentalandbeauty.it"
+    },
+    {
+      "title": "Trustpilot: Dental & Beauty",
+      "url": "https://nl-be.trustpilot.com/review/dentalandbeauty.it"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

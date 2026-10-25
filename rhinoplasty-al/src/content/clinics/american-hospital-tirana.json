@@ -1,0 +1,67 @@
+{
+  "name": "American Hospital (Spitali Amerikan): Plastic Surgery",
+  "city": "Tirana",
+  "address": "Rr. Sabaudin Gabrani 2",
+  "setting": "hospital",
+  "website": "https://al.spitaliamerikan.com/plastic-surgery-albania/",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "surgeons": [
+    {
+      "name": "Dr. Orkun Uyanık",
+      "specialty": "Plastic surgeon",
+      "credentials": "Medical degree, Istanbul University-Cerrahpaşa (2015); specialty training, Necmettin Erbakan University (2021)",
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/"
+    },
+    {
+      "name": "Dr. Vincenzo Colabianchi",
+      "specialty": "Plastic surgeon",
+      "credentials": "Lists AICPE and SBCP membership",
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/"
+    },
+    {
+      "name": "Dr. Artiola Jaupaj",
+      "specialty": "Plastic surgeon",
+      "credentials": "University of Medicine, Tirana",
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/"
+    },
+    {
+      "name": "Dr. Herbert Lamblet",
+      "specialty": "Plastic surgeon",
+      "credentials": "Trained at the Ivo Pitanguy Institute",
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/"
+    }
+  ],
+  "techniques": [
+    "septorhinoplasty",
+    "tip-rhinoplasty",
+    "alar-base-reduction",
+    "male-rhinoplasty"
+  ],
+  "priceEUR": {
+    "min": 2500,
+    "max": 3500,
+    "basis": "American Hospital plastic surgery FAQ",
+    "collectedOn": "2026-10-24",
+    "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/?p=3348"
+  },
+  "summary": {
+    "en": "Private hospital group in Tirana. Its plastic surgery department quotes €2,500–3,500 for rhinoplasty including the hospital stay, and names a Turkish, Italian, Albanian and Brazilian team; it does not say which surgeon performs rhinoplasty.",
+    "it": "Gruppo ospedaliero privato a Tirana. Il reparto di chirurgia plastica indica €2.500–3.500 per la rinoplastica, ricovero incluso, e presenta un’équipe turca, italiana, albanese e brasiliana; non specifica quale chirurgo esegue la rinoplastica.",
+    "sq": "Grup spitalor privat në Tiranë. Departamenti i kirurgjisë plastike jep €2.500–3.500 për rinoplastikën, përfshirë qëndrimin në spital, dhe paraqet një ekip turk, italian, shqiptar dhe brazilian; nuk tregon cili kirurg e kryen rinoplastikën."
+  },
+  "sources": [
+    {
+      "title": "American Hospital: plastic surgery in Albania",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/"
+    },
+    {
+      "title": "American Hospital: rhinoplasty guide and FAQ",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/?p=3348"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

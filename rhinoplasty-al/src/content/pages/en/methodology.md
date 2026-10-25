@@ -12,6 +12,10 @@ description: "The published method behind every clinic score on Rhinoplasty.al: 
 
 Every clinic is assessed the same way. The method is published so you can check our reasoning and disagree with it.
 
+## Before the audit: listed clinics
+
+A clinic that offers rhinoplasty appears as **Not yet audited** before its audit is complete. Its profile shows only what the clinic publishes about itself and dated ratings from other platforms, each linked to the source. It has no score and no rank.
+
 ## Step 1: License check
 
 We confirm with official Albanian sources that the clinic is licensed to perform surgery and that each named surgeon is registered and holds the specialty they claim. A clinic we cannot confirm is shown as **Not ranked**, whatever its other results. Each profile shows the date of the check and the source.

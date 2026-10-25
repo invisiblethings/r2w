@@ -4,20 +4,64 @@
   "address": "Rruga Example 1",
   "setting": "hospital",
   "website": "https://example.com",
-  "license": { "status": "verified", "checkedOn": "2026-11-01", "source": "Ministry of Health license register" },
+  "license": {
+    "status": "verified",
+    "checkedOn": "2026-11-01",
+    "source": "Ministry of Health license register"
+  },
   "surgeons": [
-    { "name": "Dr. Example", "specialty": "Plastic surgeon", "credentials": "Registered with the Order of Physicians of Albania", "verifiedOn": "2026-11-01" }
+    {
+      "name": "Dr. Example",
+      "specialty": "Plastic surgeon",
+      "credentials": "Registered with the Order of Physicians of Albania",
+      "verifiedOn": "2026-11-01",
+      "source": "https://example.com"
+    }
   ],
-  "techniques": ["Open rhinoplasty", "Closed rhinoplasty", "Septorhinoplasty"],
-  "languages": ["English", "Italiano", "Shqip"],
-  "priceEUR": { "min": 2500, "max": 3800, "basis": "3 written quotes", "collectedOn": "2026-11-01" },
-  "included": ["Surgeon's fee", "Anesthesia", "One hospital night", "Splint removal visit"],
-  "aftercare": { "en": "Two in-person visits and video follow-up at 1, 3 and 12 months." },
-  "revisionPolicy": { "en": "Revision within 12 months for surgical cause at no surgeon fee; hospital costs charged." },
-  "scores": { "surgeon": 80, "facility": 85, "transparency": 70, "aftercare": 75, "evidence": 60, "international": 80 },
+  "techniques": [
+    "open-rhinoplasty",
+    "closed-rhinoplasty",
+    "septorhinoplasty"
+  ],
+  "languages": [
+    "English",
+    "Italiano",
+    "Shqip"
+  ],
+  "priceEUR": {
+    "min": 2500,
+    "max": 3800,
+    "basis": "3 written quotes",
+    "collectedOn": "2026-11-01"
+  },
+  "included": [
+    "Surgeon's fee",
+    "Anesthesia",
+    "One hospital night",
+    "Splint removal visit"
+  ],
+  "aftercare": {
+    "en": "Two in-person visits and video follow-up at 1, 3 and 12 months."
+  },
+  "revisionPolicy": {
+    "en": "Revision within 12 months for surgical cause at no surgeon fee; hospital costs charged."
+  },
+  "scores": {
+    "surgeon": 80,
+    "facility": 85,
+    "transparency": 70,
+    "aftercare": 75,
+    "evidence": 60,
+    "international": 80
+  },
   "partner": false,
-  "summary": { "en": "One-sentence factual summary of the clinic." },
-  "rightOfReply": { "sentOn": "2026-11-02" },
+  "summary": {
+    "en": "One-sentence factual summary of the clinic."
+  },
+  "rightOfReply": {
+    "sentOn": "2026-11-02"
+  },
   "verifiedOn": "2026-11-01",
-  "status": "draft"
+  "status": "draft",
+  "audit": "audited"
 }

@@ -147,7 +147,8 @@ const kids = page
 const parent = page?.data.parent ? find(pages, page.data.parent, locale) : undefined;
 const siblings = page?.data.type === 'article' && parent ? children(pages, parent).filter((p) => p.id !== page.id) : [];
 const ranked = rank(allClinics);
-const unranked = allClinics.filter((c) => !isRankable(c));
+const unranked = allClinics.filter((c) => c.data.audit === 'audited' && !isRankable(c));
+const listed = allClinics.filter((c) => c.data.audit === 'listed').sort((a, b) => a.data.name.localeCompare(b.data.name));
 ---
 
 <Base
@@ -172,7 +173,7 @@ const unranked = allClinics.filter((c) => !isRankable(c));
           {Content && <div class="page-lead prose"><Content /></div>}
         </PageHero>
         <div class="wrap page">
-          {page.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} />}
+          {page.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} listed={listed} />}
           <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} />
           <Faq locale={locale} items={page.data.faq} />
           <Sources locale={locale} items={page.data.sources} />

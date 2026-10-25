@@ -1,0 +1,40 @@
+{
+  "name": "Silur Clinic",
+  "city": "Tirana",
+  "address": "Kompleksi Farmacia 10, Rr. e Dibrës",
+  "setting": "clinic",
+  "website": "https://silurclinic.com",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "techniques": [
+    "ethnic-rhinoplasty"
+  ],
+  "ratings": [
+    {
+      "platform": "Trustpilot",
+      "score": 4.2,
+      "count": 15,
+      "url": "https://se.trustpilot.com/review/silurclinic.com",
+      "checkedOn": "2026-10-24"
+    }
+  ],
+  "summary": {
+    "en": "Aesthetic and plastic surgery clinic serving international patients. Patient reviews describe rhinoplasty, including ethnic rhinoplasty; surgeons and prices are not published in the sources we reviewed.",
+    "it": "Clinica di chirurgia estetica e plastica per pazienti internazionali. Le recensioni dei pazienti descrivono rinoplastiche, anche etniche; chirurghi e prezzi non sono pubblicati nelle fonti che abbiamo consultato.",
+    "sq": "Klinikë e kirurgjisë estetike dhe plastike për pacientë ndërkombëtarë. Vlerësimet e pacientëve përshkruajnë rinoplastika, përfshirë atë etnike; kirurgët dhe çmimet nuk publikohen në burimet që shqyrtuam."
+  },
+  "sources": [
+    {
+      "title": "Trustpilot: Silur Clinic",
+      "url": "https://se.trustpilot.com/review/silurclinic.com"
+    },
+    {
+      "title": "WhatClinic: rhinoplasty in Albania",
+      "url": "https://whatclinic.com/cosmetic-plastic-surgery/albania/rhinoplasty?page=1"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

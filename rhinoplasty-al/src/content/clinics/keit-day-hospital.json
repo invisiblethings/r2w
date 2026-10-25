@@ -1,0 +1,51 @@
+{
+  "name": "KEIT Day Hospital",
+  "city": "Tirana",
+  "address": "Rr. Dritan Hoxha",
+  "setting": "day-clinic",
+  "website": "https://keit.al",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "techniques": [
+    "septorhinoplasty"
+  ],
+  "ratings": [
+    {
+      "platform": "Trustpilot",
+      "score": 4.8,
+      "count": 2182,
+      "url": "https://uk.trustpilot.com/review/keit.al",
+      "checkedOn": "2026-10-24"
+    },
+    {
+      "platform": "WhatClinic",
+      "score": 4.9,
+      "count": 472,
+      "url": "https://www.whatclinic.com/cosmetic-plastic-surgery/albania/tirana/keit-day-hospital",
+      "checkedOn": "2026-10-24"
+    }
+  ],
+  "summary": {
+    "en": "Day hospital founded in 2011 that serves mainly Italian patients and says rhinoplasty is its most requested procedure. It states that it works with Italian plastic and ENT surgeons; their names are not published in the sources we reviewed.",
+    "it": "Day hospital fondato nel 2011, con pazienti in prevalenza italiani, che indica la rinoplastica come intervento più richiesto. Dichiara di lavorare con chirurghi plastici e otorinolaringoiatri italiani; i loro nomi non sono pubblicati nelle fonti che abbiamo consultato.",
+    "sq": "Spital ditor i themeluar në 2011, me pacientë kryesisht italianë, që e paraqet rinoplastikën si procedurën më të kërkuar. Deklaron se punon me kirurgë plastikë dhe ORL italianë; emrat e tyre nuk publikohen në burimet që shqyrtuam."
+  },
+  "sources": [
+    {
+      "title": "Italpress: KEIT press release (24 April 2024)",
+      "url": "https://www.italpress.com/?p=441063"
+    },
+    {
+      "title": "Trustpilot: KEIT",
+      "url": "https://uk.trustpilot.com/review/keit.al"
+    },
+    {
+      "title": "WhatClinic: KEIT Day Hospital",
+      "url": "https://www.whatclinic.com/cosmetic-plastic-surgery/albania/tirana/keit-day-hospital"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

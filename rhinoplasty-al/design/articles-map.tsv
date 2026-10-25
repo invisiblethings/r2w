@@ -1,0 +1,42 @@
+key	parent	medical	en_slug	it_slug	sq_slug	en_title_hint
+whats-included	cost	false	cost/whats-included	it/costo-rinoplastica-albania/cosa-include	sq/cmimi-i-rinoplastikes/cfare-perfshin	What a rhinoplasty quote in Albania should include
+hidden-costs	cost	false	cost/hidden-costs	it/costo-rinoplastica-albania/costi-nascosti	sq/cmimi-i-rinoplastikes/kostot-e-fshehura	Hidden costs of rhinoplasty abroad
+prices-2026	cost	false	cost/prices-2026	it/costo-rinoplastica-albania/prezzi-2026	sq/cmimi-i-rinoplastikes/cmimet-2026	Rhinoplasty prices in Albania: what clinics publish (2026)
+albania-vs-turkey	cost	false	cost/albania-vs-turkey	it/costo-rinoplastica-albania/albania-o-turchia	sq/cmimi-i-rinoplastikes/shqiperi-apo-turqi	Rhinoplasty in Albania or Turkey
+albania-vs-italy	cost	false	cost/albania-vs-italy	it/costo-rinoplastica-albania/albania-o-italia	sq/cmimi-i-rinoplastikes/shqiperi-apo-itali	Rhinoplasty in Albania or Italy
+albania-vs-uk	cost	false	cost/albania-vs-uk	it/costo-rinoplastica-albania/albania-o-regno-unito	sq/cmimi-i-rinoplastikes/shqiperi-apo-mbreteri-e-bashkuar	Rhinoplasty in Albania or the UK
+hospital-or-clinic	clinics	false	clinics/hospital-or-clinic	it/cliniche/ospedale-o-clinica	sq/klinikat/spital-apo-klinike	Hospital, day hospital or clinic: where should a rhinoplasty happen
+how-to-choose	clinics	false	clinics/how-to-choose	it/cliniche/come-scegliere	sq/klinikat/si-te-zgjidhni	How to choose a rhinoplasty clinic in Albania
+questions-to-ask	clinics	false	clinics/questions-to-ask	it/cliniche/domande-da-fare	sq/klinikat/pyetje-per-klinike	Questions to ask a clinic before you book
+italian-surgeons-tirana	clinics	false	clinics/italian-surgeons-in-tirana	it/cliniche/chirurghi-italiani-a-tirana	sq/klinikat/kirurge-italiane-ne-tirane	Italian surgeons in Tirana: how to check who operates
+verify-surgeon	surgeons	false	surgeons/how-to-verify	it/chirurghi/come-verificare	sq/kirurget/si-ta-verifikoni	How to verify a surgeon in Albania
+plastic-or-ent	surgeons	true	surgeons/plastic-surgeon-or-ent	it/chirurghi/chirurgo-plastico-o-otorino	sq/kirurget/kirurg-plastik-apo-orl	Plastic surgeon or ENT surgeon for rhinoplasty
+open-rhinoplasty	procedures	true	procedures/open-rhinoplasty	it/interventi/rinoplastica-aperta	sq/procedurat/rinoplastika-e-hapur	Open rhinoplasty
+closed-rhinoplasty	procedures	true	procedures/closed-rhinoplasty	it/interventi/rinoplastica-chiusa	sq/procedurat/rinoplastika-e-mbyllur	Closed rhinoplasty
+septorhinoplasty	procedures	true	procedures/septorhinoplasty	it/interventi/settorinoplastica	sq/procedurat/septorinoplastika	Septorhinoplasty
+tip-rhinoplasty	procedures	true	procedures/tip-rhinoplasty	it/interventi/rinoplastica-della-punta	sq/procedurat/rinoplastika-e-majes	Tip rhinoplasty
+revision-rhinoplasty	procedures	true	procedures/revision-rhinoplasty	it/interventi/rinoplastica-secondaria	sq/procedurat/rinoplastika-rishikuese	Revision rhinoplasty
+preservation-rhinoplasty	procedures	true	procedures/preservation-rhinoplasty	it/interventi/rinoplastica-conservativa	sq/procedurat/rinoplastika-ruajtese	Preservation rhinoplasty
+ultrasonic-rhinoplasty	procedures	true	procedures/ultrasonic-rhinoplasty	it/interventi/rinoplastica-ultrasonica	sq/procedurat/rinoplastika-me-ultratinguj	Ultrasonic (piezo) rhinoplasty
+male-rhinoplasty	procedures	true	procedures/male-rhinoplasty	it/interventi/rinoplastica-maschile	sq/procedurat/rinoplastika-per-burra	Male rhinoplasty
+ethnic-rhinoplasty	procedures	true	procedures/ethnic-and-thick-skin-rhinoplasty	it/interventi/rinoplastica-etnica-pelle-spessa	sq/procedurat/rinoplastika-etnike-lekure-e-trashe	Ethnic and thick-skin rhinoplasty
+alar-base-reduction	procedures	true	procedures/alar-base-reduction	it/interventi/riduzione-delle-ali-del-naso	sq/procedurat/ngushtimi-i-flegrave	Alar base reduction (narrowing the nostrils)
+non-surgical-rhinoplasty	procedures	true	procedures/non-surgical-rhinoplasty	it/interventi/rinoplastica-non-chirurgica	sq/procedurat/rinoplastika-pa-operacion	Non-surgical rhinoplasty with filler
+dorsal-hump	nose-concerns	true	nose-concerns/dorsal-hump	it/problemi-del-naso/gobba-nasale	sq/problemet-e-hundes/gunga-e-hundes	Dorsal hump
+bulbous-tip	nose-concerns	true	nose-concerns/bulbous-tip	it/problemi-del-naso/punta-globosa	sq/problemet-e-hundes/maja-e-trashe	Bulbous nasal tip
+wide-nose	nose-concerns	true	nose-concerns/wide-nose	it/problemi-del-naso/naso-largo	sq/problemet-e-hundes/hunda-e-gjere	Wide nose
+crooked-nose	nose-concerns	true	nose-concerns/crooked-nose	it/problemi-del-naso/naso-storto	sq/problemet-e-hundes/hunda-e-shtrembet	Crooked nose
+droopy-tip	nose-concerns	true	nose-concerns/droopy-tip	it/problemi-del-naso/punta-cadente	sq/problemet-e-hundes/maja-e-varur	Droopy nasal tip
+deviated-septum	nose-concerns	true	nose-concerns/breathing-problems-deviated-septum	it/problemi-del-naso/setto-deviato-respirazione	sq/problemet-e-hundes/septumi-i-devijuar	Breathing problems and a deviated septum
+recovery-timeline	recovery	true	recovery/day-by-day	it/recupero/giorno-per-giorno	sq/rikuperimi/dite-pas-dite	Rhinoplasty recovery day by day
+flying-after	recovery	true	recovery/flying-after-rhinoplasty	it/recupero/aereo-dopo-rinoplastica	sq/rikuperimi/fluturimi-pas-rinoplastikes	When can you fly after rhinoplasty
+how-long-to-stay	recovery	true	recovery/how-long-to-stay-in-albania	it/recupero/quanto-restare-in-albania	sq/rikuperimi/sa-te-qendroni	How long to stay in Albania after rhinoplasty
+swelling	recovery	true	recovery/swelling-month-by-month	it/recupero/gonfiore-mese-per-mese	sq/rikuperimi/enjtja-muaj-pas-muaji	Swelling after rhinoplasty, month by month
+aftercare-home	recovery	true	recovery/aftercare-at-home	it/recupero/controlli-al-rientro	sq/rikuperimi/kujdesi-ne-shtepi	Aftercare once you are home
+is-it-safe	safety	true	safety/is-rhinoplasty-in-albania-safe	it/sicurezza/rinoplastica-albania-e-sicura	sq/siguria/a-eshte-e-sigurt	Is rhinoplasty in Albania safe?
+red-flags	safety	false	safety/red-flags-unlicensed-clinics	it/sicurezza/segnali-di-allarme	sq/siguria/shenjat-paralajmeruese	Red flags and unlicensed clinics
+risks	safety	true	safety/risks-and-complications	it/sicurezza/rischi-e-complicazioni	sq/siguria/rreziqet-dhe-komplikimet	Rhinoplasty risks and complications
+problems-at-home	safety	true	safety/problems-after-you-get-home	it/sicurezza/problemi-dopo-il-rientro	sq/siguria/problemet-pas-kthimit	Problems after you get home
+planning-trip	travel	false	travel/planning-your-trip	it/viaggio/organizzare-il-viaggio	sq/udhetimi/planifikimi	Planning your rhinoplasty trip to Albania
+where-to-stay	travel	false	travel/where-to-stay	it/viaggio/dove-alloggiare	sq/udhetimi/ku-te-qendroni	Where to stay while you recover
+online-consultation	travel	false	travel/online-consultation	it/viaggio/consulto-online	sq/udhetimi/konsulta-online	Online consultation before you travel

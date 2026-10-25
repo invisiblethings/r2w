@@ -12,6 +12,10 @@ description: "Il metodo pubblico dietro ogni punteggio su Rhinoplasty.al: verifi
 
 Ogni clinica è valutata allo stesso modo. Il metodo è pubblico, così puoi controllare il nostro ragionamento e non essere d’accordo.
 
+## Prima della valutazione: cliniche elencate
+
+Una clinica che offre la rinoplastica compare come **Non ancora valutata** finché la valutazione non è completa. Il profilo mostra solo ciò che la clinica pubblica su di sé e le valutazioni datate di altre piattaforme, ciascuna con il link alla fonte. Non ha punteggio né posizione in classifica.
+
 ## 1. Verifica della licenza
 
 Confermiamo con fonti ufficiali albanesi che la clinica sia autorizzata a eseguire interventi chirurgici e che ogni chirurgo indicato sia iscritto all’albo con la specializzazione dichiarata. Una clinica che non possiamo confermare compare come **Non in classifica**, qualunque siano gli altri risultati. Ogni profilo mostra la data della verifica e la fonte.

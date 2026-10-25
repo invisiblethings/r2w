@@ -1,0 +1,41 @@
+{
+  "name": "Clinica DaVinci",
+  "city": "Tirana",
+  "address": "Pas Garden Building, Rr. e Kavajës",
+  "setting": "clinic",
+  "website": "https://www.davinci.al",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "techniques": [
+    "open-rhinoplasty",
+    "closed-rhinoplasty"
+  ],
+  "ratings": [
+    {
+      "platform": "Trustpilot",
+      "score": 3.3,
+      "count": 69,
+      "url": "https://www.trustpilot.com/review/davinci.al",
+      "checkedOn": "2026-10-25"
+    }
+  ],
+  "summary": {
+    "en": "Aesthetic surgery clinic founded in 2014 as an Italian–Albanian partnership. Its website lists open and closed rhinoplasty and its doctors, but not prices or which doctors perform rhinoplasty.",
+    "it": "Clinica di chirurgia estetica fondata nel 2014 come partnership italo-albanese. Il sito elenca rinoplastica aperta e chiusa e i suoi medici, ma non i prezzi né quali medici eseguono la rinoplastica.",
+    "sq": "Klinikë e kirurgjisë estetike e themeluar në 2014 si partneritet italo-shqiptar. Faqja liston rinoplastikën e hapur dhe të mbyllur dhe mjekët e saj, por jo çmimet apo cilët mjekë kryejnë rinoplastikën."
+  },
+  "sources": [
+    {
+      "title": "Clinica DaVinci website",
+      "url": "https://www.davinci.al"
+    },
+    {
+      "title": "Trustpilot: DaVinci",
+      "url": "https://www.trustpilot.com/review/davinci.al"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

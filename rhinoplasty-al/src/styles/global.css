@@ -1264,3 +1264,77 @@ meter {
     transition: none !important;
   }
 }
+
+/* Clinic listings */
+
+.ranking-block h2,
+.listed-block h2 {
+  margin-top: 0;
+}
+
+.listed-block {
+  margin-top: 3rem;
+}
+
+.block-intro {
+  max-width: 46rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.clinic-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.clinic-meta {
+  color: var(--ink-soft) !important;
+  font-weight: 500;
+  flex: 0 !important;
+}
+
+.tag-muted {
+  margin-left: 0;
+  background: var(--sand-deep);
+  color: var(--ink-soft);
+}
+
+.listed-note {
+  max-width: var(--measure);
+  margin-bottom: 1.5rem;
+}
+
+.listed-note .tag {
+  margin-right: 0.35rem;
+}
+
+.surgeon-list li,
+.ratings li {
+  margin: 0.4rem 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 0.9rem;
+}
+
+.clinic-image {
+  margin: 0 0 1.5rem;
+}
+
+.clinic-image img {
+  width: 100%;
+  max-width: var(--measure);
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.clinic-image figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}

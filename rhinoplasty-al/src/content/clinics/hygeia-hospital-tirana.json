@@ -1,0 +1,64 @@
+{
+  "name": "Hygeia Hospital Tirana",
+  "city": "Tirana",
+  "address": "Fushë-Mëzez, Kashar, Tirana–Durrës highway km 1",
+  "setting": "hospital",
+  "website": "https://hygeia.al/plastic-surgery/",
+  "audit": "listed",
+  "license": {
+    "status": "pending"
+  },
+  "surgeons": [
+    {
+      "name": "Prof. Dr. Emrah Arslan",
+      "specialty": "Plastic surgeon",
+      "credentials": "Plastic surgery specialisation, Çukurova University (1999); lists ISAPS membership",
+      "source": "https://hygeia.al/plastic-surgery/medical-team/prof-dr-emrah-arslan/"
+    },
+    {
+      "name": "Dr. Ufuk Erdem",
+      "specialty": "Plastic surgeon",
+      "credentials": "Plastic surgery residency, Trakya University (2016–2022)",
+      "source": "https://hygeia.al/plastic-surgery/medical-team/dr-ufuk-erdem/"
+    },
+    {
+      "name": "Dr. Tolga Beydes",
+      "specialty": "Surgeon named on the rhinoplasty page",
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/"
+    }
+  ],
+  "techniques": [
+    "open-rhinoplasty",
+    "closed-rhinoplasty",
+    "septorhinoplasty",
+    "tip-rhinoplasty",
+    "ethnic-rhinoplasty",
+    "ultrasonic-rhinoplasty",
+    "revision-rhinoplasty",
+    "alar-base-reduction"
+  ],
+  "priceEUR": {
+    "min": 2000,
+    "max": 4500,
+    "basis": "Hygeia rhinoplasty page",
+    "collectedOn": "2026-10-24",
+    "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/"
+  },
+  "summary": {
+    "en": "Private hospital in Kashar, part of the Greek Hygeia Group. Its plastic surgery unit publishes rhinoplasty prices by technique (revision €3,800–5,500) and names Turkish-trained plastic surgeons.",
+    "it": "Ospedale privato a Kashar, parte del gruppo greco Hygeia. Il reparto di chirurgia plastica pubblica i prezzi della rinoplastica per tecnica (secondaria €3.800–5.500) e indica chirurghi plastici formati in Turchia.",
+    "sq": "Spital privat në Kashar, pjesë e Grupit grek Hygeia. Njësia e kirurgjisë plastike publikon çmimet e rinoplastikës sipas teknikës (rishikuese €3.800–5.500) dhe emëron kirurgë plastikë të formuar në Turqi."
+  },
+  "sources": [
+    {
+      "title": "Hygeia: Rhinoplasty in Albania",
+      "url": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/"
+    },
+    {
+      "title": "Hygeia: medical team",
+      "url": "https://hygeia.al/plastic-surgery/medical-team/"
+    }
+  ],
+  "verifiedOn": "2026-10-24",
+  "status": "published"
+}

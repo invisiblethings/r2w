@@ -1,9 +1,9 @@
 ---
-import { t, type UiKey } from '../i18n/ui';
 import DateTime from './DateTime.astro';
+import { t, type UiKey } from '../i18n/ui';
 import { formatEUR } from '../lib/format';
 import { criteria, isRankable, totalScore, weights } from '../lib/scoring';
-import type { Clinic } from '../lib/pages';
+import { find, getPages, pathOf, type Clinic } from '../lib/pages';
 import type { Locale } from '../site.config';
 
 interface Props {
@@ -15,11 +15,28 @@ interface Props {
 
 const { locale, clinic, methodologyHref, disclosureHref } = Astro.props;
 const d = clinic.data;
+const audited = d.audit === 'audited';
 const local = (field: Partial<Record<Locale, string>>) => field[locale] ?? field.en;
-const reply = d.rightOfReply.response ? local(d.rightOfReply.response) : undefined;
+const pages = await getPages();
+const technique = (key: string) => {
+  const p = find(pages, key, locale);
+  return p ? { label: p.data.h1 ?? p.data.title, href: pathOf(p.data.slug) } : { label: key, href: undefined };
+};
+const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefined;
 ---
 
 <article class="clinic">
+  {!audited && <p class="note listed-note"><span class="tag tag-muted">{t(locale, 'listed.badge')}</span> {t(locale, 'listed.note')} {methodologyHref && <a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a>}</p>}
+
+  {
+    d.image && (
+      <figure class="clinic-image">
+        <img src={d.image.src} alt={d.image.alt} loading="lazy" decoding="async" />
+        <figcaption>{d.image.credit}</figcaption>
+      </figure>
+    )
+  }
+
   {local(d.summary) && <p class="lede">{local(d.summary)}</p>}
 
   <section aria-labelledby="facts">
@@ -31,14 +48,17 @@ const reply = d.rightOfReply.response ? local(d.rightOfReply.response) : undefin
       <dd>{d.address}, {d.city}</dd>
       <dt>{t(locale, 'clinic.license')}</dt>
       <dd>
-        {t(locale, `clinic.license.${d.license.status}` as UiKey)} ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={d.license.checkedOn} />; {d.license.source})
+        {t(locale, `clinic.license.${d.license.status}` as UiKey)}
+        {d.license.checkedOn && <> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={d.license.checkedOn} />{d.license.source && <>; {d.license.source}</>})</>}
       </dd>
       {
         d.priceEUR && (
           <>
             <dt>{t(locale, 'clinics.price')}</dt>
             <dd>
-              {formatEUR(d.priceEUR.min, locale)}–{formatEUR(d.priceEUR.max, locale)} ({t(locale, 'clinic.priceBasis')}: {d.priceEUR.basis}, <DateTime locale={locale} value={d.priceEUR.collectedOn} />)
+              {formatEUR(d.priceEUR.min, locale)}–{formatEUR(d.priceEUR.max, locale)} ({t(locale, 'clinic.priceBasis')}:{' '}
+              {d.priceEUR.source ? <a href={d.priceEUR.source} rel="noopener nofollow">{d.priceEUR.basis}</a> : d.priceEUR.basis},{' '}
+              <DateTime locale={locale} value={d.priceEUR.collectedOn} />)
             </dd>
           </>
         )
@@ -55,57 +75,62 @@ const reply = d.rightOfReply.response ? local(d.rightOfReply.response) : undefin
         d.website && (
           <>
             <dt>{t(locale, 'clinic.website')}</dt>
-            <dd>
-              <a href={d.website} rel="noopener nofollow">{new URL(d.website).hostname}</a>
-            </dd>
+            <dd><a href={d.website} rel="noopener nofollow">{new URL(d.website).hostname}</a></dd>
           </>
         )
       }
-      <dt>{t(locale, 'clinic.verifiedOn')}</dt>
+      <dt>{audited ? t(locale, 'clinic.verifiedOn') : t(locale, 'clinic.collectedOn')}</dt>
       <dd><DateTime locale={locale} value={d.verifiedOn} /></dd>
     </dl>
-    {d.partner && <p class="note"><span class="tag">{t(locale, 'clinics.partner')}</span> {t(locale, 'clinics.partnerNote')} {disclosureHref && <a href={disclosureHref}>→</a>}</p>}
+    {d.partner && <p class="note"><span class="tag">{t(locale, 'clinics.partner')}</span> {t(locale, 'clinics.partnerNote')} {disclosureHref && <a href={disclosureHref}>{t(locale, 'clinics.howWeRank')}</a>}</p>}
   </section>
 
-  <section aria-labelledby="breakdown">
-    <h2 id="breakdown">{t(locale, 'clinic.breakdown')}</h2>
-    {
-      isRankable(clinic) ? (
-        <table class="breakdown">
-          <tbody>
-            {criteria.map((c) => (
+  {
+    audited && (
+      <section aria-labelledby="breakdown">
+        <h2 id="breakdown">{t(locale, 'clinic.breakdown')}</h2>
+        {isRankable(clinic) && d.scores ? (
+          <table class="breakdown">
+            <tbody>
+              {criteria.map((c) => (
+                <tr>
+                  <th scope="row">{t(locale, `criteria.${c}` as UiKey)}</th>
+                  <td>{weights[c]}%</td>
+                  <td><meter min="0" max="100" value={d.scores![c]}>{d.scores![c]}</meter> {d.scores![c]}/100</td>
+                </tr>
+              ))}
+            </tbody>
+            <tfoot>
               <tr>
-                <th scope="row">{t(locale, `criteria.${c}` as UiKey)}</th>
-                <td>{weights[c]}%</td>
-                <td>
-                  <meter min="0" max="100" value={d.scores[c]}>{d.scores[c]}</meter> {d.scores[c]}/100
-                </td>
+                <th scope="row">{t(locale, 'clinics.score')}</th>
+                <td />
+                <td><strong>{totalScore(clinic)}/100</strong></td>
               </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <th scope="row">{t(locale, 'clinics.score')}</th>
-              <td />
-              <td><strong>{totalScore(clinic)}/100</strong></td>
-            </tr>
-          </tfoot>
-        </table>
-      ) : (
-        <p>{t(locale, 'clinics.notRankedNote')}</p>
-      )
-    }
-    {methodologyHref && <p><a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a></p>}
-  </section>
+            </tfoot>
+          </table>
+        ) : (
+          <p>{t(locale, 'clinics.notRankedNote')}</p>
+        )}
+        {methodologyHref && <p><a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a></p>}
+      </section>
+    )
+  }
 
   {
     d.surgeons.length > 0 && (
       <section aria-labelledby="surgeons">
-        <h2 id="surgeons">{t(locale, 'clinic.surgeons')}</h2>
-        <ul>
+        <h2 id="surgeons">{audited ? t(locale, 'clinic.surgeons') : t(locale, 'clinic.publishedSurgeons')}</h2>
+        <ul class="surgeon-list">
           {d.surgeons.map((s) => (
             <li>
-              <strong>{s.name}</strong>, {s.specialty}. {s.credentials} ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} />)
+              <strong>{s.name}</strong>, {s.specialty}
+              {s.credentials && <>. {s.credentials}</>}
+              {s.verifiedOn ? (
+                <span class="muted"> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} />)</span>
+              ) : (
+                <span class="muted"> ({t(locale, 'clinic.licenceUnconfirmed')})</span>
+              )}
+              {s.source && <> · <a href={s.source} rel="noopener nofollow">{t(locale, 'clinic.sources')}</a></>}
             </li>
           ))}
         </ul>
@@ -116,8 +141,8 @@ const reply = d.rightOfReply.response ? local(d.rightOfReply.response) : undefin
   {
     d.techniques.length > 0 && (
       <section aria-labelledby="techniques">
-        <h2 id="techniques">{t(locale, 'clinic.techniques')}</h2>
-        <ul class="inline-links">{d.techniques.map((x) => <li>{x}</li>)}</ul>
+        <h2 id="techniques">{audited ? t(locale, 'clinic.techniques') : t(locale, 'clinic.techniquesPublished')}</h2>
+        <ul class="pill-links">{d.techniques.map((x) => { const tq = technique(x); return <li>{tq.href ? <a href={tq.href}>{tq.label}</a> : <span>{tq.label}</span>}</li>; })}</ul>
       </section>
     )
   }
@@ -134,8 +159,37 @@ const reply = d.rightOfReply.response ? local(d.rightOfReply.response) : undefin
   {local(d.aftercare) && (<section aria-labelledby="aftercare"><h2 id="aftercare">{t(locale, 'clinic.aftercare')}</h2><p>{local(d.aftercare)}</p></section>)}
   {local(d.revisionPolicy) && (<section aria-labelledby="revision"><h2 id="revision">{t(locale, 'clinic.revision')}</h2><p>{local(d.revisionPolicy)}</p></section>)}
 
-  <section aria-labelledby="reply">
-    <h2 id="reply">{t(locale, 'clinic.reply')}</h2>
-    <p>{reply ?? t(locale, 'clinic.noReply')}</p>
-  </section>
+  {
+    d.ratings.length > 0 && (
+      <section aria-labelledby="ratings">
+        <h2 id="ratings">{t(locale, 'clinic.ratings')}</h2>
+        <ul class="ratings">
+          {d.ratings.map((r) => (
+            <li>
+              <a href={r.url} rel="noopener nofollow">{r.platform}</a>: <strong>{r.score}</strong> · {r.count} {t(locale, 'clinic.reviews')} ({t(locale, 'clinic.asOf')} <DateTime locale={locale} value={r.checkedOn} />)
+            </li>
+          ))}
+        </ul>
+        <p class="muted small">{t(locale, 'clinic.ratingsNote')}</p>
+      </section>
+    )
+  }
+
+  {
+    audited && (
+      <section aria-labelledby="reply">
+        <h2 id="reply">{t(locale, 'clinic.reply')}</h2>
+        <p>{reply ?? t(locale, 'clinic.noReply')}</p>
+      </section>
+    )
+  }
+
+  {
+    d.sources.length > 0 && (
+      <section class="sources" aria-labelledby="clinic-sources">
+        <h2 id="clinic-sources">{t(locale, 'clinic.sources')}</h2>
+        <ol>{d.sources.map((s) => <li><a href={s.url} rel="noopener nofollow">{s.title}</a></li>)}</ol>
+      </section>
+    )
+  }
 </article>
