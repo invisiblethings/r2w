@@ -63,5 +63,11 @@
     }
   ],
   "verifiedOn": "2026-10-24",
-  "status": "published"
+  "status": "published",
+  "image": {
+    "src": "/images/clinics/american-hospital-tirana-logo.webp",
+    "alt": "American Plastic Surgery logo",
+    "credit": "American Hospital (Spitali Amerikan)",
+    "permissionOn": "2026-10-25"
+  }
 }

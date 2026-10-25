@@ -11,7 +11,7 @@ const pages = defineCollection({
     locale: localeEnum,
     /** Path without leading or trailing slash, including the locale prefix ("it/cliniche"). Empty for the English home. */
     slug: z.string(),
-    type: z.enum(['home', 'hub', 'article', 'trust', 'clinics-index']),
+    type: z.enum(['home', 'hub', 'article', 'trust', 'clinics-index', 'surgeons-index']),
     /** Key of the parent page in the same locale. */
     parent: z.string().optional(),
     order: z.number().default(100),
@@ -117,4 +117,27 @@ const clinics = defineCollection({
   }),
 });
 
-export const collections = { pages, people, clinics };
+const surgeons = defineCollection({
+  loader: glob({ pattern: '*.json', base: './src/content/surgeons' }),
+  schema: z.object({
+    name: z.string(),
+    specialty: z.record(localeEnum, z.string()),
+    /** Clinic ids (file names in src/content/clinics) where the surgeon is listed. */
+    clinics: z.array(z.string()).default([]),
+    training: z.array(z.string()).default([]),
+    memberships: z.array(z.string()).default([]),
+    languages: z.array(z.string()).default([]),
+    summary: z.record(localeEnum, z.string()).default({}),
+    license: z.object({
+      status: z.enum(['verified', 'pending', 'not-found']),
+      checkedOn: z.coerce.date().optional(),
+      source: z.string().optional(),
+    }),
+    image: z.object({ src: z.string(), alt: z.string(), credit: z.string(), permissionOn: z.coerce.date() }).optional(),
+    sources: z.array(source).default([]),
+    collectedOn: z.coerce.date(),
+    status: z.enum(['draft', 'published']).default('draft'),
+  }),
+});
+
+export const collections = { pages, people, clinics, surgeons };

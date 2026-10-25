@@ -1,8 +1,9 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { defaultLocale, locales, site, type Locale } from '../site.config';
+import { defaultLocale, locales, requireMedicalReviewForIndexing, site, type Locale } from '../site.config';
 
 export type Page = CollectionEntry<'pages'>;
 export type Clinic = CollectionEntry<'clinics'>;
+export type Surgeon = CollectionEntry<'surgeons'>;
 
 /** Every non-draft page. Drafts are never built. */
 export async function getPages(): Promise<Page[]> {
@@ -15,7 +16,7 @@ export async function getPublishedClinics(): Promise<Clinic[]> {
 
 /** A medical page without a named reviewer and review date stays out of search engines. */
 export function isIndexable(page: Page): boolean {
-  if (!page.data.medical) return true;
+  if (!page.data.medical || !requireMedicalReviewForIndexing) return true;
   return Boolean(page.data.reviewer && page.data.reviewed);
 }
 
@@ -70,4 +71,12 @@ export function sectionKey(pages: Page[], page: Page): string | undefined {
 
 export function clinicSlug(clinicsIndex: Page, clinic: Clinic): string {
   return `${clinicsIndex.data.slug}/${clinic.id}`;
+}
+
+export async function getPublishedSurgeons(): Promise<Surgeon[]> {
+  return getCollection('surgeons', ({ data }) => data.status === 'published');
+}
+
+export function surgeonSlug(surgeonsIndex: Page, surgeon: Surgeon): string {
+  return `${surgeonsIndex.data.slug}/${surgeon.id}`;
 }

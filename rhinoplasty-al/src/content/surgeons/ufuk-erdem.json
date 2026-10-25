@@ -1,0 +1,47 @@
+{
+  "name": "Dr. Ufuk Erdem",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurgo plastico",
+    "sq": "Kirurg plastik"
+  },
+  "clinics": [
+    "hygeia-hospital-tirana"
+  ],
+  "training": [
+    "Medical degree, Süleyman Demirel University (2014)",
+    "Plastic surgery residency, Trakya University (2016–2022)",
+    "Rhinoplasty course, Florence Nightingale Hospital (April 2023)"
+  ],
+  "memberships": [
+    "Turkish Society of Plastic, Reconstructive and Aesthetic Surgery",
+    "Aesthetic Plastic Surgery Association"
+  ],
+  "languages": [
+    "Shqip",
+    "English",
+    "Türkçe"
+  ],
+  "summary": {
+    "en": "Plastic surgeon listed by Hygeia Hospital Tirana, where the profile lists rhinoplasty and revision rhinoplasty. The profile also names a hospital in Kayseri, Turkey.",
+    "it": "Chirurgo plastico indicato da Hygeia Hospital Tirana, dove il profilo elenca rinoplastica e rinoplastica secondaria. Il profilo indica anche un ospedale a Kayseri, in Turchia.",
+    "sq": "Kirurg plastik i përmendur nga Hygeia Hospital Tirana, ku profili liston rinoplastikën dhe rinoplastikën rishikuese. Profili përmend edhe një spital në Kayseri, Turqi."
+  },
+  "image": {
+    "src": "/images/surgeons/ufuk-erdem.webp",
+    "alt": "Portrait of Dr. Ufuk Erdem",
+    "credit": "Hygeia Hospital Tirana",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "Hygeia: Dr. Ufuk Erdem",
+      "url": "https://hygeia.al/plastic-surgery/medical-team/dr-ufuk-erdem/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

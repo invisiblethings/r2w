@@ -1,0 +1,49 @@
+{
+  "name": "Prof. Dr. Emrah Arslan",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurgo plastico",
+    "sq": "Kirurg plastik"
+  },
+  "clinics": [
+    "hygeia-hospital-tirana"
+  ],
+  "training": [
+    "Medical degree, Ankara University (1992)",
+    "Specialisation in plastic surgery, Çukurova University (1999)",
+    "Led plastic surgery departments at Mersin University, Adana Numune Hospital and Çanakkale Onsekiz Mart University",
+    "Fellowships and visits: Cleveland Clinic; El Paso Cosmetic Surgery Center"
+  ],
+  "memberships": [
+    "ISAPS",
+    "Turkish Society of Plastic, Reconstructive and Aesthetic Surgery (TPRECD)",
+    "EYBCD"
+  ],
+  "languages": [
+    "Shqip",
+    "English",
+    "Türkçe"
+  ],
+  "summary": {
+    "en": "Turkish-trained plastic surgeon listed by Hygeia Hospital Tirana, where the profile lists rhinoplasty and revision rhinoplasty among the procedures performed.",
+    "it": "Chirurgo plastico formato in Turchia, indicato da Hygeia Hospital Tirana, dove il profilo elenca rinoplastica e rinoplastica secondaria tra gli interventi eseguiti.",
+    "sq": "Kirurg plastik i formuar në Turqi, i përmendur nga Hygeia Hospital Tirana, ku profili liston rinoplastikën dhe rinoplastikën rishikuese ndër procedurat që kryen."
+  },
+  "image": {
+    "src": "/images/surgeons/emrah-arslan.webp",
+    "alt": "Portrait of Prof. Dr. Emrah Arslan",
+    "credit": "Hygeia Hospital Tirana",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "Hygeia: Prof. Dr. Emrah Arslan",
+      "url": "https://hygeia.al/plastic-surgery/medical-team/prof-dr-emrah-arslan/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

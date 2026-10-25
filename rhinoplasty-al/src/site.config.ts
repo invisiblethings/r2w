@@ -6,6 +6,9 @@ export const site = {
   clinicsEmail: 'clinics@rhinoplasty.al',
 } as const;
 
+/** When true, medical pages stay noindex until a reviewer and review date are set. */
+export const requireMedicalReviewForIndexing = false;
+
 export const locales = ['en', 'it', 'sq'] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = 'en';

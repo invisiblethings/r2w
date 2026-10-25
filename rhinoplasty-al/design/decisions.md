@@ -63,3 +63,21 @@
 - Why: loading Google Fonts from Google's servers sends visitor IP addresses to a third party, which German courts have ruled a GDPR breach; self-hosting is also faster.
 - Rejected: Google Fonts CDN.
 - Rests on: context, Constraints (GDPR).
+
+## 2026-10-25 · All pages are indexable, including medical pages awaiting review
+- Decided by: the designer
+- Why: the designer wants every page in search now; pages still show "Medical review in progress".
+- Rejected: keeping medical pages noindex until a reviewer is named (the gate stays available as requireMedicalReviewForIndexing in site.config.ts).
+- Rests on: designer instruction, 25 October 2026.
+
+## 2026-10-25 · Clinic and surgeon photos are taken from the clinics' own websites
+- Decided by: the designer
+- Why: the designer states they hold permission from the clinics; permission date recorded per image.
+- Rejected: photos showing patients (DaVinci before/after collage, Silur client photo), which need the patients' own consent; social media images, which block automated download.
+- Rests on: designer instruction, 25 October 2026.
+
+## 2026-10-25 · Surgeon profiles list only surgeons named on a clinic's own website
+- Decided by: Claude, default
+- Why: a clinic's own team page is the only source that ties a surgeon to a clinic; names from patient reviews are unreliable and some appear in complaints.
+- Rejected: profiles for review-only names (Palmieri, Zaharia, Giosci, Sinani) and for surgeons with no published details (Beydes, Dental & Beauty doctors).
+- Rests on: research register, October 2026.

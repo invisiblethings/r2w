@@ -2,7 +2,7 @@
 key: "surgeons"
 locale: "sq"
 slug: "sq/kirurget"
-type: "hub"
+type: "surgeons-index"
 parent: "home"
 order: 3
 title: "Kirurgët për rinoplastikë në Shqipëri: kualifikimet"

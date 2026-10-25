@@ -1,0 +1,45 @@
+{
+  "name": "Dr. Herbert Lamblet",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurgo plastico",
+    "sq": "Kirurg plastik"
+  },
+  "clinics": [
+    "american-hospital-tirana"
+  ],
+  "training": [
+    "Specialisation in plastic and reconstructive surgery in Brazil, including training at the Ivo Pitanguy Institute"
+  ],
+  "memberships": [
+    "SBCP (Brazilian Society of Plastic Surgery)"
+  ],
+  "languages": [
+    "Português",
+    "English",
+    "Italiano",
+    "Français"
+  ],
+  "summary": {
+    "en": "Brazilian plastic surgeon on the plastic surgery team of American Hospital in Tirana. The hospital does not state which of its surgeons perform rhinoplasty.",
+    "it": "Chirurgo plastico brasiliano nell’équipe di chirurgia plastica dell’American Hospital di Tirana. L’ospedale non indica quali dei suoi chirurghi eseguono la rinoplastica.",
+    "sq": "Kirurg plastik brazilian në ekipin e kirurgjisë plastike të Spitalit Amerikan në Tiranë. Spitali nuk tregon cilët kirurgë kryejnë rinoplastikë."
+  },
+  "image": {
+    "src": "/images/surgeons/herbert-lamblet.webp",
+    "alt": "Portrait of Dr. Herbert Lamblet",
+    "credit": "American Hospital (Spitali Amerikan)",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "American Hospital: Dr. Herbert Lamblet",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/team/dr-herbert-lamblet/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

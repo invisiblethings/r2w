@@ -3,7 +3,7 @@ import DateTime from './DateTime.astro';
 import { t, type UiKey } from '../i18n/ui';
 import { formatEUR } from '../lib/format';
 import { criteria, isRankable, totalScore, weights } from '../lib/scoring';
-import { find, getPages, pathOf, type Clinic } from '../lib/pages';
+import { find, getPages, getPublishedSurgeons, pathOf, surgeonSlug, type Clinic } from '../lib/pages';
 import type { Locale } from '../site.config';
 
 interface Props {
@@ -18,6 +18,12 @@ const d = clinic.data;
 const audited = d.audit === 'audited';
 const local = (field: Partial<Record<Locale, string>>) => field[locale] ?? field.en;
 const pages = await getPages();
+const surgeonsIndex = find(pages, 'surgeons', locale);
+const publishedSurgeons = await getPublishedSurgeons();
+const surgeonHref = (name: string) => {
+  const match = publishedSurgeons.find((x) => x.data.name === name && x.data.clinics.includes(clinic.id));
+  return match && surgeonsIndex ? pathOf(surgeonSlug(surgeonsIndex, match)) : undefined;
+};
 const technique = (key: string) => {
   const p = find(pages, key, locale);
   return p ? { label: p.data.h1 ?? p.data.title, href: pathOf(p.data.slug) } : { label: key, href: undefined };
@@ -32,7 +38,7 @@ const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefi
     d.image && (
       <figure class="clinic-image">
         <img src={d.image.src} alt={d.image.alt} loading="lazy" decoding="async" />
-        <figcaption>{d.image.credit}</figcaption>
+        <figcaption>{t(locale, 'image.credit').replace('{source}', d.image.credit)}</figcaption>
       </figure>
     )
   }
@@ -123,7 +129,7 @@ const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefi
         <ul class="surgeon-list">
           {d.surgeons.map((s) => (
             <li>
-              <strong>{s.name}</strong>, {s.specialty}{s.credentials && <>. {s.credentials}</>}
+              <strong>{surgeonHref(s.name) ? <a href={surgeonHref(s.name)}>{s.name}</a> : s.name}</strong>, {s.specialty}{s.credentials && <>. {s.credentials}</>}
               {s.verifiedOn ? (
                 <span class="muted"> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} />)</span>
               ) : (

@@ -1,0 +1,42 @@
+{
+  "name": "Dr. Orkun Uyanık",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurgo plastico",
+    "sq": "Kirurg plastik"
+  },
+  "clinics": [
+    "american-hospital-tirana"
+  ],
+  "training": [
+    "Medical degree, Istanbul University-Cerrahpaşa Faculty of Medicine (2015)",
+    "Specialisation in plastic, reconstructive and aesthetic surgery, Necmettin Erbakan University Meram Faculty of Medicine (2021)",
+    "Courses in microsurgery and hand surgery"
+  ],
+  "memberships": [
+    "Turkish Society of Plastic, Reconstructive and Aesthetic Surgery",
+    "Emergency Hand Surgery and Microsurgery Association"
+  ],
+  "summary": {
+    "en": "Plastic, reconstructive and aesthetic surgeon on the plastic surgery team of American Hospital in Tirana. The hospital does not state which of its surgeons perform rhinoplasty.",
+    "it": "Chirurgo plastico, ricostruttivo ed estetico nell’équipe di chirurgia plastica dell’American Hospital di Tirana. L’ospedale non indica quali dei suoi chirurghi eseguono la rinoplastica.",
+    "sq": "Kirurg plastik, rikonstruktiv dhe estetik në ekipin e kirurgjisë plastike të Spitalit Amerikan në Tiranë. Spitali nuk tregon cilët kirurgë kryejnë rinoplastikë."
+  },
+  "image": {
+    "src": "/images/surgeons/orkun-uyanik.webp",
+    "alt": "Portrait of Dr. Orkun Uyanık",
+    "credit": "American Hospital (Spitali Amerikan)",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "American Hospital: Dr. Orkun Uyanık",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/team/dr-orkun-uyanik/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

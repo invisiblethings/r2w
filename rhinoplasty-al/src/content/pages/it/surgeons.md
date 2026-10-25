@@ -2,7 +2,7 @@
 key: "surgeons"
 locale: "it"
 slug: "it/chirurghi"
-type: "hub"
+type: "surgeons-index"
 parent: "home"
 order: 3
 title: "Chirurghi per la rinoplastica in Albania: titoli e verifiche"

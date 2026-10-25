@@ -2,7 +2,7 @@
 key: "surgeons"
 locale: "en"
 slug: "surgeons"
-type: "hub"
+type: "surgeons-index"
 parent: "home"
 order: 3
 title: "Rhinoplasty Surgeons in Albania: Credentials and Checks"

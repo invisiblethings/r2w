@@ -1,0 +1,41 @@
+{
+  "name": "Dr. Artiola Jaupaj",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurga plastica",
+    "sq": "Kirurge plastike"
+  },
+  "clinics": [
+    "american-hospital-tirana"
+  ],
+  "training": [
+    "Medical studies, University of Medicine, Tirana, with a focus on plastic, reconstructive and aesthetic surgery"
+  ],
+  "languages": [
+    "Shqip",
+    "English",
+    "Italiano"
+  ],
+  "summary": {
+    "en": "Albanian plastic surgeon on the plastic surgery team of American Hospital in Tirana. The hospital does not state which of its surgeons perform rhinoplasty.",
+    "it": "Chirurga plastica albanese nell’équipe di chirurgia plastica dell’American Hospital di Tirana. L’ospedale non indica quali dei suoi chirurghi eseguono la rinoplastica.",
+    "sq": "Kirurge plastike shqiptare në ekipin e kirurgjisë plastike të Spitalit Amerikan në Tiranë. Spitali nuk tregon cilët kirurgë kryejnë rinoplastikë."
+  },
+  "image": {
+    "src": "/images/surgeons/artiola-jaupaj.webp",
+    "alt": "Portrait of Dr. Artiola Jaupaj",
+    "credit": "American Hospital (Spitali Amerikan)",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "American Hospital: Dr. Artiola Jaupaj",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/team/dr-artiola-jaupaj/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

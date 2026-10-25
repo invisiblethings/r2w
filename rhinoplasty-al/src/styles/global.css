@@ -1346,3 +1346,70 @@ meter {
 .section-list {
   margin-top: 3rem;
 }
+
+/* Surgeons */
+
+.surgeons-block h2 {
+  margin-top: 0;
+}
+
+.surgeon-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.surgeon-card .tag {
+  width: fit-content;
+}
+
+.surgeon-head {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  max-width: 60rem;
+  margin-bottom: 1rem;
+}
+
+.surgeon-portrait {
+  margin: 0;
+}
+
+.surgeon-portrait img {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.surgeon-portrait figcaption,
+.clinic-image figcaption {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+.surgeon .lede {
+  margin-top: 0;
+}
+
+.clinic-image img {
+  max-width: 220px;
+}
+
+@media (max-width: 640px) {
+  .surgeon-head {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .surgeon-portrait img {
+    width: 160px;
+    height: 160px;
+  }
+}

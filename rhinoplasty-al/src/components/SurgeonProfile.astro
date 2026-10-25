@@ -1,0 +1,96 @@
+---
+import { t, type UiKey } from '../i18n/ui';
+import { clinicSlug, find, pathOf, type Clinic, type Page, type Surgeon } from '../lib/pages';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  surgeon: Surgeon;
+  clinics: Clinic[];
+  pages: Page[];
+}
+
+const { locale, surgeon, clinics, pages } = Astro.props;
+const d = surgeon.data;
+const clinicsIndex = find(pages, 'clinics', locale);
+const verifyGuide = find(pages, 'verify-surgeon', locale);
+const listedBy = d.clinics.map((id) => clinics.find((c) => c.id === id)).filter((c): c is Clinic => Boolean(c));
+---
+
+<article class="clinic surgeon">
+  <div class="surgeon-head">
+    {d.image && (
+      <figure class="surgeon-portrait">
+        <img src={d.image.src} alt={d.image.alt} width="240" height="240" decoding="async" />
+        <figcaption>{t(locale, 'image.credit').replace('{source}', d.image.credit)}</figcaption>
+      </figure>
+    )}
+    <div>
+      <p class="lede">{d.summary[locale] ?? d.summary.en}</p>
+      <p class="note">
+        <span class="tag tag-muted">{t(locale, 'clinic.licenceUnconfirmed')}</span> {t(locale, 'surgeon.licenceNote')}
+        {verifyGuide && <> <a href={pathOf(verifyGuide.data.slug)}>{verifyGuide.data.h1 ?? verifyGuide.data.title}</a></>}
+      </p>
+    </div>
+  </div>
+
+  <section aria-labelledby="facts">
+    <h2 id="facts">{t(locale, 'surgeon.asPublished')}</h2>
+    <dl class="facts">
+      <dt>{t(locale, 'surgeon.specialty')}</dt>
+      <dd>{d.specialty[locale] ?? d.specialty.en}</dd>
+      {
+        listedBy.length > 0 && (
+          <>
+            <dt>{t(locale, 'surgeon.worksAt')}</dt>
+            <dd>
+              {listedBy.map((c, i) => (
+                <>
+                  {i > 0 && ', '}
+                  {clinicsIndex ? <a href={pathOf(clinicSlug(clinicsIndex, c))}>{c.data.name}</a> : c.data.name}
+                </>
+              ))}
+            </dd>
+          </>
+        )
+      }
+      {
+        d.languages.length > 0 && (
+          <>
+            <dt>{t(locale, 'surgeon.languages')}</dt>
+            <dd>{d.languages.join(', ')}</dd>
+          </>
+        )
+      }
+      <dt>{t(locale, 'surgeon.licence')}</dt>
+      <dd>{t(locale, `clinic.license.${d.license.status}` as UiKey)}</dd>
+    </dl>
+  </section>
+
+  {
+    d.training.length > 0 && (
+      <section aria-labelledby="training">
+        <h2 id="training">{t(locale, 'surgeon.training')}</h2>
+        <ul>{d.training.map((x) => <li>{x}</li>)}</ul>
+      </section>
+    )
+  }
+
+  {
+    d.memberships.length > 0 && (
+      <section aria-labelledby="memberships">
+        <h2 id="memberships">{t(locale, 'surgeon.memberships')}</h2>
+        <ul>{d.memberships.map((x) => <li>{x}</li>)}</ul>
+      </section>
+    )
+  }
+
+  {
+    d.sources.length > 0 && (
+      <section class="sources" aria-labelledby="surgeon-sources">
+        <h2 id="surgeon-sources">{t(locale, 'clinic.sources')}</h2>
+        <ol>{d.sources.map((s) => <li><a href={s.url} rel="noopener nofollow">{s.title}</a></li>)}</ol>
+      </section>
+    )
+  }
+</article>

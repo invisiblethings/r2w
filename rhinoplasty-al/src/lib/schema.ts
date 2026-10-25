@@ -91,6 +91,13 @@ export function medicalClinic(opts: { name: string; url: string; address: string
   return { ...clinic, subjectOf: { '@id': `${opts.url}#webpage` } };
 }
 
+export function physician(opts: { name: string; url: string; specialty: string; image?: string; worksFor?: string }): Json {
+  const person: Json = { '@type': 'Person', name: opts.name, jobTitle: opts.specialty, subjectOf: { '@id': `${opts.url}#webpage` } };
+  if (opts.image) person.image = opts.image;
+  if (opts.worksFor) person.worksFor = { '@type': 'MedicalOrganization', name: opts.worksFor };
+  return person;
+}
+
 export function graph(nodes: Json[]): string {
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': nodes }).replace(/</g, '\\u003c');
 }

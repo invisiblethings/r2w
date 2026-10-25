@@ -11,6 +11,8 @@ import Sources from '../components/Sources.astro';
 import SectionList from '../components/SectionList.astro';
 import ClinicTable from '../components/ClinicTable.astro';
 import ClinicProfile from '../components/ClinicProfile.astro';
+import SurgeonProfile from '../components/SurgeonProfile.astro';
+import SurgeonCards from '../components/SurgeonCards.astro';
 import { t, type UiKey } from '../i18n/ui';
 import {
   ancestors,
@@ -19,6 +21,9 @@ import {
   find,
   getPages,
   getPublishedClinics,
+  getPublishedSurgeons,
+  surgeonSlug,
+  type Surgeon,
   isIndexable,
   localeHomePath,
   pathOf,
@@ -32,7 +37,10 @@ import { isRankable, rank } from '../lib/scoring';
 import * as schema from '../lib/schema';
 import { locales, type Locale } from '../site.config';
 
-type Props = { kind: 'page'; page: Page } | { kind: 'clinic'; clinic: Clinic; index: Page };
+type Props =
+  | { kind: 'page'; page: Page }
+  | { kind: 'clinic'; clinic: Clinic; index: Page }
+  | { kind: 'surgeon'; surgeon: Surgeon; index: Page };
 
 export async function getStaticPaths() {
   const pages = await getPages();
@@ -49,12 +57,22 @@ export async function getStaticPaths() {
         props: { kind: 'clinic' as const, clinic, index },
       })),
     );
-  return [...pagePaths, ...clinicPaths];
+  const surgeons = await getPublishedSurgeons();
+  const surgeonPaths = pages
+    .filter((p) => p.data.type === 'surgeons-index')
+    .flatMap((index) =>
+      surgeons.map((surgeon) => ({
+        params: { slug: surgeonSlug(index, surgeon) },
+        props: { kind: 'surgeon' as const, surgeon, index },
+      })),
+    );
+  return [...pagePaths, ...clinicPaths, ...surgeonPaths];
 }
 
 const props = Astro.props as Props;
 const pages = await getPages();
 const allClinics = await getPublishedClinics();
+const allSurgeons = (await getPublishedSurgeons()).sort((a, b) => a.data.name.localeCompare(b.data.name));
 
 const home = (locale: Locale) => find(pages, 'home', locale);
 const crumbsFor = (chain: Page[], locale: Locale) => {
@@ -113,11 +131,11 @@ if (props.kind === 'page') {
   if (page.data.type === 'clinics-index') {
     nodes.push(schema.itemList(rank(allClinics).map((c) => ({ name: c.data.name, url: urlOf(clinicSlug(page, c)) }))));
   }
-} else {
+} else if (props.kind === 'clinic') {
   const { clinic, index } = props;
   locale = index.data.locale;
   heading = clinic.data.name;
-  title = `${clinic.data.name} – ${clinic.data.city}: ${t(locale, 'clinic.breakdown')}`.slice(0, 70);
+  title = `${clinic.data.name} – ${t(locale, 'clinic.metaTitle')}`.slice(0, 70);
   description = (clinic.data.summary[locale] ?? clinic.data.summary.en ?? `${clinic.data.name}, ${clinic.data.city}`).slice(0, 160);
   canonical = urlOf(clinicSlug(index, clinic));
   indexable = true;
@@ -132,6 +150,27 @@ if (props.kind === 'page') {
   nodes.push(schema.webPage({ url: canonical, name: heading, description, locale, medical: false, updated: clinic.data.verifiedOn }));
   nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
   nodes.push(schema.medicalClinic({ name: clinic.data.name, url: canonical, address: clinic.data.address, city: clinic.data.city, website: clinic.data.website }));
+} else {
+  const { surgeon, index } = props;
+  locale = index.data.locale;
+  heading = surgeon.data.name;
+  const specialty = surgeon.data.specialty[locale] ?? surgeon.data.specialty.en ?? '';
+  const firstClinic = allClinics.find((c) => c.id === surgeon.data.clinics[0]);
+  title = `${surgeon.data.name} – ${specialty}${firstClinic ? `, ${firstClinic.data.name}` : ''}`.slice(0, 70);
+  description = (surgeon.data.summary[locale] ?? surgeon.data.summary.en ?? `${surgeon.data.name}, ${specialty}`).slice(0, 160);
+  canonical = urlOf(surgeonSlug(index, surgeon));
+  indexable = true;
+  const indexes = translations(pages, index);
+  alternates = indexes.map((i) => ({ locale: i.data.locale, href: urlOf(surgeonSlug(i, surgeon)) }));
+  switcher = locales.map((l) => {
+    const i = indexes.find((p) => p.data.locale === l);
+    return { locale: l, href: i ? pathOf(surgeonSlug(i, surgeon)) : localeHomePath(l) };
+  });
+  section = 'surgeons';
+  crumbs = crumbsFor([...ancestors(pages, index), index], locale);
+  nodes.push(schema.webPage({ url: canonical, name: heading, description, locale, medical: false, updated: surgeon.data.collectedOn }));
+  nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
+  nodes.push(schema.physician({ name: surgeon.data.name, url: canonical, specialty, image: surgeon.data.image ? new URL(surgeon.data.image.src, canonical).href : undefined, worksFor: firstClinic?.data.name }));
 }
 
 const link = (key: string) => {
@@ -167,14 +206,15 @@ const listed = allClinics.filter((c) => c.data.audit === 'listed').sort((a, b) =
       <Home locale={locale} page={page} pages={pages} sections={kids}>
         {Content && <Content />}
       </Home>
-    ) : page?.data.type === 'hub' || page?.data.type === 'clinics-index' ? (
+    ) : page?.data.type === 'hub' || page?.data.type === 'clinics-index' || page?.data.type === 'surgeons-index' ? (
       <>
         <PageHero locale={locale} heading={heading} crumbs={crumbs} section={section}>
           {Content && <div class="page-lead prose"><Content /></div>}
         </PageHero>
         <div class="wrap page">
+          {page.data.type === 'surgeons-index' && <SurgeonCards locale={locale} index={page} surgeons={allSurgeons} clinics={allClinics} pages={pages} />}
           {page.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} listed={listed} />}
-          <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} heading={page.data.type === 'clinics-index' && kids.length > 0 ? `${t(locale, 'hub.more')} ${heading}` : undefined} />
+          <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} heading={(page.data.type === 'clinics-index' || page.data.type === 'surgeons-index') && kids.length > 0 ? `${t(locale, 'hub.more')} ${heading}` : undefined} />
           <Faq locale={locale} items={page.data.faq} />
           <Sources locale={locale} items={page.data.sources} />
         </div>
@@ -200,6 +240,13 @@ const listed = allClinics.filter((c) => c.data.audit === 'listed').sort((a, b) =
             <SectionList locale={locale} pages={pages} items={siblings} heading={`${t(locale, 'hub.more')} ${parent.data.h1 ?? parent.data.title}`} currentKey={parent.data.key} />
           </div>
         )}
+      </>
+    ) : props.kind === 'surgeon' ? (
+      <>
+        <PageHero locale={locale} heading={heading} crumbs={crumbs} section="surgeons" />
+        <div class="wrap page">
+          <SurgeonProfile locale={locale} surgeon={props.surgeon} clinics={allClinics} pages={pages} />
+        </div>
       </>
     ) : (
       props.kind === 'clinic' && (

@@ -1,0 +1,40 @@
+{
+  "name": "Dr. Vincenzo Colabianchi",
+  "specialty": {
+    "en": "Plastic surgeon",
+    "it": "Chirurgo plastico",
+    "sq": "Kirurg plastik"
+  },
+  "clinics": [
+    "american-hospital-tirana"
+  ],
+  "training": [
+    "Training in Italy, Brazil, the United States and France"
+  ],
+  "memberships": [
+    "AICPE (Italian Association of Aesthetic Plastic Surgery)",
+    "SBCP (Brazilian Society of Plastic Surgery)"
+  ],
+  "summary": {
+    "en": "Italian plastic surgeon on the plastic surgery team of American Hospital in Tirana. The hospital does not state which of its surgeons perform rhinoplasty.",
+    "it": "Chirurgo plastico italiano nell’équipe di chirurgia plastica dell’American Hospital di Tirana. L’ospedale non indica quali dei suoi chirurghi eseguono la rinoplastica.",
+    "sq": "Kirurg plastik italian në ekipin e kirurgjisë plastike të Spitalit Amerikan në Tiranë. Spitali nuk tregon cilët kirurgë kryejnë rinoplastikë."
+  },
+  "image": {
+    "src": "/images/surgeons/vincenzo-colabianchi.webp",
+    "alt": "Portrait of Dr. Vincenzo Colabianchi",
+    "credit": "American Hospital (Spitali Amerikan)",
+    "permissionOn": "2026-10-25"
+  },
+  "sources": [
+    {
+      "title": "American Hospital: Dr. Vincenzo Colabianchi",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/team/dr-vincenzo-colabianchi/"
+    }
+  ],
+  "license": {
+    "status": "pending"
+  },
+  "collectedOn": "2026-10-25",
+  "status": "published"
+}

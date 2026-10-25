@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+import { t } from '../i18n/ui';
+import { clinicSlug, find, pathOf, surgeonSlug, type Clinic, type Page, type Surgeon } from '../lib/pages';
+import type { Locale } from '../site.config';
+
+interface Props {
+  locale: Locale;
+  index: Page;
+  surgeons: Surgeon[];
+  clinics: Clinic[];
+  pages: Page[];
+}
+
+const { locale, index, surgeons, clinics, pages } = Astro.props;
+const clinicsIndex = find(pages, 'clinics', locale);
+---
+
+{
+  surgeons.length > 0 && (
+    <section class="surgeons-block" aria-labelledby="surgeons-title">
+      <h2 id="surgeons-title">{t(locale, 'surgeons.title')}</h2>
+      <p class="block-intro">{t(locale, 'surgeons.intro')}</p>
+      <ul class="cards surgeon-cards">
+        {surgeons.map((s) => {
+          const clinic = clinics.find((c) => c.id === s.data.clinics[0]);
+          return (
+            <li class="card surgeon-card">
+              {s.data.image ? (
+                <img class="surgeon-photo" src={s.data.image.src} alt={s.data.image.alt} width="96" height="96" loading="lazy" decoding="async" />
+              ) : (
+                <span class="card-icon"><Icon name="user-check" /></span>
+              )}
+              <h3><a class="stretched" href={pathOf(surgeonSlug(index, s))}>{s.data.name}</a></h3>
+              <p class="clinic-meta">{s.data.specialty[locale] ?? s.data.specialty.en}</p>
+              {clinic && <p>{clinic.data.name}</p>}
+              <span class="tag tag-muted">{t(locale, 'clinic.licenceUnconfirmed')}</span>
+              <span class="card-more">{t(locale, 'surgeon.view')} <Icon name="arrow-right" size={16} /></span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  )
+}
