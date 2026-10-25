@@ -5,7 +5,7 @@ export function formatDate(date: Date, locale: Locale): string {
 }
 
 export function formatEUR(amount: number, locale: Locale): string {
-  return new Intl.NumberFormat(intlTag[locale], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(amount);
+  return new Intl.NumberFormat(intlTag[locale], { style: 'currency', currency: 'EUR', maximumFractionDigits: 0, useGrouping: 'always' }).format(amount);
 }
 
 export function isoDate(date: Date): string {

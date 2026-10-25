@@ -123,8 +123,7 @@ const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefi
         <ul class="surgeon-list">
           {d.surgeons.map((s) => (
             <li>
-              <strong>{s.name}</strong>, {s.specialty}
-              {s.credentials && <>. {s.credentials}</>}
+              <strong>{s.name}</strong>, {s.specialty}{s.credentials && <>. {s.credentials}</>}
               {s.verifiedOn ? (
                 <span class="muted"> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} />)</span>
               ) : (

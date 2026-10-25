@@ -174,7 +174,7 @@ const listed = allClinics.filter((c) => c.data.audit === 'listed').sort((a, b) =
         </PageHero>
         <div class="wrap page">
           {page.data.type === 'clinics-index' && <ClinicTable locale={locale} index={page} ranked={ranked} unranked={unranked} listed={listed} />}
-          <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} />
+          <SectionList locale={locale} pages={pages} items={kids} currentKey={page.data.key} heading={page.data.type === 'clinics-index' && kids.length > 0 ? `${t(locale, 'hub.more')} ${heading}` : undefined} />
           <Faq locale={locale} items={page.data.faq} />
           <Sources locale={locale} items={page.data.sources} />
         </div>

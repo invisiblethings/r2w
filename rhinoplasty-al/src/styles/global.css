@@ -841,7 +841,7 @@ h3 {
 
 @media (max-width: 960px) {
   .layout-article {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 0;
   }
 
@@ -868,6 +868,9 @@ h3 {
 }
 
 .prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
   margin: 1.25rem 0;
   font-size: 0.95rem;
   background: var(--surface);
@@ -1337,4 +1340,9 @@ meter {
   font-size: 0.85rem;
   color: var(--muted);
   margin-top: 0.35rem;
+}
+
+.page-clinics-index .section-list,
+.section-list {
+  margin-top: 3rem;
 }
