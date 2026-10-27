@@ -128,6 +128,21 @@ if (props.kind === 'page') {
   );
   if (crumbs.length) nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
   if (page.data.faq.length) nodes.push(schema.faqPage(page.data.faq));
+  if (page.data.type === 'home') {
+    nodes.push(schema.medicalProcedure({ url: canonical, name: heading, description }));
+    const clinicsPage = find(pages, 'clinics', locale);
+    if (clinicsPage) {
+      nodes.push(
+        schema.itemList(
+          allClinics
+            .filter((c) => c.data.audit === 'listed')
+            .sort((a, b) => a.data.name.localeCompare(b.data.name))
+            .map((c) => ({ name: c.data.name, url: urlOf(clinicSlug(clinicsPage, c)) })),
+          'https://schema.org/ItemListUnordered',
+        ),
+      );
+    }
+  }
   if (page.data.type === 'clinics-index') {
     nodes.push(schema.itemList(rank(allClinics).map((c) => ({ name: c.data.name, url: urlOf(clinicSlug(page, c)) }))));
   }
@@ -203,8 +218,11 @@ const listed = allClinics.filter((c) => c.data.audit === 'listed').sort((a, b) =
 >
   {
     page?.data.type === 'home' ? (
-      <Home locale={locale} page={page} pages={pages} sections={kids}>
+      <Home locale={locale} page={page} pages={pages} sections={kids} clinics={allClinics.filter((c) => c.data.audit === 'listed')} surgeons={allSurgeons}>
         {Content && <Content />}
+        <div slot="faq" class="wrap home-faq">
+          <Faq locale={locale} items={page.data.faq} />
+        </div>
       </Home>
     ) : page?.data.type === 'hub' || page?.data.type === 'clinics-index' || page?.data.type === 'surgeons-index' ? (
       <>

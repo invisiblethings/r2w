@@ -71,10 +71,10 @@ export function faqPage(faq: { q: string; a: string }[]): Json {
   };
 }
 
-export function itemList(items: { name: string; url: string }[]): Json {
+export function itemList(items: { name: string; url: string }[], order = 'https://schema.org/ItemListOrderDescending'): Json {
   return {
     '@type': 'ItemList',
-    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    itemListOrder: order,
     numberOfItems: items.length,
     itemListElement: items.map((item, i) => ({ '@type': 'ListItem', position: i + 1, name: item.name, url: item.url })),
   };
@@ -96,6 +96,18 @@ export function physician(opts: { name: string; url: string; specialty: string; 
   if (opts.image) person.image = opts.image;
   if (opts.worksFor) person.worksFor = { '@type': 'MedicalOrganization', name: opts.worksFor };
   return person;
+}
+
+export function medicalProcedure(opts: { url: string; name: string; description: string }): Json {
+  return {
+    '@type': 'MedicalProcedure',
+    name: 'Rhinoplasty',
+    alternateName: ['Nose job', 'Nose reshaping', 'Rinoplastica', 'Rinoplastika'],
+    procedureType: 'https://schema.org/SurgicalProcedure',
+    bodyLocation: 'Nose',
+    howPerformed: 'Open or closed surgical reshaping of the nasal bone and cartilage, often combined with septum correction.',
+    subjectOf: { '@id': `${opts.url}#webpage` },
+  };
 }
 
 export function graph(nodes: Json[]): string {

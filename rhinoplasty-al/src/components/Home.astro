@@ -1,8 +1,10 @@
 ---
 import Icon from './Icon.astro';
 import { t, type UiKey } from '../i18n/ui';
+import { homeCopy } from '../data/home';
 import { sectionIcon } from '../lib/icons';
-import { find, pathOf, type Page } from '../lib/pages';
+import { formatEUR } from '../lib/format';
+import { children, clinicSlug, find, pathOf, surgeonSlug, type Clinic, type Page, type Surgeon } from '../lib/pages';
 import { criteria, weights } from '../lib/scoring';
 import type { Locale } from '../site.config';
 
@@ -11,13 +13,26 @@ interface Props {
   page: Page;
   pages: Page[];
   sections: Page[];
+  clinics: Clinic[];
+  surgeons: Surgeon[];
 }
 
-const { locale, page, pages, sections } = Astro.props;
+const { locale, page, pages, sections, clinics, surgeons } = Astro.props;
+const c = homeCopy[locale];
+const byKey = (key: string) => find(pages, key, locale);
 const href = (key: string) => {
-  const p = find(pages, key, locale);
+  const p = byKey(key);
   return p ? pathOf(p.data.slug) : undefined;
 };
+const titleOf = (key: string) => {
+  const p = byKey(key);
+  return p ? (p.data.h1 ?? p.data.title) : key;
+};
+const clinicsIndex = byKey('clinics');
+const surgeonsIndex = byKey('surgeons');
+const procedures = byKey('procedures') ? children(pages, byKey('procedures')!) : [];
+const concerns = byKey('nose-concerns') ? children(pages, byKey('nose-concerns')!) : [];
+const listedClinics = [...clinics].sort((a, b) => Number(Boolean(b.data.priceEUR)) - Number(Boolean(a.data.priceEUR)) || a.data.name.localeCompare(b.data.name));
 const pillars = [
   { icon: 'shield', n: 1 },
   { icon: 'receipt', n: 2 },
@@ -34,7 +49,7 @@ const pillars = [
       <div class="hero-lead"><slot /></div>
       <div class="hero-actions">
         {href('clinics') && <a class="btn btn-primary" href={href('clinics')}>{t(locale, 'header.cta')} <Icon name="arrow-right" size={18} /></a>}
-        {href('cost') && <a class="btn btn-ghost" href={href('cost')}>{t(locale, 'home.ctaCost')}</a>}
+        {href('prices-2026') && <a class="btn btn-ghost" href={href('prices-2026')}>{t(locale, 'home.ctaCost')}</a>}
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -65,25 +80,240 @@ const pillars = [
   </div>
 </section>
 
-<section class="pillars">
+<section class="glance" aria-labelledby="glance-title">
   <div class="wrap">
-  <ul class="pillar-grid">
-    {
-      pillars.map((p) => (
-        <li>
-          <span class="pillar-icon"><Icon name={p.icon} /></span>
-          <h2>{t(locale, `home.p${p.n}.title` as UiKey)}</h2>
-          <p>{t(locale, `home.p${p.n}.text` as UiKey)}</p>
-        </li>
-      ))
-    }
-  </ul>
+    <div class="block-head">
+      <h2 id="glance-title">{c.glanceTitle}</h2>
+      <p>{c.glanceIntro}</p>
+    </div>
+    <dl class="fact-grid">
+      {
+        c.facts.map((f) => (
+          <div class="fact">
+            <dt>{f.label}</dt>
+            <dd class="fact-value">{f.value}</dd>
+            <dd class="fact-note">{href(f.key) ? <a href={href(f.key)}>{f.note}</a> : f.note}</dd>
+          </div>
+        ))
+      }
+    </dl>
   </div>
 </section>
 
-<section class="wrap block">
+<section class="wrap block" aria-labelledby="cost-title">
   <div class="block-head">
-    <h2>{t(locale, 'home.startTitle')}</h2>
+    <h2 id="cost-title">{c.costTitle}</h2>
+    <p>{c.costIntro}</p>
+  </div>
+  <div class="cost-grid">
+    <div class="table-scroll" role="region" aria-labelledby="country-caption" tabindex="0">
+      <table class="data-table">
+        <caption id="country-caption">{c.countryTitle}</caption>
+        <thead>
+          <tr><th scope="col">{c.colCountry}</th><th scope="col">{c.colPrice}</th><th scope="col">{c.colSource}</th></tr>
+        </thead>
+        <tbody>
+          {
+            c.countryRows.map((r) => (
+              <tr>
+                <th scope="row">{r.key && href(r.key) ? <a href={href(r.key)}>{r.label}</a> : r.label}</th>
+                <td class="num">{r.price}</td>
+                <td class="muted small">{r.source}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="table-scroll" role="region" aria-labelledby="procedure-caption" tabindex="0">
+      <table class="data-table">
+        <caption id="procedure-caption">{c.procedureTitle}</caption>
+        <thead>
+          <tr><th scope="col">{c.colProcedure}</th><th scope="col">{c.colPrice}</th><th scope="col">{c.colSource}</th></tr>
+        </thead>
+        <tbody>
+          {
+            c.procedureRows.map((r) => (
+              <tr>
+                <th scope="row">{r.key && href(r.key) ? <a href={href(r.key)}>{r.label}</a> : r.label}</th>
+                <td class="num">{r.price}</td>
+                <td class="muted small">{r.source}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="muted small">{c.costNote}</p>
+  <ul class="pill-links">
+    {c.costLinks.filter((k) => href(k)).map((k) => <li><a href={href(k)}><Icon name="euro" size={18} />{titleOf(k)}</a></li>)}
+  </ul>
+</section>
+
+<section class="pillars">
+  <div class="wrap">
+    <ul class="pillar-grid">
+      {
+        pillars.map((p) => (
+          <li>
+            <span class="pillar-icon"><Icon name={p.icon} /></span>
+            <h2>{t(locale, `home.p${p.n}.title` as UiKey)}</h2>
+            <p>{t(locale, `home.p${p.n}.text` as UiKey)}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+{
+  listedClinics.length > 0 && clinicsIndex && (
+    <section class="wrap block" aria-labelledby="home-clinics-title">
+      <div class="block-head block-head-row">
+        <div>
+          <h2 id="home-clinics-title">{c.clinicsTitle}</h2>
+          <p>{c.clinicsIntro}</p>
+        </div>
+        <a class="btn btn-ghost" href={pathOf(clinicsIndex.data.slug)}>{c.clinicsAll} <Icon name="arrow-right" size={18} /></a>
+      </div>
+      <ul class="cards clinic-cards">
+        {listedClinics.map((cl) => (
+          <li class="card clinic-card">
+            <div class="clinic-card-head">
+              <span class="card-icon"><Icon name="building" /></span>
+              <span class="tag tag-muted">{t(locale, 'listed.badge')}</span>
+            </div>
+            <h3><a class="stretched" href={pathOf(clinicSlug(clinicsIndex, cl))}>{cl.data.name}</a></h3>
+            <p class="clinic-meta">
+              {t(locale, `clinic.type.${cl.data.setting}` as UiKey)} · {cl.data.city}
+              {cl.data.priceEUR && <> · {formatEUR(cl.data.priceEUR.min, locale)}–{formatEUR(cl.data.priceEUR.max, locale)}</>}
+            </p>
+            <p>{cl.data.summary[locale] ?? cl.data.summary.en}</p>
+            <span class="card-more">{t(locale, 'clinic.view')} <Icon name="arrow-right" size={16} /></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+{
+  surgeons.length > 0 && surgeonsIndex && (
+    <section class="surgeon-band" aria-labelledby="home-surgeons-title">
+      <div class="wrap">
+        <div class="block-head block-head-row">
+          <div>
+            <h2 id="home-surgeons-title">{c.surgeonsTitle}</h2>
+            <p>{c.surgeonsIntro}</p>
+          </div>
+          <a class="btn btn-ghost" href={pathOf(surgeonsIndex.data.slug)}>{c.surgeonsAll} <Icon name="arrow-right" size={18} /></a>
+        </div>
+        <ul class="surgeon-strip">
+          {surgeons.map((s) => {
+            const clinic = clinics.find((x) => x.id === s.data.clinics[0]);
+            return (
+              <li>
+                <a href={pathOf(surgeonSlug(surgeonsIndex, s))}>
+                  {s.data.image ? (
+                    <img class="surgeon-photo" src={s.data.image.src} alt="" width="96" height="96" loading="lazy" decoding="async" />
+                  ) : (
+                    <span class="card-icon"><Icon name="user-check" /></span>
+                  )}
+                  <span class="strip-name">{s.data.name}</span>
+                  <span class="strip-meta">{s.data.specialty[locale] ?? s.data.specialty.en}{clinic && <>, {clinic.data.name}</>}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<section class="wrap block" aria-labelledby="home-procedures-title">
+  <div class="topic-grid">
+    <div>
+      <h2 id="home-procedures-title">{c.proceduresTitle}</h2>
+      <p class="muted">{c.proceduresIntro}</p>
+      <ul class="pill-links">
+        {procedures.map((p) => <li><a href={pathOf(p.data.slug)}><Icon name="layers" size={18} />{p.data.h1 ?? p.data.title}</a></li>)}
+      </ul>
+    </div>
+    <div>
+      <h2>{c.concernsTitle}</h2>
+      <ul class="pill-links">
+        {concerns.map((p) => <li><a href={pathOf(p.data.slug)}><Icon name="nose" size={18} />{p.data.h1 ?? p.data.title}</a></li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="recovery-band" aria-labelledby="home-recovery-title">
+  <div class="wrap">
+    <div class="block-head">
+      <h2 id="home-recovery-title">{c.recoveryTitle}</h2>
+      <p>{c.recoveryIntro}</p>
+    </div>
+    <ol class="timeline">
+      {
+        c.steps.map((s) => (
+          <li>
+            <span class="timeline-when">{s.when}</span>
+            <span class="timeline-what">{s.what}</span>
+          </li>
+        ))
+      }
+    </ol>
+    <ul class="pill-links">
+      {c.recoveryLinks.filter((k) => href(k)).map((k) => <li><a href={href(k)}><Icon name="calendar" size={18} />{titleOf(k)}</a></li>)}
+    </ul>
+  </div>
+</section>
+
+<section class="wrap block" aria-labelledby="home-safety-title">
+  <div class="safety-grid">
+    <div>
+      <h2 id="home-safety-title">{c.safetyTitle}</h2>
+      <p class="muted">{c.safetyIntro}</p>
+      <ul class="pill-links">
+        {c.safetyLinks.filter((k) => href(k)).map((k) => <li><a href={href(k)}><Icon name="shield" size={18} />{titleOf(k)}</a></li>)}
+      </ul>
+    </div>
+    <ol class="checklist">
+      {c.checks.map((x) => <li><span class="check-icon"><Icon name="check" size={18} /></span><span>{x}</span></li>)}
+    </ol>
+  </div>
+</section>
+
+<section class="method">
+  <div class="wrap method-grid">
+    <div>
+      <h2>{t(locale, 'home.methodTitle')}</h2>
+      <p>{t(locale, 'home.methodText')}</p>
+      {href('methodology') && <a class="btn btn-light" href={href('methodology')}>{t(locale, 'home.methodLink')} <Icon name="arrow-right" size={18} /></a>}
+    </div>
+    <div class="method-card">
+      <p class="gate"><Icon name="shield" size={18} /> {t(locale, 'home.methodGate')}</p>
+      <ul class="bars">
+        {
+          criteria.map((cr) => (
+            <li>
+              <span class="bar-label">{t(locale, `criteria.${cr}` as UiKey)}</span>
+              <span class="bar-track"><span class="bar-fill" style={`width:${weights[cr] * 4}%`} /></span>
+              <span class="bar-value">{weights[cr]}%</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap block" aria-labelledby="home-start-title">
+  <div class="block-head">
+    <h2 id="home-start-title">{t(locale, 'home.startTitle')}</h2>
     <p>{t(locale, 'home.startText')}</p>
   </div>
   <ul class="cards">
@@ -100,29 +330,7 @@ const pillars = [
   </ul>
 </section>
 
-<section class="method">
-  <div class="wrap method-grid">
-    <div>
-      <h2>{t(locale, 'home.methodTitle')}</h2>
-      <p>{t(locale, 'home.methodText')}</p>
-      {href('methodology') && <a class="btn btn-light" href={href('methodology')}>{t(locale, 'home.methodLink')} <Icon name="arrow-right" size={18} /></a>}
-    </div>
-    <div class="method-card">
-      <p class="gate"><Icon name="shield" size={18} /> {t(locale, 'home.methodGate')}</p>
-      <ul class="bars">
-        {
-          criteria.map((c) => (
-            <li>
-              <span class="bar-label">{t(locale, `criteria.${c}` as UiKey)}</span>
-              <span class="bar-track"><span class="bar-fill" style={`width:${weights[c] * 4}%`} /></span>
-              <span class="bar-value">{weights[c]}%</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </div>
-</section>
+<slot name="faq" />
 
 <section class="wrap band">
   <h2>{t(locale, 'home.bandTitle')}</h2>

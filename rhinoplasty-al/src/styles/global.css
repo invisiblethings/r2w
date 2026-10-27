@@ -1413,3 +1413,258 @@ meter {
     height: 160px;
   }
 }
+
+/* Home: overview sections */
+
+.glance {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(2.5rem, 5vw, 4rem) 0;
+}
+
+.glance .block-head {
+  margin-bottom: 1.5rem;
+}
+
+.fact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.fact {
+  padding: 1.25rem 1.35rem;
+  border-radius: var(--radius);
+  background: var(--sand);
+  border: 1px solid var(--border);
+}
+
+.fact dt {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.fact dd {
+  margin: 0;
+}
+
+.fact-value {
+  font-family: var(--display);
+  font-size: 1.75rem;
+  font-weight: 560;
+  line-height: 1.2;
+  margin: 0.35rem 0 0.4rem !important;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.fact-note {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.block-head-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  max-width: none;
+  flex-wrap: wrap;
+}
+
+.block-head-row > div {
+  max-width: 44rem;
+}
+
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.cost-grid .table-scroll {
+  margin: 0;
+}
+
+.data-table caption {
+  font-size: 1.1rem;
+}
+
+.data-table th[scope='row'] {
+  font-weight: 600;
+}
+
+.data-table th[scope='row'] a {
+  color: var(--ink);
+}
+
+.num {
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.block .pill-links,
+.recovery-band .pill-links {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 960px) {
+  .cost-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.surgeon-band {
+  background: var(--sand-deep);
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+}
+
+.surgeon-band .block-head h2 {
+  margin-top: 0;
+}
+
+.surgeon-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr));
+  gap: 1rem;
+}
+
+.surgeon-strip a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.35rem;
+  padding: 1.25rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  height: 100%;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.surgeon-strip a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+}
+
+.strip-name {
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 0.4rem;
+}
+
+.strip-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.topic-grid,
+.safety-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.topic-grid h2,
+.safety-grid h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 860px) {
+  .topic-grid,
+  .safety-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.recovery-band {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+}
+
+.recovery-band .block-head h2 {
+  margin-top: 0;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: 0.75rem;
+  counter-reset: step;
+}
+
+.timeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--sand);
+  border-top: 3px solid var(--accent);
+}
+
+.timeline-when {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--accent-hover);
+}
+
+.timeline-what {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.checklist li {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem 1.15rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.check-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding: 0.3rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-hover);
+}
+
+.home-faq {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.home-faq .faq {
+  max-width: 52rem;
+}
