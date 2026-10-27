@@ -27,7 +27,8 @@ interface Props {
 }
 
 const { locale, title, description, canonical, alternates, switcher, indexable, section, jsonLd } = Astro.props;
-const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
+// Keep titles within what search results display: add the brand only when there is room.
+const fullTitle = title.includes(site.name) || title.length > 52 ? title : `${title} | ${site.name}`;
 const xDefault = alternates.find((a) => a.locale === 'en');
 ---
 
