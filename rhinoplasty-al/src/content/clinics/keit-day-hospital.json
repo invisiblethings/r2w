@@ -44,8 +44,138 @@
     {
       "title": "WhatClinic: KEIT Day Hospital",
       "url": "https://www.whatclinic.com/cosmetic-plastic-surgery/albania/tirana/keit-day-hospital"
+    },
+    {
+      "title": "KEIT: About us",
+      "url": "https://www.keit.al/rreth-nesh/"
+    },
+    {
+      "title": "KEIT: Contact",
+      "url": "https://www.keit.al/kontakt/"
+    },
+    {
+      "title": "KEIT: Rhinoplasty",
+      "url": "https://www.keit.al/operacioni-i-hundes-rinoplastika/"
+    },
+    {
+      "title": "KEIT: Rhinoplasty price article",
+      "url": "https://www.keit.al/operacioni-i-hundes-cmimi/"
+    },
+    {
+      "title": "KEIT: Guarantee",
+      "url": "https://www.keit.al/garancia-keit/"
+    },
+    {
+      "title": "KEIT: Home",
+      "url": "https://www.keit.al/"
+    },
+    {
+      "title": "Italpress: KEIT press release (24 April 2024)",
+      "url": "https://www.italpress.com/in-italia-prende-sempre-piu-quota-il-turismo-estetico-2/"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "founded": "2011",
+  "phone": "+355 68 200 0622",
+  "email": "info@keit.al",
+  "hours": {
+    "en": "Mon–Sun 08:00–21:00 (patient support 24/7, per the clinic)",
+    "it": "Lun–Dom 08:00–21:00 (assistenza ai pazienti 24 ore su 24, secondo la clinica)",
+    "sq": "E hënë – E diel 08:00–21:00 (mbështetje për pacientët 24/7, sipas klinikës)"
+  },
+  "facilities": {
+    "en": [
+      "Three operating rooms (Sombrero, Messier, Centaurus)",
+      "Three pre-operative consultation rooms and five post-operative clinical rooms",
+      "Intensive care and resuscitation unit in the same building",
+      "Recovery wards with 20 beds (clinic's own figure)",
+      "Seven dental treatment rooms and three oral-surgery rooms",
+      "In-house clinical laboratory",
+      "KEIT Hotel and apartments about 200 m from the clinic, with airport transfer"
+    ],
+    "it": [
+      "Tre sale operatorie (Sombrero, Messier, Centaurus)",
+      "Tre sale per le visite preoperatorie e cinque sale cliniche postoperatorie",
+      "Unità di terapia intensiva e rianimazione nella stessa struttura",
+      "Reparti di recupero con 20 posti letto (dato della clinica)",
+      "Sette sale di trattamento dentale e tre sale di chirurgia orale",
+      "Laboratorio clinico interno",
+      "KEIT Hotel e appartamenti a circa 200 m dalla clinica, con transfer dall'aeroporto"
+    ],
+    "sq": [
+      "Tre salla operacioni (Sombrero, Messier, Centaurus)",
+      "Tre salla për konsultat preoperatore dhe pesë salla klinike postoperatore",
+      "Njësi e terapisë intensive dhe reanimacionit në të njëjtën ndërtesë",
+      "Repartet e rikuperimit me 20 shtretër (shifër e vetë klinikës)",
+      "Shtatë salla trajtimi dentar dhe tre salla të kirurgjisë orale",
+      "Laborator klinik i brendshëm",
+      "KEIT Hotel dhe apartamente rreth 200 m nga klinika, me transfer nga aeroporti"
+    ]
+  },
+  "accreditations": [
+    {
+      "name": "ISO certification and licensed day hospital (as stated by the clinic; certificate not published on the page)",
+      "url": "https://www.keit.al/"
+    }
+  ],
+  "services": {
+    "en": [
+      "Cosmetic surgery (face, breast and body procedures, including rhinoplasty)",
+      "Hair, eyebrow and beard transplant",
+      "Dentistry (implants, orthodontics, aesthetic and paediatric dentistry, oral surgery)",
+      "Aesthetic treatments (fillers, PRP, peels, laser hair removal and others)"
+    ],
+    "it": [
+      "Chirurgia estetica (viso, seno e corpo, compresa la rinoplastica)",
+      "Trapianto di capelli, sopracciglia e barba",
+      "Odontoiatria (implantologia, ortodonzia, odontoiatria estetica e pediatrica, chirurgia orale)",
+      "Trattamenti estetici (filler, PRP, peeling, epilazione laser e altri)"
+    ],
+    "sq": [
+      "Kirurgji estetike (fytyrë, gji dhe trup, përfshirë rinoplastikën)",
+      "Transplant flokësh, vetullash dhe mjekre",
+      "Stomatologji (implante, ortodonci, stomatologji estetike dhe pediatrike, kirurgji orale)",
+      "Trajtime estetike (filler, PRP, peeling, depilim me lazer dhe të tjera)"
+    ]
+  },
+  "priceList": [
+    {
+      "procedure": null,
+      "label": {
+        "en": "Rhinoplasty, starting price stated by the clinic",
+        "it": "Rinoplastica, prezzo di partenza indicato dalla clinica",
+        "sq": "Rinoplastika, çmimi fillestar i deklaruar nga klinika"
+      },
+      "min": 1200,
+      "addOn": false,
+      "source": "https://www.keit.al/operacioni-i-hundes-cmimi/",
+      "collectedOn": "2026-11-03"
+    }
+  ],
+  "packages": {
+    "en": "The clinic says it coordinates flights help, airport transfer and a stay at its own KEIT Hotel 200 m from the clinic, with Albanian, Italian and English support. It also publishes a guarantee: two years of post-operative assistance with free check-ups and, where medically necessary, free corrective procedures. Its quote page mentions deposits, all-inclusive packages and instalments; the contents of packages are not itemised in the pages we read.",
+    "it": "La clinica dichiara di coordinare l'aiuto per i voli, il transfer dall'aeroporto e il soggiorno nel proprio KEIT Hotel, a 200 m dalla clinica, con assistenza in albanese, italiano e inglese. Pubblica inoltre una garanzia: due anni di assistenza postoperatoria con controlli gratuiti e, se medicalmente necessario, interventi correttivi gratuiti. La pagina sul preventivo cita acconto, pacchetti all inclusive e pagamento a rate; il contenuto dei pacchetti non è dettagliato nelle pagine consultate.",
+    "sq": "Klinika deklaron se koordinon ndihmën për fluturimet, transferimin nga aeroporti dhe qëndrimin në KEIT Hotel, 200 m nga klinika, me mbështetje në shqip, italisht dhe anglisht. Ajo publikon edhe një garanci: dy vite asistencë pas operacionit me kontrolle falas dhe, kur është e nevojshme mjekësisht, ndërhyrje korrigjuese pa pagesë. Faqja e preventivit përmend kaparin, paketat all inclusive dhe pagesën me këste; përmbajtja e paketave nuk është detajuar në faqet që lexuam."
+  },
+  "about": {
+    "en": [
+      "KEIT Day Hospital is a private surgical day hospital in Tirana. According to its website it was founded in 2011 by Dr. Skerdi Faria, who is presented as founder and medical director, with a specialisation in anaesthesia and intensive care and public health.",
+      "The clinic says it works with more than 30 surgeons, 27 of them Italian, and that it has performed more than 23,000 procedures. These are the clinic's own figures. A 2024 press release carried by the Italpress news agency also describes it as serving many Italian patients and names rhinoplasty among its most requested procedures.",
+      "On its rhinoplasty page the clinic describes open and closed techniques, rhinoseptoplasty, septoplasty, tip rhinoplasty, secondary rhinoplasty with cartilage grafts and ultrasonic (Piezo) rhinoplasty. It says the operation is usually done under general anaesthesia and lasts about 1.5 to 3 hours, and that patients can have 3D simulation and a CT scan beforehand.",
+      "Beyond rhinoplasty, KEIT lists other cosmetic surgery, hair transplant, dentistry and aesthetic treatments. It offers support in Albanian, Italian and English and, for international patients, its own hotel and airport transfer."
+    ],
+    "it": [
+      "KEIT Day Hospital è un day hospital chirurgico privato a Tirana. Secondo il sito è stato fondato nel 2011 dal Dr. Skerdi Faria, presentato come fondatore e direttore medico, con specializzazione in anestesia e rianimazione e in sanità pubblica.",
+      "La clinica dichiara di collaborare con oltre 30 chirurghi, 27 dei quali italiani, e di aver eseguito più di 23.000 interventi: sono dati forniti dalla clinica stessa. Un comunicato del 2024 diffuso dall'agenzia Italpress la descrive come meta di molti pazienti italiani e cita la rinoplastica tra gli interventi più richiesti.",
+      "Nella pagina dedicata alla rinoplastica la clinica descrive la tecnica aperta e chiusa, la rinosettoplastica, la settoplastica, la rinoplastica della punta, la rinoplastica secondaria con innesti di cartilagine e la rinoplastica ultrasonica (Piezo). Indica che l'intervento si svolge di norma in anestesia generale e dura circa 1,5-3 ore, con simulazione 3D e TAC prima dell'operazione.",
+      "Oltre alla rinoplastica, KEIT elenca altra chirurgia estetica, trapianto di capelli, odontoiatria e trattamenti estetici. Offre assistenza in albanese, italiano e inglese e, per i pazienti internazionali, un hotel proprio e il transfer dall'aeroporto."
+    ],
+    "sq": [
+      "KEIT Day Hospital është një spital ditor kirurgjikal privat në Tiranë. Sipas faqes së tij, u themelua në vitin 2011 nga Dr. Skerdi Faria, i paraqitur si themelues dhe drejtor mjekësor, me specializim në anestezi dhe reanimacion dhe në shëndet publik.",
+      "Klinika deklaron se bashkëpunon me mbi 30 kirurgë, 27 prej tyre italianë, dhe se ka kryer mbi 23.000 ndërhyrje. Këto janë shifra të vetë klinikës. Një njoftim për shtyp i vitit 2024, i botuar nga agjencia Italpress, e përshkruan si destinacion për shumë pacientë italianë dhe e përmend rinoplastikën ndër ndërhyrjet më të kërkuara.",
+      "Në faqen e rinoplastikës klinika përshkruan teknikën e hapur dhe të mbyllur, rinoseptoplastikën, septoplastikën, rinoplastikën e majës, rinoplastikën sekondare me transplante kërcore dhe rinoplastikën ultrasonike (Piezo). Thotë se ndërhyrja kryhet zakonisht nën anestezi të përgjithshme dhe zgjat rreth 1,5–3 orë, me simulim 3D dhe skaner CT përpara operacionit.",
+      "Përveç rinoplastikës, KEIT liston kirurgji tjetër estetike, transplant flokësh, stomatologji dhe trajtime estetike. Ofron mbështetje në shqip, italisht dhe anglisht dhe, për pacientët ndërkombëtarë, hotelin e vet dhe transferimin nga aeroporti."
+    ]
+  }
 }

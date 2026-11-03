@@ -13,6 +13,7 @@ export function isoDate(date: Date): string {
 }
 
 /** "€2,300" for a single price, "€2,000–€3,800" for a range. */
-export function formatEURRange(min: number, max: number, locale: Locale): string {
+export function formatEURRange(min: number, max: number | undefined, locale: Locale): string {
+  if (max === undefined) return `${{ en: 'from', it: 'da', sq: 'nga' }[locale]} ${formatEUR(min, locale)}`;
   return min === max ? formatEUR(min, locale) : `${formatEUR(min, locale)}–${formatEUR(max, locale)}`;
 }

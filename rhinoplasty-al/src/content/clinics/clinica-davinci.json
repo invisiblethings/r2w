@@ -34,8 +34,74 @@
     {
       "title": "Trustpilot: DaVinci",
       "url": "https://www.trustpilot.com/review/davinci.al"
+    },
+    {
+      "title": "DaVINCI: Home",
+      "url": "https://davinci.al/"
+    },
+    {
+      "title": "DaVINCI: Rhinoplasty",
+      "url": "https://davinci.al/sherbimet/rinoplastika/"
+    },
+    {
+      "title": "DaVINCI: Contact",
+      "url": "https://davinci.al/kontakt/"
+    },
+    {
+      "title": "DaVINCI: Our staff",
+      "url": "https://davinci.al/stafi-yne/"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "phone": "+355 69 606 0312",
+  "email": "info@davinci.al",
+  "hours": {
+    "en": "Mon–Fri 08:00–20:00, Sat 08:00–14:00",
+    "it": "Lun–Ven 08:00–20:00, Sab 08:00–14:00",
+    "sq": "E hënë – E premte 08:00–20:00, e shtunë 08:00–14:00"
+  },
+  "services": {
+    "en": [
+      "Rhinoplasty (ultrasonic Piezo, closed technique), septoplasty and other ENT procedures",
+      "Facial surgery (facelift, blepharoplasty, otoplasty, lip lift, chin reshaping)",
+      "Body surgery (abdominoplasty, liposuction, breast augmentation, reduction and lift, BBL, gynaecomastia)",
+      "Hair transplant (Micro FUE)",
+      "Aesthetic treatments (fillers, PRP, laser hair removal, radiofrequency and others)"
+    ],
+    "it": [
+      "Rinoplastica (ultrasonica Piezo, tecnica chiusa), settoplastica e altre procedure ORL",
+      "Chirurgia del viso (lifting, blefaroplastica, otoplastica, lip lift, rimodellamento del mento)",
+      "Chirurgia del corpo (addominoplastica, liposuzione, mastoplastica additiva, riduttiva e lifting, BBL, ginecomastia)",
+      "Trapianto di capelli (Micro FUE)",
+      "Trattamenti estetici (filler, PRP, epilazione laser, radiofrequenza e altri)"
+    ],
+    "sq": [
+      "Rinoplastika (ultrasonike Piezo, teknika e mbyllur), septoplastika dhe procedura të tjera ORL",
+      "Kirurgjia e fytyrës (lifting, blefaroplastika, otoplastika, lip lift, rimodelimi i mjekrës)",
+      "Kirurgjia e trupit (abdominoplastika, liposuksioni, zmadhimi, zvogëlimi dhe lifting i gjoksit, BBL, gjinekomastia)",
+      "Mbjellja e flokëve (Micro FUE)",
+      "Trajtime estetike (filler, PRP, depilim me lazer, radiofrekuencë dhe të tjera)"
+    ]
+  },
+  "about": {
+    "en": [
+      "DaVINCI is an aesthetic surgery clinic in Tirana, at the Pas Garden Building on Rruga e Kavajës. Its website presents it as Italian aesthetic surgery in Albania and, in a recent post, as celebrating its 11th anniversary. The pages we read do not describe the clinic's legal form or licence.",
+      "The clinic says its work is done with the cooperation of surgeons from Italy and lists a team of Italian, Albanian and Turkish doctors on its staff page, without giving their specialties there. The rhinoplasty page says the operation is performed by a plastic surgeon and, for breathing problems, by an ENT surgeon.",
+      "For rhinoplasty the site describes an ultrasonic (Piezo) technique, using a closed approach, general anaesthesia and an operating time of about 1 to 2 hours. It states that a CT scan is needed beforehand and that no nasal packing or splints are used, only a cast and skin tapes. It also covers septoplasty and turbinate treatment.",
+      "Beyond rhinoplasty the clinic lists facial and body surgery, hair transplant and non-surgical aesthetic treatments. The site is available in Albanian, English, Italian and Spanish. Prices are not published on the pages we read."
+    ],
+    "it": [
+      "DaVINCI è una clinica di chirurgia estetica a Tirana, nel Pas Garden Building in Rruga e Kavajës. Il sito la presenta come chirurgia estetica italiana in Albania e, in un articolo recente, ne celebra l'undicesimo anniversario. Le pagine consultate non indicano la forma giuridica né la licenza della clinica.",
+      "La clinica dichiara di lavorare con la collaborazione di chirurghi provenienti dall'Italia ed elenca nella pagina dello staff medici italiani, albanesi e turchi, senza indicarne la specialità. La pagina sulla rinoplastica afferma che l'intervento è eseguito da un chirurgo plastico e, in caso di problemi respiratori, da un chirurgo ORL.",
+      "Per la rinoplastica il sito descrive una tecnica ultrasonica (Piezo) con approccio chiuso, anestesia generale e una durata operatoria di circa 1-2 ore. Indica che è necessaria una TAC prima dell'intervento e che non si usano tamponi né stecche nasali, ma solo gesso e cerotti sterili.",
+      "Oltre alla rinoplastica, la clinica elenca chirurgia del viso e del corpo, trapianto di capelli e trattamenti estetici non chirurgici. Il sito è disponibile in albanese, inglese, italiano e spagnolo. Nelle pagine consultate i prezzi non sono pubblicati."
+    ],
+    "sq": [
+      "DaVINCI është një klinikë e kirurgjisë estetike në Tiranë, te Pas Garden Building, në Rrugën e Kavajës. Faqja e paraqet si kirurgji estetike italiane në Shqipëri dhe, në një njoftim të fundit, shënon përvjetorin e 11-të. Faqet që lexuam nuk tregojnë formën juridike apo licencën e klinikës.",
+      "Klinika deklaron se punon me bashkëpunimin e kirurgëve nga Italia dhe në faqen e stafit liston mjekë italianë, shqiptarë dhe turq, pa treguar specialitetin e tyre. Faqja e rinoplastikës thotë se ndërhyrja kryhet nga një kirurg plastik dhe, për probleme me frymëmarrjen, nga një kirurg ORL.",
+      "Për rinoplastikën faqja përshkruan teknikën ultrasonike (Piezo), me qasje të mbyllur, anestezi të përgjithshme dhe kohëzgjatje operacioni rreth 1–2 orë. Thotë se para ndërhyrjes nevojitet skaner CT dhe se nuk përdoren tampona e splinte, vetëm gips dhe shirita steri.",
+      "Përveç rinoplastikës, klinika liston kirurgji të fytyrës dhe të trupit, mbjellje flokësh dhe trajtime estetike jokirurgjikale. Faqja është në shqip, anglisht, italisht dhe spanjisht. Çmimet nuk publikohen në faqet që lexuam."
+    ]
+  }
 }

@@ -38,8 +38,53 @@
     {
       "title": "Trustpilot: Dental & Beauty",
       "url": "https://nl-be.trustpilot.com/review/dentalandbeauty.it"
+    },
+    {
+      "title": "Dental & Beauty: Home",
+      "url": "https://www.dentalandbeauty.it/"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "phone": "+355 69 58 50 555",
+  "email": "info@dentalandbeauty.it",
+  "hours": {
+    "en": "Mon–Fri 09:00–20:00, Sat 09:00–18:00",
+    "it": "Lun–Ven 09:00–20:00, Sab 09:00–18:00",
+    "sq": "E hënë – E premte 09:00–20:00, e shtunë 09:00–18:00"
+  },
+  "services": {
+    "en": [
+      "Dentistry, including dental implants",
+      "Cosmetic surgery (the site features breast augmentation, reduction and lift)",
+      "Hair transplant (FUE and DHI techniques)"
+    ],
+    "it": [
+      "Odontoiatria, compresi gli impianti dentali",
+      "Chirurgia estetica (il sito presenta aumento, riduzione e lifting del seno)",
+      "Trapianto di capelli (tecniche FUE e DHI)"
+    ],
+    "sq": [
+      "Stomatologji, përfshirë implantet dentare",
+      "Kirurgji estetike (faqja paraqet zmadhimin, zvogëlimin dhe liftingun e gjoksit)",
+      "Mbjellja e flokëve (teknikat FUE dhe DHI)"
+    ]
+  },
+  "about": {
+    "en": [
+      "Dental & Beauty is a clinic in Tirana offering dental care, cosmetic surgery and hair transplant, aimed at Italian-speaking patients. Its Italian website (also in English and Albanian) gives its address as Rruga Ferit Xhajko and a registered seat on Rruga Dritan Hoxha.",
+      "The clinic presents itself as a team of dentists and cosmetic surgeons and stresses safety, quality and personal support from arrival to the end of treatment. It says its prices are up to 60% lower than many Italian clinics, with a comparable standard of care. This is the clinic's own claim.",
+      "Its website features breast surgery as the main cosmetic procedure and names three cosmetic surgeons. Rhinoplasty appears on its home page in a patient testimonial, and its Trustpilot company description lists nose surgery among its procedures. The website does not publish rhinoplasty prices."
+    ],
+    "it": [
+      "Dental & Beauty è una clinica a Tirana che offre cure dentali, chirurgia estetica e trapianto di capelli, rivolta a pazienti di lingua italiana. Il sito in italiano (anche in inglese e albanese) indica l'indirizzo in Rruga Ferit Xhajko e una sede legale in Rruga Dritan Hoxha.",
+      "La clinica si presenta come un'équipe di dentisti e chirurghi estetici e sottolinea sicurezza, qualità e assistenza personale dall'arrivo alla fine del trattamento. Dichiara prezzi fino al 60% inferiori a molte cliniche italiane, con uno standard di cura paragonabile: è un'affermazione della clinica stessa.",
+      "Il sito presenta la chirurgia del seno come procedura estetica principale e indica tre chirurghi estetici. La rinoplastica compare sulla home page in una testimonianza di una paziente, e la descrizione aziendale su Trustpilot include la chirurgia del naso tra le procedure. Il sito non pubblica prezzi per la rinoplastica."
+    ],
+    "sq": [
+      "Dental & Beauty është një klinikë në Tiranë që ofron kujdes dentar, kirurgji estetike dhe mbjellje flokësh, për pacientë që flasin italisht. Faqja në italisht (edhe në anglisht dhe shqip) jep adresën në Rrugën Ferit Xhajko dhe selinë ligjore në Rrugën Dritan Hoxha.",
+      "Klinika paraqitet si një ekip dentistësh dhe kirurgësh estetikë dhe thekson sigurinë, cilësinë dhe mbështetjen personale nga mbërritja deri në fund të trajtimit. Deklaron çmime deri në 60% më të ulëta se shumë klinika italiane, me standard të krahasueshëm kujdesi. Ky është pretendim i vetë klinikës.",
+      "Faqja paraqet kirurgjinë e gjoksit si procedurën kryesore estetike dhe emëron tre kirurgë estetikë. Rinoplastika shfaqet në faqen kryesore në një dëshmi pacienti, dhe përshkrimi i kompanisë në Trustpilot përfshin kirurgjinë e hundës ndër procedurat. Faqja nuk publikon çmime për rinoplastikën."
+    ]
+  }
 }

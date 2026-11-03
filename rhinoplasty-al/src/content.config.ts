@@ -129,7 +129,8 @@ const clinics = defineCollection({
           procedure: z.string().nullable().optional(),
           label: z.record(localeEnum, z.string()),
           min: z.number(),
-          max: z.number(),
+          /** Omitted when the clinic publishes only a starting price. */
+          max: z.number().optional(),
           addOn: z.boolean().default(false),
           source: z.string().url(),
           collectedOn: z.coerce.date(),

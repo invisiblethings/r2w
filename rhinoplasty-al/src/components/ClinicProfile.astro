@@ -41,7 +41,7 @@ const about = local(d.about) ?? [];
 const facilities = local(d.facilities) ?? [];
 const services = local(d.services) ?? [];
 const rows = d.priceList.filter((r) => !r.addOn && !r.procedure?.startsWith('alar'));
-const headline = d.priceEUR ?? (rows.length ? { min: Math.min(...rows.map((r) => r.min)), max: Math.max(...rows.map((r) => r.max)) } : undefined);
+const headline = d.priceEUR ?? (rows.length ? { min: Math.min(...rows.map((r) => r.min)), max: (rows.some((r) => r.max !== undefined) ? Math.max(...rows.map((r) => r.max ?? r.min)) : undefined) } : undefined);
 const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefined;
 const mapHref = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${d.address}, ${d.city}, Albania`)}`;
 const guides = ['questions-to-ask', 'how-to-choose', 'verify-surgeon', 'whats-included'].map((k) => page(k)).filter((p) => p);

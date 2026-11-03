@@ -15,8 +15,8 @@ export function clinicFaq(
   const name = d.shortName ?? d.name;
   const rows = d.priceList.filter((r) => !r.addOn && !r.procedure?.startsWith('alar'));
   const min = d.priceEUR?.min ?? (rows.length ? Math.min(...rows.map((r) => r.min)) : undefined);
-  const max = d.priceEUR?.max ?? (rows.length ? Math.max(...rows.map((r) => r.max)) : undefined);
-  const range = min !== undefined && max !== undefined ? formatEURRange(min, max, locale) : '';
+  const max = d.priceEUR?.max ?? (rows.length ? (rows.some((r) => r.max !== undefined) ? Math.max(...rows.map((r) => r.max ?? r.min)) : undefined) : undefined);
+  const range = min !== undefined ? formatEURRange(min, max, locale) : '';
   const surgeons = opts.surgeonNames.join(', ');
   const techniques = opts.techniqueNames.join(', ');
   const audited = d.audit === 'audited';
@@ -24,8 +24,8 @@ export function clinicFaq(
   const T = {
     en: {
       costQ: `How much does rhinoplasty cost at ${name}?`,
-      costA: min !== undefined && max !== undefined
-        ? `${name} publishes rhinoplasty prices of ${range}, depending on the procedure. Check what the quote includes: hotel nights, flights and follow-up at home are usually extra.`
+      costA: min !== undefined
+        ? `${name} publishes these rhinoplasty prices: ${range}, depending on the procedure. Check what the quote includes: hotel nights, flights and follow-up at home are usually extra.`
         : `${name} does not publish rhinoplasty prices in the sources we reviewed. Ask for a written, itemised quote that names the surgeon and what is included.`,
       whoQ: `Who performs rhinoplasty at ${name}?`,
       whoA: surgeons
@@ -46,8 +46,8 @@ export function clinicFaq(
     },
     it: {
       costQ: `Quanto costa la rinoplastica da ${name}?`,
-      costA: min !== undefined && max !== undefined
-        ? `${name} pubblica prezzi per la rinoplastica di ${range}, a seconda dell’intervento. Verifica cosa include il preventivo: hotel, voli e controlli in Italia di solito sono a parte.`
+      costA: min !== undefined
+        ? `${name} pubblica questi prezzi per la rinoplastica: ${range}, a seconda dell’intervento. Verifica cosa include il preventivo: hotel, voli e controlli in Italia di solito sono a parte.`
         : `${name} non pubblica prezzi per la rinoplastica nelle fonti che abbiamo consultato. Chiedi un preventivo scritto e dettagliato con il nome del chirurgo e cosa è incluso.`,
       whoQ: `Chi esegue la rinoplastica da ${name}?`,
       whoA: surgeons
@@ -68,8 +68,8 @@ export function clinicFaq(
     },
     sq: {
       costQ: `Sa kushton rinoplastika te ${name}?`,
-      costA: min !== undefined && max !== undefined
-        ? `${name} publikon çmime për rinoplastikën ${range}, sipas procedurës. Kontrolloni çfarë përfshin oferta: hoteli, udhëtimi dhe kontrollet pas kthimit zakonisht paguhen veç.`
+      costA: min !== undefined
+        ? `${name} publikon këto çmime për rinoplastikën: ${range}, sipas procedurës. Kontrolloni çfarë përfshin oferta: hoteli, udhëtimi dhe kontrollet pas kthimit zakonisht paguhen veç.`
         : `${name} nuk publikon çmime për rinoplastikën në burimet që shqyrtuam. Kërkoni ofertë me shkrim dhe të detajuar me emrin e kirurgut dhe çfarë përfshihet.`,
       whoQ: `Kush e kryen rinoplastikën te ${name}?`,
       whoA: surgeons
