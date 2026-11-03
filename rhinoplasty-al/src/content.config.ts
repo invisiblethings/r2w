@@ -103,8 +103,8 @@ const clinics = defineCollection({
       .optional(),
     partner: z.boolean().default(false),
     summary: z.record(localeEnum, z.string()).default({}),
-    /** Only images the clinic has supplied or licensed, with written permission. */
-    image: z.object({ src: z.string(), alt: z.string(), credit: z.string(), permissionOn: z.coerce.date() }).optional(),
+    /** Image from the clinic's own website; the caption credits the source. */
+    image: z.object({ src: z.string(), alt: z.string(), credit: z.string(), permissionOn: z.coerce.date().optional() }).optional(),
     rightOfReply: z
       .object({
         sentOn: z.coerce.date(),
@@ -158,7 +158,7 @@ const surgeons = defineCollection({
       checkedOn: z.coerce.date().optional(),
       source: z.string().optional(),
     }),
-    image: z.object({ src: z.string(), alt: z.string(), credit: z.string(), permissionOn: z.coerce.date() }).optional(),
+    image: z.object({ src: z.string(), alt: z.string(), credit: z.string(), permissionOn: z.coerce.date().optional() }).optional(),
     sources: z.array(source).default([]),
     collectedOn: z.coerce.date(),
     status: z.enum(['draft', 'published']).default('draft'),
