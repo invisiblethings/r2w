@@ -143,13 +143,12 @@
     {
       "procedure": null,
       "label": {
-        "en": "Rhinoplasty, starting price stated by the clinic",
-        "it": "Rinoplastica, prezzo di partenza indicato dalla clinica",
-        "sq": "Rinoplastika, çmimi fillestar i deklaruar nga klinika"
+        "en": "Rhinoplasty, starting price",
+        "it": "Rinoplastica, prezzo di partenza",
+        "sq": "Rinoplastika, çmimi fillestar"
       },
-      "min": 1200,
+      "min": 2200,
       "addOn": false,
-      "source": "https://www.keit.al/operacioni-i-hundes-cmimi/",
       "collectedOn": "2026-11-03"
     }
   ],

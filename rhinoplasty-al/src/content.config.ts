@@ -132,7 +132,8 @@ const clinics = defineCollection({
           /** Omitted when the clinic publishes only a starting price. */
           max: z.number().optional(),
           addOn: z.boolean().default(false),
-          source: z.string().url(),
+          /** Omitted when Rhinoplasty.al verified the price directly with the clinic. */
+          source: z.string().url().optional(),
           collectedOn: z.coerce.date(),
         }),
       )

@@ -100,7 +100,7 @@ const auditItems: { key: UiKey; done: boolean }[] = [
                     <tr>
                       <th scope="row">{g ? <a href={pathOf(g.data.slug)}>{label}</a> : label}</th>
                       <td class="num">{r.addOn && '+'}{formatEURRange(r.min, r.max, locale)}{r.addOn && <span class="muted small"> ({t(locale, 'clinic.addOn')})</span>}</td>
-                      <td class="small"><a href={r.source} rel="noopener nofollow">{t(locale, 'clinic.status.published')}</a>, <DateTime locale={locale} value={r.collectedOn} /></td>
+                      <td class="small">{r.source ? <a href={r.source} rel="noopener nofollow">{t(locale, 'clinic.status.published')}</a> : t(locale, 'clinic.status.verified')}, <DateTime locale={locale} value={r.collectedOn} /></td>
                     </tr>
                   );
                 })}

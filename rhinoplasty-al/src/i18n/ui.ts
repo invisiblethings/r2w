@@ -20,6 +20,7 @@ export const languageName: Record<Locale, string> = { en: 'English', it: 'Italia
 
 const strings = {
   en: {
+    'clinic.status.verified': "Verified by Rhinoplasty.al",
     'clinic.about': "About {name}",
     'clinic.rhinoplastyAt': "Rhinoplasty at {name}",
     'clinic.priceTable': "Rhinoplasty prices published by {name}",
@@ -179,6 +180,7 @@ const strings = {
     'notFound.home': 'Go to the home page',
   },
   it: {
+    'clinic.status.verified': "Verificato da Rhinoplasty.al",
     'clinic.about': "Chi è {name}",
     'clinic.rhinoplastyAt': "La rinoplastica da {name}",
     'clinic.priceTable': "Prezzi della rinoplastica pubblicati da {name}",
@@ -339,6 +341,7 @@ const strings = {
     'notFound.home': 'Vai alla home',
   },
   sq: {
+    'clinic.status.verified': "Verifikuar nga Rhinoplasty.al",
     'clinic.about': "Rreth {name}",
     'clinic.rhinoplastyAt': "Rinoplastika te {name}",
     'clinic.priceTable': "Çmimet e rinoplastikës që publikon {name}",
