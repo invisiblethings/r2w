@@ -80,15 +80,37 @@ export function itemList(items: { name: string; url: string }[], order = 'https:
   };
 }
 
-export function medicalClinic(opts: { name: string; url: string; address: string; city: string; website?: string }): Json {
+export function medicalClinic(opts: {
+  name: string;
+  url: string;
+  address: string;
+  city: string;
+  website?: string;
+  phone?: string;
+  email?: string;
+  image?: string;
+  priceRange?: string;
+  foundingDate?: string;
+  services?: string[];
+}): Json {
   const clinic: Json = {
     '@type': 'MedicalClinic',
+    '@id': `${opts.url}#clinic`,
     name: opts.name,
     address: { '@type': 'PostalAddress', streetAddress: opts.address, addressLocality: opts.city, addressCountry: 'AL' },
     medicalSpecialty: 'PlasticSurgery',
+    subjectOf: { '@id': `${opts.url}#webpage` },
   };
   if (opts.website) clinic.sameAs = opts.website;
-  return { ...clinic, subjectOf: { '@id': `${opts.url}#webpage` } };
+  if (opts.phone) clinic.telephone = opts.phone;
+  if (opts.email) clinic.email = opts.email;
+  if (opts.image) clinic.image = opts.image;
+  if (opts.priceRange) clinic.priceRange = opts.priceRange;
+  if (opts.foundingDate) clinic.foundingDate = opts.foundingDate;
+  if (opts.services?.length) {
+    clinic.availableService = opts.services.map((name) => ({ '@type': 'MedicalProcedure', name }));
+  }
+  return clinic;
 }
 
 export function physician(opts: { name: string; url: string; specialty: string; image?: string; worksFor?: string }): Json {

@@ -1,9 +1,12 @@
 ---
 import DateTime from './DateTime.astro';
+import Faq from './Faq.astro';
+import Icon from './Icon.astro';
 import { t, type UiKey } from '../i18n/ui';
-import { formatEUR } from '../lib/format';
+import { formatEUR, formatEURRange } from '../lib/format';
+import { clinicFaq } from '../lib/clinic-faq';
 import { criteria, isRankable, totalScore, weights } from '../lib/scoring';
-import { find, getPages, getPublishedSurgeons, pathOf, surgeonSlug, type Clinic } from '../lib/pages';
+import { clinicSlug, find, getPages, getPublishedClinics, getPublishedSurgeons, pathOf, surgeonSlug, type Clinic } from '../lib/pages';
 import type { Locale } from '../site.config';
 
 interface Props {
@@ -15,186 +18,288 @@ interface Props {
 
 const { locale, clinic, methodologyHref, disclosureHref } = Astro.props;
 const d = clinic.data;
+const name = d.shortName ?? d.name;
 const audited = d.audit === 'audited';
-const local = (field: Partial<Record<Locale, string>>) => field[locale] ?? field.en;
+const local = <T,>(field: Partial<Record<Locale, T>>) => field[locale] ?? field.en;
+const fill = (key: UiKey) => t(locale, key).replace('{name}', name);
 const pages = await getPages();
+const clinicsIndex = find(pages, 'clinics', locale);
 const surgeonsIndex = find(pages, 'surgeons', locale);
-const publishedSurgeons = await getPublishedSurgeons();
-const surgeonHref = (name: string) => {
-  const match = publishedSurgeons.find((x) => x.data.name === name && x.data.clinics.includes(clinic.id));
-  return match && surgeonsIndex ? pathOf(surgeonSlug(surgeonsIndex, match)) : undefined;
-};
+const surgeons = await getPublishedSurgeons();
+const others = (await getPublishedClinics()).filter((c) => c.id !== clinic.id).sort((a, b) => a.data.name.localeCompare(b.data.name));
+const profileOf = (surgeonName: string) => surgeons.find((x) => x.data.name === surgeonName && x.data.clinics.includes(clinic.id));
+const page = (key?: string | null) => (key ? find(pages, key, locale) : undefined);
 const technique = (key: string) => {
-  const p = find(pages, key, locale);
+  const p = page(key);
   return p ? { label: p.data.h1 ?? p.data.title, href: pathOf(p.data.slug) } : { label: key, href: undefined };
 };
+const faq = clinicFaq(clinic, locale, {
+  surgeonNames: d.surgeons.map((s) => s.name),
+  techniqueNames: d.techniques.map((k) => technique(k).label),
+});
+const about = local(d.about) ?? [];
+const facilities = local(d.facilities) ?? [];
+const services = local(d.services) ?? [];
+const rows = d.priceList.filter((r) => !r.addOn && !r.procedure?.startsWith('alar'));
+const headline = d.priceEUR ?? (rows.length ? { min: Math.min(...rows.map((r) => r.min)), max: Math.max(...rows.map((r) => r.max)) } : undefined);
 const reply = d.rightOfReply?.response ? local(d.rightOfReply.response) : undefined;
+const mapHref = `https://www.openstreetmap.org/search?query=${encodeURIComponent(`${d.address}, ${d.city}, Albania`)}`;
+const guides = ['questions-to-ask', 'how-to-choose', 'verify-surgeon', 'whats-included'].map((k) => page(k)).filter((p) => p);
+const auditItems: { key: UiKey; done: boolean }[] = [
+  { key: 'clinic.audit.licence', done: d.license.status === 'verified' },
+  { key: 'clinic.audit.surgeons', done: d.surgeons.length > 0 && d.surgeons.every((s) => s.verifiedOn) },
+  { key: 'clinic.audit.prices', done: audited },
+  { key: 'clinic.audit.aftercare', done: audited },
+  { key: 'clinic.audit.reply', done: Boolean(d.rightOfReply) },
+];
 ---
 
-<article class="clinic">
-  {!audited && <p class="note listed-note"><span class="tag tag-muted">{t(locale, 'listed.badge')}</span> {t(locale, 'listed.note')} {methodologyHref && <a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a>}</p>}
+<div class="clinic-layout">
+  <article class="clinic">
+    {!audited && <p class="note listed-note"><span class="tag tag-muted">{t(locale, 'listed.badge')}</span> {t(locale, 'listed.note')} {methodologyHref && <a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a>}</p>}
 
-  {
-    d.image && (
-      <figure class="clinic-image">
-        <img src={d.image.src} alt={d.image.alt} loading="lazy" decoding="async" />
-        <figcaption>{t(locale, 'image.credit').replace('{source}', d.image.credit)}</figcaption>
-      </figure>
-    )
-  }
+    {local(d.summary) && <p class="lede">{local(d.summary)}</p>}
 
-  {local(d.summary) && <p class="lede">{local(d.summary)}</p>}
+    {
+      about.length > 0 && (
+        <section aria-labelledby="about">
+          <h2 id="about">{fill('clinic.about')}</h2>
+          {about.map((para) => <p>{para}</p>)}
+        </section>
+      )
+    }
 
-  <section aria-labelledby="facts">
-    <h2 id="facts">{t(locale, 'clinic.facts')}</h2>
-    <dl class="facts">
-      <dt>{t(locale, 'clinic.type')}</dt>
-      <dd>{t(locale, `clinic.type.${d.setting}` as UiKey)}</dd>
-      <dt>{t(locale, 'clinic.address')}</dt>
-      <dd>{d.address}, {d.city}</dd>
-      <dt>{t(locale, 'clinic.license')}</dt>
-      <dd>
-        {t(locale, `clinic.license.${d.license.status}` as UiKey)}
-        {d.license.checkedOn && <> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={d.license.checkedOn} />{d.license.source && <>; {d.license.source}</>})</>}
-      </dd>
+    <section aria-labelledby="rhinoplasty">
+      <h2 id="rhinoplasty">{fill('clinic.rhinoplastyAt')}</h2>
       {
-        d.priceEUR && (
+        d.techniques.length > 0 && (
           <>
-            <dt>{t(locale, 'clinics.price')}</dt>
-            <dd>
-              {formatEUR(d.priceEUR.min, locale)}–{formatEUR(d.priceEUR.max, locale)} ({t(locale, 'clinic.priceBasis')}:{' '}
-              {d.priceEUR.source ? <a href={d.priceEUR.source} rel="noopener nofollow">{d.priceEUR.basis}</a> : d.priceEUR.basis},{' '}
-              <DateTime locale={locale} value={d.priceEUR.collectedOn} />)
-            </dd>
+            <h3 class="sub">{audited ? t(locale, 'clinic.techniques') : t(locale, 'clinic.techniquesPublished')}</h3>
+            <ul class="pill-links">
+              {d.techniques.map((x) => {
+                const tq = technique(x);
+                return <li>{tq.href ? <a href={tq.href}><Icon name="layers" size={18} />{tq.label}</a> : <span>{tq.label}</span>}</li>;
+              })}
+            </ul>
           </>
         )
       }
       {
-        d.languages.length > 0 && (
-          <>
-            <dt>{t(locale, 'clinic.languages')}</dt>
-            <dd>{d.languages.join(', ')}</dd>
-          </>
-        )
-      }
-      {
-        d.website && (
-          <>
-            <dt>{t(locale, 'clinic.website')}</dt>
-            <dd><a href={d.website} rel="noopener nofollow">{new URL(d.website).hostname}</a></dd>
-          </>
-        )
-      }
-      <dt>{audited ? t(locale, 'clinic.verifiedOn') : t(locale, 'clinic.collectedOn')}</dt>
-      <dd><DateTime locale={locale} value={d.verifiedOn} /></dd>
-    </dl>
-    {d.partner && <p class="note"><span class="tag">{t(locale, 'clinics.partner')}</span> {t(locale, 'clinics.partnerNote')} {disclosureHref && <a href={disclosureHref}>{t(locale, 'clinics.howWeRank')}</a>}</p>}
-  </section>
-
-  {
-    audited && (
-      <section aria-labelledby="breakdown">
-        <h2 id="breakdown">{t(locale, 'clinic.breakdown')}</h2>
-        {isRankable(clinic) && d.scores ? (
-          <table class="breakdown">
-            <tbody>
-              {criteria.map((c) => (
-                <tr>
-                  <th scope="row">{t(locale, `criteria.${c}` as UiKey)}</th>
-                  <td>{weights[c]}%</td>
-                  <td><meter min="0" max="100" value={d.scores![c]}>{d.scores![c]}</meter> {d.scores![c]}/100</td>
-                </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <th scope="row">{t(locale, 'clinics.score')}</th>
-                <td />
-                <td><strong>{totalScore(clinic)}/100</strong></td>
-              </tr>
-            </tfoot>
-          </table>
+        d.priceList.length > 0 ? (
+          <div class="table-scroll" role="region" aria-labelledby="price-caption" tabindex="0">
+            <table class="data-table">
+              <caption id="price-caption">{fill('clinic.priceTable')}</caption>
+              <thead>
+                <tr><th scope="col">{t(locale, 'clinic.procedure')}</th><th scope="col">{t(locale, 'clinic.priceCol')}</th><th scope="col">{t(locale, 'clinic.priceBasis')}</th></tr>
+              </thead>
+              <tbody>
+                {d.priceList.map((r) => {
+                  const g = page(r.procedure);
+                  const label = local(r.label);
+                  return (
+                    <tr>
+                      <th scope="row">{g ? <a href={pathOf(g.data.slug)}>{label}</a> : label}</th>
+                      <td class="num">{r.addOn && '+'}{formatEURRange(r.min, r.max, locale)}{r.addOn && <span class="muted small"> ({t(locale, 'clinic.addOn')})</span>}</td>
+                      <td class="small"><a href={r.source} rel="noopener nofollow">{t(locale, 'clinic.status.published')}</a>, <DateTime locale={locale} value={r.collectedOn} /></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : d.priceEUR ? (
+          <p>
+            <strong>{formatEUR(d.priceEUR.min, locale)}–{formatEUR(d.priceEUR.max, locale)}</strong> ({t(locale, 'clinic.priceBasis')}:{' '}
+            {d.priceEUR.source ? <a href={d.priceEUR.source} rel="noopener nofollow">{d.priceEUR.basis}</a> : d.priceEUR.basis}, <DateTime locale={locale} value={d.priceEUR.collectedOn} />)
+          </p>
         ) : (
-          <p>{t(locale, 'clinics.notRankedNote')}</p>
+          <p class="note">{fill('clinic.noPrices')}</p>
+        )
+      }
+      {page('prices-2026') && <p class="small"><a href={pathOf(page('prices-2026')!.data.slug)}>{t(locale, 'clinic.allPrices')}</a></p>}
+      {d.included.length > 0 && (<><h3 class="sub">{t(locale, 'clinic.included')}</h3><ul>{d.included.map((x) => <li>{x}</li>)}</ul></>)}
+    </section>
+
+    {
+      d.surgeons.length > 0 && (
+        <section aria-labelledby="surgeons">
+          <h2 id="surgeons">{audited ? t(locale, 'clinic.surgeons') : t(locale, 'clinic.publishedSurgeons')}</h2>
+          <ul class="clinic-surgeons">
+            {d.surgeons.map((s) => {
+              const prof = profileOf(s.name);
+              const href = prof && surgeonsIndex ? pathOf(surgeonSlug(surgeonsIndex, prof)) : undefined;
+              return (
+                <li>
+                  {prof?.data.image ? <img class="surgeon-photo" src={prof.data.image.src} alt="" width="72" height="72" loading="lazy" decoding="async" /> : <span class="card-icon"><Icon name="user-check" /></span>}
+                  <div>
+                    <strong>{href ? <a href={href}>{s.name}</a> : s.name}</strong>
+                    <span class="muted small">{(prof ? (prof.data.specialty[locale] ?? prof.data.specialty.en) : s.specialty)}{s.credentials && <>. {s.credentials}</>}</span>
+                    <span class="muted small">{s.verifiedOn ? <>{t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} /></> : t(locale, 'clinic.licenceUnconfirmed')}</span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )
+    }
+
+    {
+      audited && d.scores && (
+        <section aria-labelledby="breakdown">
+          <h2 id="breakdown">{t(locale, 'clinic.breakdown')}</h2>
+          {isRankable(clinic) ? (
+            <table class="breakdown">
+              <tbody>
+                {criteria.map((c) => (
+                  <tr>
+                    <th scope="row">{t(locale, `criteria.${c}` as UiKey)}</th>
+                    <td>{weights[c]}%</td>
+                    <td><meter min="0" max="100" value={d.scores![c]}>{d.scores![c]}</meter> {d.scores![c]}/100</td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr><th scope="row">{t(locale, 'clinics.score')}</th><td /><td><strong>{totalScore(clinic)}/100</strong></td></tr>
+              </tfoot>
+            </table>
+          ) : (
+            <p>{t(locale, 'clinics.notRankedNote')}</p>
+          )}
+        </section>
+      )
+    }
+
+    {(facilities.length > 0 || d.accreditations.length > 0) && (
+      <section aria-labelledby="facilities">
+        <h2 id="facilities">{t(locale, 'clinic.facilities')}</h2>
+        {facilities.length > 0 && <ul>{facilities.map((x) => <li>{x}</li>)}</ul>}
+        {d.accreditations.length > 0 && (
+          <>
+            <h3 class="sub">{t(locale, 'clinic.accreditations')}</h3>
+            <ul>{d.accreditations.map((a) => <li>{a.url ? <a href={a.url} rel="noopener nofollow">{a.name}</a> : a.name}</li>)}</ul>
+          </>
         )}
-        {methodologyHref && <p><a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a></p>}
       </section>
-    )
-  }
+    )}
 
-  {
-    d.surgeons.length > 0 && (
-      <section aria-labelledby="surgeons">
-        <h2 id="surgeons">{audited ? t(locale, 'clinic.surgeons') : t(locale, 'clinic.publishedSurgeons')}</h2>
-        <ul class="surgeon-list">
-          {d.surgeons.map((s) => (
-            <li>
-              <strong>{surgeonHref(s.name) ? <a href={surgeonHref(s.name)}>{s.name}</a> : s.name}</strong>, {s.specialty}{s.credentials && <>. {s.credentials}</>}
-              {s.verifiedOn ? (
-                <span class="muted"> ({t(locale, 'clinic.checkedOn')} <DateTime locale={locale} value={s.verifiedOn} />)</span>
-              ) : (
-                <span class="muted"> ({t(locale, 'clinic.licenceUnconfirmed')})</span>
-              )}
-              {s.source && <> · <a href={s.source} rel="noopener nofollow">{t(locale, 'clinic.sources')}</a></>}
-            </li>
-          ))}
-        </ul>
+    {local(d.packages) && (<section aria-labelledby="packages"><h2 id="packages">{t(locale, 'clinic.packages')}</h2><p>{local(d.packages)}</p></section>)}
+    {local(d.aftercare) && (<section aria-labelledby="aftercare"><h2 id="aftercare">{t(locale, 'clinic.aftercare')}</h2><p>{local(d.aftercare)}</p></section>)}
+    {local(d.revisionPolicy) && (<section aria-labelledby="revision"><h2 id="revision">{t(locale, 'clinic.revision')}</h2><p>{local(d.revisionPolicy)}</p></section>)}
+
+    {services.length > 0 && (
+      <section aria-labelledby="services">
+        <h2 id="services">{t(locale, 'clinic.services')}</h2>
+        <ul class="inline-links">{services.map((x) => <li>{x}</li>)}</ul>
       </section>
-    )
-  }
+    )}
 
-  {
-    d.techniques.length > 0 && (
-      <section aria-labelledby="techniques">
-        <h2 id="techniques">{audited ? t(locale, 'clinic.techniques') : t(locale, 'clinic.techniquesPublished')}</h2>
-        <ul class="pill-links">{d.techniques.map((x) => { const tq = technique(x); return <li>{tq.href ? <a href={tq.href}>{tq.label}</a> : <span>{tq.label}</span>}</li>; })}</ul>
-      </section>
-    )
-  }
+    {
+      d.ratings.length > 0 && (
+        <section aria-labelledby="ratings">
+          <h2 id="ratings">{t(locale, 'clinic.ratings')}</h2>
+          <ul class="ratings">
+            {d.ratings.map((r) => (
+              <li><a href={r.url} rel="noopener nofollow">{r.platform}</a>: <strong>{r.score}</strong> · {r.count} {t(locale, 'clinic.reviews')} ({t(locale, 'clinic.asOf')} <DateTime locale={locale} value={r.checkedOn} />)</li>
+            ))}
+          </ul>
+          <p class="muted small">{t(locale, 'clinic.ratingsNote')}</p>
+        </section>
+      )
+    }
 
-  {
-    d.included.length > 0 && (
-      <section aria-labelledby="included">
-        <h2 id="included">{t(locale, 'clinic.included')}</h2>
-        <ul>{d.included.map((x) => <li>{x}</li>)}</ul>
-      </section>
-    )
-  }
+    <section aria-labelledby="audit">
+      <h2 id="audit">{t(locale, 'clinic.auditTitle')}</h2>
+      <ul class="audit-list">
+        {auditItems.map((a) => (
+          <li class={a.done ? 'done' : ''}>
+            <span class="check-icon"><Icon name={a.done ? 'check' : 'calendar'} size={16} /></span>
+            <span>{t(locale, a.key)}</span>
+            <span class="tag tag-muted">{a.done ? '✓' : t(locale, 'clinic.status.pending')}</span>
+          </li>
+        ))}
+      </ul>
+      {methodologyHref && <p class="small"><a href={methodologyHref}>{t(locale, 'clinics.howWeRank')}</a>{disclosureHref && <> · <a href={disclosureHref}>{t(locale, 'clinics.partner')}</a></>}</p>}
+    </section>
 
-  {local(d.aftercare) && (<section aria-labelledby="aftercare"><h2 id="aftercare">{t(locale, 'clinic.aftercare')}</h2><p>{local(d.aftercare)}</p></section>)}
-  {local(d.revisionPolicy) && (<section aria-labelledby="revision"><h2 id="revision">{t(locale, 'clinic.revision')}</h2><p>{local(d.revisionPolicy)}</p></section>)}
+    {audited && (<section aria-labelledby="reply"><h2 id="reply">{t(locale, 'clinic.reply')}</h2><p>{reply ?? t(locale, 'clinic.noReply')}</p></section>)}
 
-  {
-    d.ratings.length > 0 && (
-      <section aria-labelledby="ratings">
-        <h2 id="ratings">{t(locale, 'clinic.ratings')}</h2>
-        <ul class="ratings">
-          {d.ratings.map((r) => (
-            <li>
-              <a href={r.url} rel="noopener nofollow">{r.platform}</a>: <strong>{r.score}</strong> · {r.count} {t(locale, 'clinic.reviews')} ({t(locale, 'clinic.asOf')} <DateTime locale={locale} value={r.checkedOn} />)
-            </li>
-          ))}
-        </ul>
-        <p class="muted small">{t(locale, 'clinic.ratingsNote')}</p>
-      </section>
-    )
-  }
+    <div class="clinic-faq">
+      <Faq locale={locale} items={faq} />
+    </div>
 
-  {
-    audited && (
-      <section aria-labelledby="reply">
-        <h2 id="reply">{t(locale, 'clinic.reply')}</h2>
-        <p>{reply ?? t(locale, 'clinic.noReply')}</p>
-      </section>
-    )
-  }
+    {
+      guides.length > 0 && (
+        <section aria-labelledby="guides">
+          <h2 id="guides">{t(locale, 'clinic.guides')}</h2>
+          <ul class="pill-links">{guides.map((g) => <li><a href={pathOf(g!.data.slug)}><Icon name="shield" size={18} />{g!.data.h1 ?? g!.data.title}</a></li>)}</ul>
+        </section>
+      )
+    }
 
-  {
-    d.sources.length > 0 && (
-      <section class="sources" aria-labelledby="clinic-sources">
-        <h2 id="clinic-sources">{t(locale, 'clinic.sources')}</h2>
-        <ol>{d.sources.map((s) => <li><a href={s.url} rel="noopener nofollow">{s.title}</a></li>)}</ol>
-      </section>
-    )
-  }
-</article>
+    {
+      d.sources.length > 0 && (
+        <section class="sources" aria-labelledby="clinic-sources">
+          <h2 id="clinic-sources">{t(locale, 'clinic.sources')}</h2>
+          <ol>{d.sources.map((s) => <li><a href={s.url} rel="noopener nofollow">{s.title}</a></li>)}</ol>
+        </section>
+      )
+    }
+  </article>
+
+  <aside class="clinic-aside" aria-label={t(locale, 'clinic.keyFacts')}>
+    <div class="aside-card">
+      {d.image && (
+        <figure class="clinic-image">
+          <img src={d.image.src} alt={d.image.alt} loading="lazy" decoding="async" />
+          <figcaption>{t(locale, 'image.credit').replace('{source}', d.image.credit)}</figcaption>
+        </figure>
+      )}
+      <h2 class="aside-title">{t(locale, 'clinic.keyFacts')}</h2>
+      <dl class="aside-facts">
+        <dt>{t(locale, 'clinic.type')}</dt>
+        <dd>{t(locale, `clinic.type.${d.setting}` as UiKey)}</dd>
+        {d.founded && (<><dt>{t(locale, 'clinic.founded')}</dt><dd>{d.founded}</dd></>)}
+        <dt>{t(locale, 'clinics.price')}</dt>
+        <dd>
+          {headline ? formatEURRange(headline.min, headline.max, locale) : '—'}
+        </dd>
+        <dt>{t(locale, 'clinic.license')}</dt>
+        <dd>{t(locale, `clinic.license.${d.license.status}` as UiKey)}{d.license.checkedOn && <> ({<DateTime locale={locale} value={d.license.checkedOn} />})</>}</dd>
+        {d.languages.length > 0 && (<><dt>{t(locale, 'clinic.languages')}</dt><dd>{d.languages.join(', ')}</dd></>)}
+        <dt>{audited ? t(locale, 'clinic.verifiedOn') : t(locale, 'clinic.collectedOn')}</dt>
+        <dd><DateTime locale={locale} value={d.verifiedOn} /></dd>
+      </dl>
+      <h2 class="aside-title">{t(locale, 'clinic.contact')}</h2>
+      <address class="aside-contact">
+        <span>{d.address}, {d.city}</span>
+        <a href={mapHref} rel="noopener nofollow">{t(locale, 'clinic.mapLink')}</a>
+        {d.phone && <span>{t(locale, 'clinic.phone')}: <a href={`tel:${d.phone.replace(/\s+/g, '')}`}>{d.phone}</a></span>}
+        {d.email && <span>{t(locale, 'clinic.email')}: <a href={`mailto:${d.email}`}>{d.email}</a></span>}
+        {local(d.hours) && <span>{t(locale, 'clinic.hours')}: {local(d.hours)}</span>}
+        {d.website && <a href={d.website} rel="noopener nofollow">{new URL(d.website).hostname}</a>}
+      </address>
+      {d.partner && <p class="note small"><span class="tag">{t(locale, 'clinics.partner')}</span> {t(locale, 'clinics.partnerNote')}</p>}
+    </div>
+  </aside>
+</div>
+
+{
+  others.length > 0 && clinicsIndex && (
+    <section class="clinic-compare" aria-labelledby="compare">
+      <h2 id="compare">{t(locale, 'clinic.compare')}</h2>
+      <ul class="cards clinic-cards">
+        {others.map((o) => (
+          <li class="card clinic-card">
+            <h3><a class="stretched" href={pathOf(clinicSlug(clinicsIndex, o))}>{o.data.name}</a></h3>
+            <p class="clinic-meta">
+              {t(locale, `clinic.type.${o.data.setting}` as UiKey)} · {o.data.city}
+              {o.data.priceEUR && <> · {formatEUR(o.data.priceEUR.min, locale)}–{formatEUR(o.data.priceEUR.max, locale)}</>}
+            </p>
+            <span class="card-more">{t(locale, 'clinic.view')} <Icon name="arrow-right" size={16} /></span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

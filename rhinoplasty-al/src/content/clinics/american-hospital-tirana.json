@@ -60,14 +60,158 @@
     {
       "title": "American Hospital: rhinoplasty guide and FAQ",
       "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/?p=3348"
+    },
+    {
+      "title": "American Hospital plastic surgery: About us",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/about-us/"
+    },
+    {
+      "title": "American Hospital plastic surgery: Contact us",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/contact-us/"
+    },
+    {
+      "title": "American Hospital plastic surgery: Medical tourism (price table)",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/medical-tourism/"
+    },
+    {
+      "title": "American Hospital plastic surgery: Rhinoplasty",
+      "url": "https://al.spitaliamerikan.com/plastic-surgery-albania/facial-surgery/rhinoplasty-albania/"
+    },
+    {
+      "title": "American Hospital: home (Albanian)",
+      "url": "https://al.spitaliamerikan.com/"
     }
   ],
-  "verifiedOn": "2026-10-24",
+  "verifiedOn": "2026-11-03",
   "status": "published",
   "image": {
     "src": "/images/clinics/american-hospital-tirana-logo.webp",
     "alt": "American Plastic Surgery logo",
     "credit": "American Hospital (Spitali Amerikan)",
     "permissionOn": "2026-10-25"
+  },
+  "shortName": "American Hospital Tirana",
+  "founded": "2006",
+  "phone": "+355 68 4000 990",
+  "email": "plastic@spitaliamerikan.com",
+  "hours": {
+    "en": "24/7 hospital (as stated on the contact page)",
+    "it": "Ospedale aperto 24 ore su 24, 7 giorni su 7 (come indicato nella pagina contatti)",
+    "sq": "Spital 24 orë në ditë, 7 ditë në javë (sipas faqes së kontakteve)"
+  },
+  "facilities": {
+    "en": [
+      "Plastic surgery department inside American Hospital, which the hospital says opened in 2006 and has 33+ medical departments (own figures)",
+      "24/7 ICU access, cardiac monitoring and anaesthesiology teams (clinic's own description)",
+      "Hospital complex of 60,460 m2 across several facilities (own figure)",
+      "Rhinoplasty stay: 1 night in hospital (clinic's price table)"
+    ],
+    "it": [
+      "Reparto di chirurgia plastica all'interno dell'American Hospital, che secondo l'ospedale è attivo dal 2006 e conta oltre 33 reparti (dati propri)",
+      "Accesso 24 ore su 24 alla terapia intensiva, monitoraggio cardiaco ed équipe di anestesiologia (descrizione della clinica)",
+      "Complesso ospedaliero di 60.460 m2 su più strutture (dato proprio)",
+      "Degenza per la rinoplastica: 1 notte in ospedale (tabella prezzi della clinica)"
+    ],
+    "sq": [
+      "Departamenti i kirurgjisë plastike brenda Spitalit Amerikan, që spitali thotë se është hapur në 2006 dhe ka mbi 33 departamente mjekësore (shifra të veta)",
+      "Qasje 24 orë në reanimacion, monitorim kardiak dhe ekipe anestezie (përshkrim i klinikës)",
+      "Kompleks spitalor prej 60.460 m2 në disa struktura (shifër e vetë spitalit)",
+      "Qëndrimi për rinoplastikë: 1 natë në spital (tabela e çmimeve të klinikës)"
+    ]
+  },
+  "services": {
+    "en": [
+      "Facial surgery (rhinoplasty, nose tip, septoplasty, septorhinoplasty, alar base reduction, facelift, eyelid surgery, otoplasty)",
+      "Body surgery (liposuction, tummy tuck, BBL, mommy makeover)",
+      "Breast surgery",
+      "Fat transfer",
+      "Cosmetic gynaecology",
+      "Plastic surgery for men",
+      "Post weight loss surgery",
+      "Hair transplant"
+    ],
+    "it": [
+      "Chirurgia del viso (rinoplastica, punta del naso, settoplastica, settorinoplastica, riduzione della base alare, lifting, blefaroplastica, otoplastica)",
+      "Chirurgia del corpo (liposuzione, addominoplastica, BBL, mommy makeover)",
+      "Chirurgia del seno",
+      "Lipofilling",
+      "Ginecologia estetica",
+      "Chirurgia plastica per uomo",
+      "Chirurgia dopo dimagrimento",
+      "Trapianto di capelli"
+    ],
+    "sq": [
+      "Kirurgji fytyre (rinoplastikë, maja e hundës, septoplastikë, septorinoplastikë, ulje e bazës alare, facelift, kirurgji e qepallave, otoplastikë)",
+      "Kirurgji trupi (liposuksion, abdominoplastikë, BBL, mommy makeover)",
+      "Kirurgji e gjirit",
+      "Transferim yndyre",
+      "Gjinekologji estetike",
+      "Kirurgji plastike për meshkuj",
+      "Kirurgji pas humbjes së peshës",
+      "Transplant flokësh"
+    ]
+  },
+  "priceList": [
+    {
+      "procedure": null,
+      "label": {
+        "en": "Rhinoplasty (aesthetic), 1 night",
+        "it": "Rinoplastica (estetica), 1 notte",
+        "sq": "Rinoplastikë (estetike), 1 natë"
+      },
+      "min": 2300,
+      "max": 2300,
+      "addOn": false,
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/medical-tourism/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "septorhinoplasty",
+      "label": {
+        "en": "Rhinoplasty + septoplasty, 1 night",
+        "it": "Rinoplastica + settoplastica, 1 notte",
+        "sq": "Rinoplastikë + septoplastikë, 1 natë"
+      },
+      "min": 2600,
+      "max": 2600,
+      "addOn": false,
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/medical-tourism/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": null,
+      "label": {
+        "en": "Rhinoplasty, range in the clinic's FAQ",
+        "it": "Rinoplastica, fascia indicata nelle FAQ della clinica",
+        "sq": "Rinoplastikë, interval në pyetjet e shpeshta të klinikës"
+      },
+      "min": 2500,
+      "max": 3500,
+      "addOn": false,
+      "source": "https://al.spitaliamerikan.com/plastic-surgery-albania/",
+      "collectedOn": "2026-11-03"
+    }
+  ],
+  "packages": {
+    "en": "The clinic says its prices include surgeon fees, anaesthesia, hospital facility fees, an overnight hospital stay, medication during the stay, post-operative garments where applicable, follow-up appointments during the stay and medical documentation. Flights, hotel, extended stays and optional treatments are not included. It says it arranges airport transfers, accommodation and local transport, offers a free online consultation from photos, and advises 7-10 days in Albania after rhinoplasty.",
+    "it": "La clinica dichiara che i prezzi comprendono onorari del chirurgo, anestesia, costi della struttura, una notte di degenza, farmaci durante il ricovero, indumenti post-operatori se previsti, controlli durante il soggiorno e documentazione medica. Voli, hotel, soggiorni prolungati e trattamenti opzionali non sono inclusi. Afferma di organizzare transfer aeroportuali, alloggio e trasporti locali, di offrire una consulenza online gratuita a partire dalle foto e di consigliare 7-10 giorni in Albania dopo la rinoplastica.",
+    "sq": "Klinika thotë se çmimet përfshijnë honorarin e kirurgut, anestezinë, kostot e spitalit, një natë qëndrim, ilaçet gjatë qëndrimit, veshjet pas operacionit kur nevojiten, vizitat e kontrollit gjatë qëndrimit dhe dokumentacionin mjekësor. Fluturimet, hoteli, qëndrimet e zgjatura dhe trajtimet opsionale nuk përfshihen. Ajo thotë se organizon transferimet nga aeroporti, akomodimin dhe transportin lokal, ofron konsultë falas online me foto dhe këshillon 7-10 ditë në Shqipëri pas rinoplastikës."
+  },
+  "about": {
+    "en": [
+      "The plastic surgery department of American Hospital (Spitali Amerikan) works from Rruga Sabaudin Gabrani 2 in Tirana. The hospital says it was established in 2006, has treated more than 400,000 patients (its own figure, elsewhere stated as 900,000) and has more than 33 medical departments.",
+      "The clinic says staff communicate in English, Italian, Greek, German and Albanian, and that patients can have a free online consultation by sending photos before travelling. It describes its setting as a hospital department with ICU access rather than a stand-alone aesthetic clinic.",
+      "Its rhinoplasty pages cover rhinoplasty, nose tip, septoplasty, septorhinoplasty, alar base reduction and rhinoplasty for men, and describe open and closed approaches and digital imaging at consultation. It also lists facial, body, breast and intimate surgery, fat transfer, men's surgery and hair transplant."
+    ],
+    "it": [
+      "Il reparto di chirurgia plastica dell'American Hospital (Spitali Amerikan) ha sede in Rruga Sabaudin Gabrani 2 a Tirana. L'ospedale afferma di essere stato fondato nel 2006, di aver curato oltre 400.000 pazienti (dato proprio, altrove indicato come 900.000) e di avere più di 33 reparti medici.",
+      "La clinica dichiara che il personale comunica in inglese, italiano, greco, tedesco e albanese e che i pazienti possono avere una consulenza online gratuita inviando le foto prima di partire. Si descrive come reparto di un ospedale con accesso alla terapia intensiva, non come clinica estetica isolata.",
+      "Le pagine sulla rinoplastica trattano rinoplastica, punta del naso, settoplastica, settorinoplastica, riduzione della base alare e rinoplastica maschile, con approccio aperto e chiuso e simulazione digitale in consulenza. Elenca anche chirurgia del viso, del corpo, del seno e intima, lipofilling, chirurgia maschile e trapianto di capelli."
+    ],
+    "sq": [
+      "Departamenti i kirurgjisë plastike të Spitalit Amerikan ndodhet në Rrugën Sabaudin Gabrani 2 në Tiranë. Spitali thotë se është themeluar në 2006, ka trajtuar mbi 400.000 pacientë (shifër e vetë spitalit, diku tjetër e dhënë si 900.000) dhe ka mbi 33 departamente mjekësore.",
+      "Klinika thotë se stafi komunikon në anglisht, italisht, greqisht, gjermanisht dhe shqip dhe se pacientët mund të marrin një konsultë falas online duke dërguar fotografi para udhëtimit. Ajo e përshkruan veten si departament spitalor me qasje në reanimacion, jo si klinikë estetike e veçuar.",
+      "Faqet e rinoplastikës mbulojnë rinoplastikën, majën e hundës, septoplastikën, septorinoplastikën, uljen e bazës alare dhe rinoplastikën për meshkuj, me qasje të hapur e të mbyllur dhe imazhe dixhitale gjatë konsultës. Ajo liston edhe kirurgji të fytyrës, trupit, gjirit dhe intime, transferim yndyre, kirurgji për meshkuj dhe transplant flokësh."
+    ]
   }
 }

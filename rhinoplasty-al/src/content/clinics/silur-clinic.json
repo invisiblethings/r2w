@@ -33,8 +33,108 @@
     {
       "title": "WhatClinic: rhinoplasty in Albania",
       "url": "https://whatclinic.com/cosmetic-plastic-surgery/albania/rhinoplasty?page=1"
+    },
+    {
+      "title": "Silur Clinic: home page",
+      "url": "https://silurclinic.com"
+    },
+    {
+      "title": "Silur Clinic: About us",
+      "url": "https://silurclinic.com/about-us/"
+    },
+    {
+      "title": "Silur Clinic: Contact",
+      "url": "https://silurclinic.com/contact/"
+    },
+    {
+      "title": "Silur Clinic: Rhinoplasty",
+      "url": "https://silurclinic.com/services/rhinoplasty/"
+    },
+    {
+      "title": "Silur Clinic: Ethnic rhinoplasty",
+      "url": "https://silurclinic.com/services/ethnic-rhinoplasty/"
+    },
+    {
+      "title": "Silur Clinic: Our doctors",
+      "url": "https://silurclinic.com/our-doctors/"
+    },
+    {
+      "title": "Silur Clinic: FAQ",
+      "url": "https://silurclinic.com/faq/"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "phone": "+355 69 4010 230",
+  "hours": {
+    "en": "Mon–Sat 08:00–19:00",
+    "it": "Lun–Sab 08:00–19:00",
+    "sq": "E hënë – e shtunë 08:00–19:00"
+  },
+  "facilities": {
+    "en": [
+      "Describes itself as a clinic and day hospital in Tirana",
+      "Online consultations and advance photo review offered",
+      "Follow-up appointment about two weeks after a procedure (clinic's own policy)"
+    ],
+    "it": [
+      "Si descrive come clinica e day hospital a Tirana",
+      "Consulenze online e valutazione preliminare tramite foto",
+      "Controllo di follow-up circa due settimane dopo l'intervento (politica della clinica)"
+    ],
+    "sq": [
+      "E përshkruan veten si klinikë dhe spital ditor në Tiranë",
+      "Konsulta online dhe vlerësim paraprak me fotografi",
+      "Vizitë kontrolli rreth dy javë pas ndërhyrjes (politikë e vetë klinikës)"
+    ]
+  },
+  "accreditations": [
+    {
+      "name": "Licensed by the Albanian National Licensing Center, no. LN-0452-10-2025 (stated by the clinic)",
+      "url": "https://silurclinic.com/about-us/"
+    }
+  ],
+  "services": {
+    "en": [
+      "Rhinoplasty and ethnic rhinoplasty",
+      "Otoplasty, blepharoplasty, face and neck lifts, lip lift",
+      "Breast surgery, liposuction, abdominoplasty, BBL, mommy makeover",
+      "Hair, beard and eyebrow transplant",
+      "Aesthetic treatments (fillers including nose filler, PRP, Hydrafacial)"
+    ],
+    "it": [
+      "Rinoplastica e rinoplastica etnica",
+      "Otoplastica, blefaroplastica, lifting del viso e del collo, lip lift",
+      "Chirurgia del seno, liposuzione, addominoplastica, BBL, mommy makeover",
+      "Trapianto di capelli, barba e sopracciglia",
+      "Trattamenti estetici (filler, anche per il naso, PRP, Hydrafacial)"
+    ],
+    "sq": [
+      "Rinoplastikë dhe rinoplastikë etnike",
+      "Otoplastikë, blefaroplastikë, ngritje e fytyrës dhe e qafës, ngritje e buzës",
+      "Kirurgji e gjoksit, liposuksion, abdominoplastikë, BBL, mommy makeover",
+      "Transplant flokësh, mjekre dhe vetullash",
+      "Trajtime estetike (mbushës, përfshirë mbushës për hundën, PRP, Hydrafacial)"
+    ]
+  },
+  "about": {
+    "en": [
+      "Silur Clinic & Day Hospital is in Tirana, in the Farmacia 10 complex on Rruga e Dibrës. On its website it describes three areas of work: plastic surgery, aesthetics and hair transplant. The clinic says it is licensed by the Albanian National Licensing Center and gives a licence number.",
+      "The clinic says its team is led by Dr. Albiona Saliaj, a plastic and reconstructive surgeon whom it describes as recognised by both Albanian and Italian medical authorities. Its doctors page also lists anaesthesiologists, an ENT and facial aesthetic surgeon, nurses and medical consultants.",
+      "For rhinoplasty the clinic lists standard and ethnic rhinoplasty, plus a piezo rhinoplasty article. It says the operation is done under general anaesthesia, takes about 1.5–3 hours (2–3 hours for ethnic rhinoplasty), and may be open or closed. A nasal splint is worn for about 7 days.",
+      "Patients can send photos for a preliminary assessment or book an online consultation through WhatsApp. The clinic says a follow-up visit takes place about two weeks after surgery and that it has a revision policy, assessed case by case. Its site is in English, with no price list."
+    ],
+    "it": [
+      "Silur Clinic & Day Hospital si trova a Tirana, nel complesso Farmacia 10 su Rruga e Dibrës. Sul proprio sito descrive tre aree di attività: chirurgia plastica, estetica e trapianto di capelli. La clinica dichiara di essere autorizzata dal Centro Nazionale di Licenze albanese e indica un numero di licenza.",
+      "La clinica afferma che il team è guidato dalla dott.ssa Albiona Saliaj, chirurga plastica e ricostruttiva che descrive come riconosciuta dalle autorità mediche albanesi e italiane. La pagina dei medici elenca anche anestesisti, una specialista ORL e chirurga estetica del viso, infermieri e consulenti medici.",
+      "Per la rinoplastica la clinica propone la rinoplastica standard ed etnica e un articolo sulla rinoplastica piezo. Dichiara che l'intervento avviene in anestesia generale, dura circa 1,5–3 ore (2–3 per quella etnica) e può essere aperto o chiuso. Il tutore nasale si porta per circa 7 giorni.",
+      "I pazienti possono inviare foto per una valutazione preliminare o prenotare una consulenza online via WhatsApp. La clinica indica un controllo circa due settimane dopo l'intervento e una politica di revisione, valutata caso per caso. Il sito è in inglese e non pubblica un listino prezzi."
+    ],
+    "sq": [
+      "Silur Clinic & Day Hospital ndodhet në Tiranë, në kompleksin Farmacia 10 në Rrugën e Dibrës. Në faqen e vet përshkruan tri fusha pune: kirurgji plastike, estetikë dhe transplant flokësh. Klinika deklaron se është e licencuar nga Qendra Kombëtare e Licencimit dhe jep një numër licence.",
+      "Klinika thotë se ekipi drejtohet nga Dr. Albiona Saliaj, kirurge plastike dhe rindërtuese, që e përshkruan si të njohur nga autoritetet mjekësore shqiptare dhe italiane. Faqja e mjekëve përmend edhe anestezistë, një specialiste ORL dhe kirurge estetike të fytyrës, infermierë dhe konsulentë mjekësorë.",
+      "Për rinoplastikën klinika liston rinoplastikën standarde dhe etnike, si dhe një artikull për rinoplastikën piezo. Thotë se ndërhyrja bëhet nën anestezi të përgjithshme, zgjat rreth 1,5–3 orë (2–3 orë për atë etnike) dhe mund të jetë e hapur ose e mbyllur. Fiksuesi i hundës mbahet rreth 7 ditë.",
+      "Pacientët mund të dërgojnë fotografi për një vlerësim paraprak ose të caktojnë një konsultë online përmes WhatsApp. Klinika thotë se kontrolli bëhet rreth dy javë pas operacionit dhe se ka një politikë rishikimi, e vlerësuar rast pas rasti. Faqja është në anglisht dhe nuk publikon listë çmimesh."
+    ]
+  }
 }

@@ -20,8 +20,111 @@
     {
       "title": "Trustpilot: Dermolife (chirurgia-albania.com)",
       "url": "https://at.trustpilot.com/review/chirurgia-albania.com"
+    },
+    {
+      "title": "Dermolife: Italian site, home",
+      "url": "https://chirurgia-albania.com"
+    },
+    {
+      "title": "Dermolife: Chi siamo",
+      "url": "https://chirurgia-albania.com/riguardo_a_noi"
+    },
+    {
+      "title": "Dermolife: Rinoplastica",
+      "url": "https://chirurgia-albania.com/rinoplastica"
+    },
+    {
+      "title": "Dermolife: Contattaci",
+      "url": "https://chirurgia-albania.com/Contattaci"
+    },
+    {
+      "title": "Dermolife: Albanian site, home",
+      "url": "https://dermolife.al"
+    },
+    {
+      "title": "Dermolife: Rreth nesh",
+      "url": "https://dermolife.al/rreth-nesh"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "founded": "2002",
+  "phone": "+355 69 60 06 550",
+  "email": "info@dermolife.al",
+  "hours": {
+    "en": "Mon–Sat 08:00–19:30, Sun closed",
+    "it": "Lun–Sab 08:00–19:30, domenica chiuso",
+    "sq": "E hënë – e shtunë 08:00–19:30, e diel mbyllur"
+  },
+  "facilities": {
+    "en": [
+      "Describes itself as a multi-specialty polyclinic in Tirana",
+      "In-house analysis laboratory (clinic's statement)",
+      "Departments for plastic surgery, bariatric, general and vascular surgery"
+    ],
+    "it": [
+      "Si descrive come policlinica multispecialistica a Tirana",
+      "Laboratorio di analisi interno (dichiarazione della clinica)",
+      "Reparti di chirurgia plastica, bariatrica, generale e vascolare"
+    ],
+    "sq": [
+      "E përshkruan veten si poliklinikë shumëspecialitetëshe në Tiranë",
+      "Laborator analizash brenda klinikës (deklaratë e klinikës)",
+      "Departamente të kirurgjisë plastike, bariatrike, të përgjithshme dhe vaskulare"
+    ]
+  },
+  "services": {
+    "en": [
+      "Rhinoplasty, septorhinoplasty and revision rhinoplasty",
+      "Otoplasty, blepharoplasty, facelift, chin remodelling",
+      "Breast surgery, liposuction, abdominal and body contouring",
+      "Gastric balloon, gastric sleeve and other bariatric procedures",
+      "Varicose vein treatment",
+      "Hair, beard and eyebrow transplant",
+      "Dental treatments and aesthetic treatments"
+    ],
+    "it": [
+      "Rinoplastica, rinosettoplastica e rinoplastica secondaria",
+      "Otoplastica, blefaroplastica, lifting del viso, rimodellamento del mento",
+      "Chirurgia del seno, liposuzione, rimodellamento di addome e corpo",
+      "Palloncino gastrico, gastric sleeve e altri interventi bariatrici",
+      "Trattamento delle varici",
+      "Trapianto di capelli, barba e sopracciglia",
+      "Odontoiatria e trattamenti estetici"
+    ],
+    "sq": [
+      "Rinoplastikë, septorinoplastikë dhe rinoplastikë rishikuese",
+      "Otoplastikë, blefaroplastikë, lifting i fytyrës, rimodelim i mjekrës",
+      "Kirurgji e gjoksit, liposuksion, rimodelim i barkut dhe i trupit",
+      "Balon gastrik, gastric sleeve dhe ndërhyrje të tjera bariatrike",
+      "Trajtim i variceve",
+      "Transplant flokësh, mjekre dhe vetullash",
+      "Stomatologji dhe trajtime estetike"
+    ]
+  },
+  "packages": {
+    "en": "The clinic says a quote is set after a free consultation (photos can be sent remotely) and covers the operation, the planned hospital stay and post-operative care. It also says post-operative checks are free, including remotely after the patient is home, and that Italian-language assistance is provided throughout. No price figures are published.",
+    "it": "La clinica dichiara che il preventivo viene definito dopo una consulenza gratuita (anche a distanza con foto) e comprende intervento, degenza prevista e assistenza post-operatoria. Indica inoltre controlli post-operatori gratuiti, anche a distanza dopo il rientro, e assistenza in lingua italiana in ogni fase. Non pubblica cifre.",
+    "sq": "Klinika thotë se oferta përcaktohet pas një konsulte falas (mund të dërgohen fotografi nga larg) dhe përfshin ndërhyrjen, qëndrimin e planifikuar dhe kujdesin pas operacionit. Thotë gjithashtu se kontrollet pas operacionit janë falas, edhe në distancë pas kthimit, dhe se ofrohet asistencë në italisht gjatë gjithë procesit. Nuk publikon shifra çmimesh."
+  },
+  "about": {
+    "en": [
+      "Dermolife describes itself as a polyclinic in Tirana that began operating on 5 December 2002. On its About page it says it was founded by Dr. Lida Hoxha, an aesthetic dermatologist. Alongside aesthetics, it lists departments for plastic surgery, general, bariatric and vascular surgery, a laboratory and other specialties.",
+      "The clinic says its plastic surgery department has worked with Italian surgeons since the start and that its Italian-language site is aimed at patients from Italy, with Italian-speaking assistance from first consultation to follow-up. It describes the surgeon team as plastic, aesthetic, reconstructive and maxillofacial specialists, and says the case is assessed by the most suitable one.",
+      "For rhinoplasty the clinic says it offers open and closed, tip, ultrasonic (piezo), revision rhinoplasty and septoplasty when breathing is affected. It says a 3D simulation can be viewed before surgery. It also says it has a WhatClinic Patient Service Award and a Trustpilot profile. The clinic claims its surgeons have over 22 years of experience.",
+      "The site publishes no prices; it says a quote follows a free consultation and that costs are on average 40–60% lower than in Italy (the clinic's own estimate). The clinic operates two sites, chirurgia-albania.com (Italian, English) and dermolife.al (Albanian)."
+    ],
+    "it": [
+      "Dermolife si presenta come policlinica di Tirana, attiva dal 5 dicembre 2002. Nella pagina Chi siamo dichiara di essere stata fondata dalla dott.ssa Lida Hoxha, dermoestetista. Oltre all'estetica, elenca reparti di chirurgia plastica, generale, bariatrica e vascolare, un laboratorio di analisi e altre specialità.",
+      "La clinica afferma di collaborare fin dall'inizio con chirurghi italiani nel reparto di chirurgia plastica e di rivolgersi ai pazienti dall'Italia, con assistenza in italiano dalla prima consulenza al follow-up. Descrive il team come composto da chirurghi plastici, estetici, ricostruttivi e maxillo-facciali, e dice che il caso è valutato dal professionista più adatto.",
+      "Per la rinoplastica la clinica dichiara di eseguire rinoplastica aperta e chiusa, della punta, a ultrasuoni (piezoelettrica), secondaria e la settoplastica quando la respirazione è compromessa. Indica che prima dell'intervento è possibile vedere una simulazione 3D. Cita inoltre un WhatClinic Patient Service Award e un profilo Trustpilot, e dichiara chirurghi con oltre 22 anni di esperienza.",
+      "Il sito non pubblica prezzi: il preventivo segue una consulenza gratuita e, secondo la clinica, i costi sono in media del 40–60% inferiori a quelli italiani (stima della clinica). La clinica gestisce due siti: chirurgia-albania.com (italiano, inglese) e dermolife.al (albanese)."
+    ],
+    "sq": [
+      "Dermolife e përshkruan veten si poliklinikë në Tiranë, që ka nisur veprimtarinë më 5 dhjetor 2002. Në faqen Rreth nesh thotë se është themeluar nga Dr. Lida Hoxha, dermoestetiste. Krahas estetikës, liston departamente të kirurgjisë plastike, të përgjithshme, bariatrike dhe vaskulare, një laborator dhe specialitete të tjera.",
+      "Klinika thotë se departamenti i kirurgjisë plastike bashkëpunon që nga fillimi me kirurgë italianë dhe se u drejtohet pacientëve nga Italia, me asistencë në italisht nga konsulta e parë deri te kontrolli pas operacionit. Ekipin e përshkruan si kirurgë plastikë, estetikë, rindërtues dhe maksilofacialë dhe thotë se rasti vlerësohet nga specialisti më i përshtatshëm.",
+      "Për rinoplastikën klinika thotë se kryen rinoplastikë të hapur dhe të mbyllur, të majës, me ultratinguj (piezo), rishikuese dhe septoplastikë kur preket frymëmarrja. Thotë se para operacionit mund të shihet një simulim 3D. Përmend gjithashtu një çmim WhatClinic Patient Service Award dhe një profil në Trustpilot, dhe deklaron kirurgë me mbi 22 vjet përvojë.",
+      "Faqja nuk publikon çmime: oferta vjen pas një konsulte falas dhe, sipas klinikës, kostot janë mesatarisht 40–60% më të ulëta se në Itali (vlerësim i vetë klinikës). Klinika ka dy faqe, chirurgia-albania.com (italisht, anglisht) dhe dermolife.al (shqip)."
+    ]
+  }
 }

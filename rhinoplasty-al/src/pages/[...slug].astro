@@ -34,6 +34,7 @@ import {
   type Page,
 } from '../lib/pages';
 import { isRankable, rank } from '../lib/scoring';
+import { clinicFaq } from '../lib/clinic-faq';
 import * as schema from '../lib/schema';
 import { locales, type Locale } from '../site.config';
 
@@ -150,7 +151,9 @@ if (props.kind === 'page') {
   const { clinic, index } = props;
   locale = index.data.locale;
   heading = clinic.data.name;
-  title = `${clinic.data.name} – ${t(locale, 'clinic.metaTitle')}`.slice(0, 70);
+  const shortName = clinic.data.shortName ?? clinic.data.name;
+  const fullTitleText = `${shortName}: ${t(locale, 'clinic.metaTitle')}`;
+  title = fullTitleText.length <= 70 ? fullTitleText : shortName;
   description = (clinic.data.summary[locale] ?? clinic.data.summary.en ?? `${clinic.data.name}, ${clinic.data.city}`).slice(0, 160);
   canonical = urlOf(clinicSlug(index, clinic));
   indexable = true;
@@ -164,7 +167,26 @@ if (props.kind === 'page') {
   crumbs = crumbsFor([...ancestors(pages, index), index], locale);
   nodes.push(schema.webPage({ url: canonical, name: heading, description, locale, medical: false, updated: clinic.data.verifiedOn }));
   nodes.push(schema.breadcrumbs([...crumbs.map((c) => ({ name: c.name, url: new URL(c.href, canonical).href })), { name: heading, url: canonical }]));
-  nodes.push(schema.medicalClinic({ name: clinic.data.name, url: canonical, address: clinic.data.address, city: clinic.data.city, website: clinic.data.website }));
+  const prices = clinic.data.priceList.filter((r) => !r.addOn && !r.procedure?.startsWith('alar'));
+  const low = clinic.data.priceEUR?.min ?? (prices.length ? Math.min(...prices.map((r) => r.min)) : undefined);
+  const high = clinic.data.priceEUR?.max ?? (prices.length ? Math.max(...prices.map((r) => r.max)) : undefined);
+  nodes.push(
+    schema.medicalClinic({
+      name: clinic.data.name,
+      url: canonical,
+      address: clinic.data.address,
+      city: clinic.data.city,
+      website: clinic.data.website,
+      phone: clinic.data.phone,
+      email: clinic.data.email,
+      image: clinic.data.image ? new URL(clinic.data.image.src, canonical).href : undefined,
+      priceRange: low !== undefined && high !== undefined ? `€${low}–€${high}` : undefined,
+      foundingDate: clinic.data.founded,
+      services: clinic.data.techniques.map((k) => find(pages, k, locale)?.data.h1 ?? k),
+    }),
+  );
+  const techniqueNames = clinic.data.techniques.map((k) => find(pages, k, locale)?.data.h1 ?? k);
+  nodes.push(schema.faqPage(clinicFaq(clinic, locale, { surgeonNames: clinic.data.surgeons.map((x) => x.name), techniqueNames })));
 } else {
   const { surgeon, index } = props;
   locale = index.data.locale;

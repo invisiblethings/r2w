@@ -114,6 +114,30 @@ const clinics = defineCollection({
     sources: z.array(source).default([]),
     verifiedOn: z.coerce.date(),
     status: z.enum(['draft', 'published']).default('draft'),
+    /** Short name for titles and FAQ answers ("American Hospital Tirana"). */
+    shortName: z.string().optional(),
+    founded: z.string().optional(),
+    phone: z.string().optional(),
+    email: z.string().optional(),
+    hours: z.record(localeEnum, z.string()).default({}),
+    facilities: z.record(localeEnum, z.array(z.string())).default({}),
+    accreditations: z.array(z.object({ name: z.string(), url: z.string().url().optional() })).default([]),
+    services: z.record(localeEnum, z.array(z.string())).default({}),
+    priceList: z
+      .array(
+        z.object({
+          procedure: z.string().nullable().optional(),
+          label: z.record(localeEnum, z.string()),
+          min: z.number(),
+          max: z.number(),
+          addOn: z.boolean().default(false),
+          source: z.string().url(),
+          collectedOn: z.coerce.date(),
+        }),
+      )
+      .default([]),
+    packages: z.record(localeEnum, z.string()).default({}),
+    about: z.record(localeEnum, z.array(z.string())).default({}),
   }),
 });
 

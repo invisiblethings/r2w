@@ -57,8 +57,233 @@
     {
       "title": "Hygeia: medical team",
       "url": "https://hygeia.al/plastic-surgery/medical-team/"
+    },
+    {
+      "title": "Hygeia Plastic Surgery: home",
+      "url": "https://hygeia.al/plastic-surgery/"
+    },
+    {
+      "title": "Hygeia Plastic Surgery: About us",
+      "url": "https://hygeia.al/plastic-surgery/about-us/"
+    },
+    {
+      "title": "Hygeia Plastic Surgery: Contact us (phone, email)",
+      "url": "https://hygeia.al/plastic-surgery/contact-us/"
+    },
+    {
+      "title": "Hygeia Plastic Surgery: Medical tourism",
+      "url": "https://hygeia.al/plastic-surgery/medical-tourism/"
+    },
+    {
+      "title": "Hygeia Plastic Surgery: Nose tip rhinoplasty (price list)",
+      "url": "https://hygeia.al/plastic-surgery/facial-surgery/nose-tip-rhinoplasty-albania/"
+    },
+    {
+      "title": "Hygeia Hospital Tirana: home (Albanian)",
+      "url": "https://hygeia.al/"
     }
   ],
-  "verifiedOn": "2026-10-24",
-  "status": "published"
+  "verifiedOn": "2026-11-03",
+  "status": "published",
+  "phone": "+355 67 409 9138",
+  "email": "info@hygeiaplasticsurgery.com",
+  "facilities": {
+    "en": [
+      "Plastic surgery unit inside Hygeia Hospital Tirana, which the hospital describes as purpose-built (own claim)",
+      "Modern operating theatres and piezoelectric equipment (clinic's own description)",
+      "Private patient rooms, dedicated recovery areas and on-site pharmacy (clinic's own description)",
+      "Day case or 1 night in hospital for rhinoplasty (clinic's own figure)"
+    ],
+    "it": [
+      "Unità di chirurgia plastica all'interno dell'Hygeia Hospital Tirana, che l'ospedale descrive come costruito appositamente (dichiarazione propria)",
+      "Sale operatorie moderne e apparecchiature piezoelettriche (descrizione della clinica)",
+      "Camere private, aree di recupero dedicate e farmacia interna (descrizione della clinica)",
+      "Rinoplastica in day surgery o con 1 notte in ospedale (dato della clinica)"
+    ],
+    "sq": [
+      "Njësia e kirurgjisë plastike brenda Spitalit Hygeia Tiranë, që spitali e përshkruan si të ndërtuar posaçërisht (pohim i vetë spitalit)",
+      "Salla operacioni moderne dhe pajisje piezoelektrike (përshkrim i klinikës)",
+      "Dhoma private, zona të dedikuara rikuperimi dhe farmaci në vend (përshkrim i klinikës)",
+      "Rinoplastika në ditë ose me 1 natë në spital (shifër e klinikës)"
+    ]
+  },
+  "accreditations": [
+    {
+      "name": "TEMOS certification for international patient care (claimed by the hospital)",
+      "url": "https://hygeia.al/plastic-surgery/"
+    }
+  ],
+  "services": {
+    "en": [
+      "Facial surgery (rhinoplasty, nose tip, septoplasty, septorhinoplasty, alar base reduction, facelift, blepharoplasty, otoplasty)",
+      "Body surgery (liposuction, tummy tuck, BBL, body lift)",
+      "Breast surgery",
+      "Fat transfer",
+      "Cosmetic gynaecology",
+      "Plastic surgery for men",
+      "Post weight loss surgery",
+      "Hair transplant"
+    ],
+    "it": [
+      "Chirurgia del viso (rinoplastica, punta del naso, settoplastica, settorinoplastica, riduzione della base alare, lifting, blefaroplastica, otoplastica)",
+      "Chirurgia del corpo (liposuzione, addominoplastica, BBL, body lift)",
+      "Chirurgia del seno",
+      "Lipofilling",
+      "Ginecologia estetica",
+      "Chirurgia plastica per uomo",
+      "Chirurgia dopo dimagrimento",
+      "Trapianto di capelli"
+    ],
+    "sq": [
+      "Kirurgji fytyre (rinoplastikë, maja e hundës, septoplastikë, septorinoplastikë, ulje e bazës alare, facelift, blefaroplastikë, otoplastikë)",
+      "Kirurgji trupi (liposuksion, abdominoplastikë, BBL, body lift)",
+      "Kirurgji e gjirit",
+      "Transferim yndyre",
+      "Gjinekologji estetike",
+      "Kirurgji plastike për meshkuj",
+      "Kirurgji pas humbjes së peshës",
+      "Transplant flokësh"
+    ]
+  },
+  "priceList": [
+    {
+      "procedure": null,
+      "label": {
+        "en": "Primary cosmetic rhinoplasty",
+        "it": "Rinoplastica primaria estetica",
+        "sq": "Rinoplastikë primare estetike"
+      },
+      "min": 2000,
+      "max": 3800,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "septorhinoplasty",
+      "label": {
+        "en": "Septorhinoplasty (aesthetic and functional)",
+        "it": "Settorinoplastica (estetica e funzionale)",
+        "sq": "Septorinoplastika (estetike dhe funksionale)"
+      },
+      "min": 3200,
+      "max": 4200,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "revision-rhinoplasty",
+      "label": {
+        "en": "Revision rhinoplasty",
+        "it": "Rinoplastica secondaria (di revisione)",
+        "sq": "Rinoplastikë rishikuese"
+      },
+      "min": 3800,
+      "max": 5500,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "ultrasonic-rhinoplasty",
+      "label": {
+        "en": "Ultrasonic (piezo) add-on",
+        "it": "Supplemento a ultrasuoni (piezo)",
+        "sq": "Shtesë me ultratinguj (piezo)"
+      },
+      "min": 400,
+      "max": 800,
+      "addOn": true,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "tip-rhinoplasty",
+      "label": {
+        "en": "Tip rhinoplasty only",
+        "it": "Rinoplastica della sola punta",
+        "sq": "Rinoplastikë vetëm e majës"
+      },
+      "min": 2500,
+      "max": 3200,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "alar-base-reduction",
+      "label": {
+        "en": "Alar base reduction (standalone)",
+        "it": "Riduzione della base alare (da sola)",
+        "sq": "Ulje e bazës alare (e veçuar)"
+      },
+      "min": 800,
+      "max": 1200,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "tip-rhinoplasty",
+      "label": {
+        "en": "Closed tip rhinoplasty",
+        "it": "Rinoplastica della punta, approccio chiuso",
+        "sq": "Rinoplastikë e majës, qasje e mbyllur"
+      },
+      "min": 2000,
+      "max": 2600,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/nose-tip-rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "tip-rhinoplasty",
+      "label": {
+        "en": "Open tip rhinoplasty",
+        "it": "Rinoplastica della punta, approccio aperto",
+        "sq": "Rinoplastikë e majës, qasje e hapur"
+      },
+      "min": 2400,
+      "max": 3200,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/nose-tip-rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    },
+    {
+      "procedure": "tip-rhinoplasty",
+      "label": {
+        "en": "Revision tip work",
+        "it": "Revisione della punta",
+        "sq": "Rishikim i majës së hundës"
+      },
+      "min": 3200,
+      "max": 4500,
+      "addOn": false,
+      "source": "https://hygeia.al/plastic-surgery/facial-surgery/nose-tip-rhinoplasty-albania/",
+      "collectedOn": "2026-11-03"
+    }
+  ],
+  "packages": {
+    "en": "The clinic says its quoted prices include the surgeon's and anaesthetist's fees, hospital facility costs, surgical supplies, medication during the hospital stay, external splint, post-operative appointments during the stay in Albania, written aftercare instructions and a 24-hour emergency contact. Flights and accommodation are extra. Its coordinators can arrange hotel, airport transfers and local transport, and it suggests staying 7-10 days in Tirana. Video consultations are offered before travel.",
+    "it": "La clinica dichiara che i prezzi indicati comprendono onorari del chirurgo e dell'anestesista, costi della struttura ospedaliera, materiali chirurgici, farmaci durante il ricovero, stecca nasale esterna, controlli durante il soggiorno in Albania, istruzioni scritte per la convalescenza e un contatto di emergenza attivo 24 ore. Voli e alloggio sono esclusi. I coordinatori possono organizzare hotel, transfer aeroportuali e trasporti locali; la clinica consiglia 7-10 giorni a Tirana. Prima del viaggio sono offerte videoconsulenze.",
+    "sq": "Klinika thotë se çmimet e shpallura përfshijnë honorarin e kirurgut dhe të anestezistit, kostot e spitalit, materialet kirurgjikale, ilaçet gjatë qëndrimit në spital, fashën e jashtme, vizitat pas operacionit gjatë qëndrimit në Shqipëri, udhëzimet me shkrim për kujdesin dhe një kontakt emergjence 24 orë. Fluturimet dhe akomodimi nuk përfshihen. Koordinatorët mund të organizojnë hotelin, transferimet nga aeroporti dhe transportin lokal; klinika sugjeron 7-10 ditë në Tiranë. Para udhëtimit ofrohen konsulta me video."
+  },
+  "about": {
+    "en": [
+      "Hygeia Plastic Surgery is the plastic surgery department of Hygeia Hospital Tirana, a private hospital in Kashar on the Tirana-Durrës road. The hospital's Albanian-language site says it is part of the Hygeia Group of Greece and describes it as an international-level private hospital with an initial investment of 60 million euros.",
+      "The department says it treats patients from across Europe and beyond, and offers free consultations in person or by video. Its coordinators are said to work in English, German, Italian and French. The clinic says its hospital setting provides overnight observation and emergency back-up if needed.",
+      "For rhinoplasty the clinic publishes separate pages and prices for primary, septorhinoplasty, revision, nose tip and alar base procedures, with an optional ultrasonic (piezo) technique. Beyond the nose it lists facial, body, breast, intimate and reconstructive surgery, fat transfer, men's surgery and hair transplant."
+    ],
+    "it": [
+      "Hygeia Plastic Surgery è il reparto di chirurgia plastica dell'Hygeia Hospital Tirana, ospedale privato a Kashar, lungo la strada Tirana-Durazzo. Il sito in albanese dell'ospedale afferma che fa parte del gruppo greco Hygeia e lo descrive come ospedale privato di livello internazionale, con un investimento iniziale di 60 milioni di euro.",
+      "Il reparto dichiara di accogliere pazienti da tutta Europa e oltre e offre consulenze gratuite, di persona o in video. I coordinatori, secondo la clinica, lavorano in inglese, tedesco, italiano e francese. La clinica afferma che il contesto ospedaliero consente l'osservazione notturna e il supporto d'emergenza, se necessario.",
+      "Per la rinoplastica la clinica pubblica pagine e prezzi distinti per primaria, settorinoplastica, secondaria, punta del naso e base alare, con la tecnica a ultrasuoni (piezo) come opzione. Oltre al naso elenca chirurgia del viso, del corpo, del seno, intima e ricostruttiva, lipofilling, chirurgia maschile e trapianto di capelli."
+    ],
+    "sq": [
+      "Hygeia Plastic Surgery është njësia e kirurgjisë plastike e Spitalit Hygeia Tiranë, një spital privat në Kashar, në rrugën Tiranë-Durrës. Faqja shqipe e spitalit thotë se ai është pjesë e Grupit grek Hygeia dhe e përshkruan si spital privat të nivelit ndërkombëtar, me një investim fillestar prej 60 milionë eurosh.",
+      "Njësia thotë se trajton pacientë nga e gjithë Evropa dhe më gjerë dhe ofron konsulta falas, në vend ose me video. Sipas klinikës, koordinatorët punojnë në anglisht, gjermanisht, italisht dhe frëngjisht. Klinika thotë se mjedisi spitalor mundëson vëzhgim gjatë natës dhe mbështetje emergjente nëse nevojitet.",
+      "Për rinoplastikën klinika publikon faqe dhe çmime të veçanta për procedurën primare, septorinoplastikën, rishikuesen, majën e hundës dhe bazën alare, me teknikën me ultratinguj (piezo) si opsion. Përtej hundës, ajo liston kirurgji të fytyrës, trupit, gjirit, intime dhe rindërtuese, transferim yndyre, kirurgji për meshkuj dhe transplant flokësh."
+    ]
+  }
 }
